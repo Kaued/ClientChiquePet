@@ -1,0 +1,18 @@
+@import './scss/mixings.scss';
+
+body {
+  padding: 0;
+  margin: 0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  @include for-phone-only {
+    max-width: 80%;
+  }
+}

@@ -1,0 +1,46 @@
+@use '../../scss/mixings.scss' as *;
+
+#root {
+  padding: 0;
+}
+
+.login {
+  background-color: white;
+  padding: 2em;
+  border-radius: 30px;
+  min-width: 400px;
+
+  @include for-phone-only {
+    min-width: 100%;
+  }
+
+  &-cover {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+  }
+
+  &-label {
+    font-size: 18px;
+    font-weight: 500;
+    font-family: Lato;
+    margin-top: 15px;
+  }
+
+  &-input {
+    width: 100%;
+    max-width: 400px;
+  }
+
+  &-button {
+    margin-top: 20px;
+    width: 100%;
+  }
+}

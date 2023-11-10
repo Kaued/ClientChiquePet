@@ -1,0 +1,19 @@
+.input {
+  &-error {
+    font-size: 12px;
+    font-family: Lato;
+    color: red;
+    margin-bottom: 10px;
+  }
+}
+
+.default {
+  &-input {
+    input {
+      border-color: #c5c5c5;
+    }
+  }
+  &-image_data {
+    border-radius: 50%;
+  }
+}

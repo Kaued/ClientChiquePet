@@ -1,0 +1,8 @@
+.navbar {
+  &-item {
+    transition: 0.3s all ease-in-out;
+    &:hover {
+      background-color: #00000030;
+    }
+  }
+}
