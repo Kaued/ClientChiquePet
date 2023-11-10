@@ -26,7 +26,7 @@ export const loginAsync = createAsyncThunk(
     const request = api();
 
     return await request
-      .post('/Admin/login', JSON.stringify({ email, password }), {
+      .post('/Client/login', JSON.stringify({ email, password }), {
         headers: { 'Content-Type': 'application/json' },
       })
       .then((response: AxiosResponse) => {

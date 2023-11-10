@@ -13,7 +13,6 @@ import { useEffect, useState } from 'react';
 import { ItemNavBar } from './ItemNavbar';
 import { MdOutlineKeyboardArrowRight } from 'react-icons/md';
 import { AiOutlineUser } from 'react-icons/ai';
-import { BiCategory } from 'react-icons/bi';
 import { AuthState } from '../../@types/AuthState';
 import logo from '../../images/logo.jpg';
 import './item.scss';
@@ -24,7 +23,7 @@ export interface LinkNavBar {
   name: string;
   icon: JSX.Element;
   role: string;
-  click?: Function;
+  click?: VoidFunction;
 }
 export const Navbar = () => {
   const userState = useAppSelector((state) => state.auth) as AuthState;
@@ -38,13 +37,7 @@ export const Navbar = () => {
         name: 'Vendedores',
         icon: <AiOutlineUser />,
         role: 'Super Admin',
-      },
-      {
-        path: '/categories',
-        name: 'Categorias de Produto',
-        icon: <BiCategory />,
-        role: 'Seller',
-      },
+      }
     ]);
   }, []);
 
