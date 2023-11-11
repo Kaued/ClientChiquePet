@@ -70,7 +70,6 @@ export const FormUser = ({ isAddMode, userValue, submit }: FormProps) => {
             'Deve contêr um letra minúscula, uma maiúscula, um número e um caracter especial',
           )
       : Yup.string().notRequired();
-  console.log(isAddMode);
   useEffect(() => {
     previousDate.setFullYear(previousDate.getFullYear() - 1);
   });

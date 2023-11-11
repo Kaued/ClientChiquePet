@@ -1,0 +1,46 @@
+.register{
+
+  &-form{
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    margin-top: 30px;
+
+    &__label{
+      margin-bottom: 5px;
+      margin-top: 20px;
+      color: white;
+      font-size: 16px;
+      font-family: Lato;
+      font-weight: 400 ;
+    }
+
+    &__input{
+      input{
+        background-color: white;
+        font-family: Lato;
+        
+        &[aria-invalid=true]{
+          border-color: #ffb013;
+          box-shadow: 0 0 0 1px #ffb013;
+        }
+      }
+
+
+      span{
+        color: #ffb013;
+      }
+    }
+
+    &__checkbox{
+      margin-top: 20px;
+      color:white;
+    }
+
+    &__continue{
+      margin-top: 30px;
+    }
+  }
+}

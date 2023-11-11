@@ -6,17 +6,17 @@ import {
   Flex,
   Box,
   Checkbox,
-} from '@chakra-ui/react';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
-import { InputDefault } from '../../components/Default/InputDefault';
-import { loginAsync } from '../../features/auth/authSlice';
-import { useAlert } from '../../hooks/useAlert';
-import { useEffect, useRef, useState } from 'react';
-import './login.scss';
-import logo from '../../images/logo.jpg';
-import { useAppSelector } from '../../hooks/useAppSelector';
-import { useAppDispatch } from '../../hooks/useAppDispatch';
+} from "@chakra-ui/react";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import { InputDefault } from "../../components/Default/InputDefault";
+import { loginAsync } from "../../features/auth/authSlice";
+import { useAlert } from "../../hooks/useAlert";
+import { useEffect, useRef, useState } from "react";
+import "./login.scss";
+import logo from "../../images/logo.jpg";
+import { useAppSelector } from "../../hooks/useAppSelector";
+import { useAppDispatch } from "../../hooks/useAppDispatch";
 
 interface FormValues {
   email: string;
@@ -25,8 +25,8 @@ interface FormValues {
 
 const Login = () => {
   const initialValues: FormValues = {
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   };
   const [show, setShow] = useState(false);
   const userState = useAppSelector((state) => state.auth);
@@ -38,9 +38,9 @@ const Login = () => {
     initialValues: initialValues,
     validationSchema: Yup.object().shape({
       email: Yup.string()
-        .email('Email Inválido')
-        .required('Email é necessário'),
-      password: Yup.string().required('Senha é necessária'),
+        .email("Email Inválido")
+        .required("Email é necessário"),
+      password: Yup.string().required("Senha é necessária"),
     }),
     validateOnChange: false,
     onSubmit: async ({ email, password }: FormValues) => {
@@ -55,18 +55,18 @@ const Login = () => {
 
   useEffect(() => {
     switch (userState.status) {
-      case 'idle':
-        alert({ status: 200, mensagem: ['Login realizado com sucesso'] });
+      case "idle":
+        alert({ status: 200, mensagem: ["Login realizado com sucesso"] });
         break;
-      case 'fail':
+      case "fail":
         alert({
           status: userState.error,
           mensagem:
-            userState.error === 400 ? ['Login inválido, tente novamente'] : [],
+            userState.error === 400 ? ["Login inválido, tente novamente"] : [],
         });
         loginInvalid.current({
-          email: 'Login inváldio',
-          password: 'Login inváldio',
+          email: "Login inváldio",
+          password: "Login inváldio",
         });
         break;
       default:
@@ -76,11 +76,11 @@ const Login = () => {
 
   return (
     <Flex
-      minH={'100vh'}
-      width={'100%'}
+      minH={"100vh"}
+      width={"100%"}
       justify="center"
       alignItems="center"
-      bg={'#ffb013'}
+      bg={"#ffb013"}
     >
       <form onSubmit={formik.handleSubmit} className="login">
         <Box borderRadius="30%" className="login-cover">
@@ -106,7 +106,7 @@ const Login = () => {
             formik={formik}
             error={formik.errors.password}
             required={true}
-            type={show ? 'text' : 'password'}
+            type={show ? "text" : "password"}
           />
 
           <Checkbox
@@ -123,7 +123,7 @@ const Login = () => {
             colorScheme="green"
             type="submit"
             className="login-button"
-            isLoading={userState.status === 'pedding'}
+            isLoading={userState.status === "pedding"}
           >
             Login
           </Button>
