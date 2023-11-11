@@ -4,6 +4,7 @@ import { useAppSelector } from '../useAppSelector';
 import { Layout } from '../../components/Default/Layout';
 import { EditUser } from '../../pages/Users/EditUser';
 import { NotFound } from '../../components/Default/NotFound';
+import { Register } from '../../pages/User/Register/Register';
 
 export const useGetRoutes = () => {
   const userState = useAppSelector((state) => state.auth);
@@ -24,6 +25,7 @@ export const useGetRoutes = () => {
       },
     ],
   });
+  
 
   if (
     authenticated &&
@@ -41,6 +43,11 @@ export const useGetRoutes = () => {
     router.push({
       path: 'login',
       element: <Login />,
+    });
+
+    router.push({
+      path: 'register',
+      element: <Register />,
     });
   }
 
