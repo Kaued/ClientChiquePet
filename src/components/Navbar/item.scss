@@ -1,8 +1,45 @@
+@import '../../scss/mixings.scss';
 .navbar {
   &-item {
     transition: 0.3s all ease-in-out;
-    &:hover {
-      background-color: #00000030;
+    font-size: 22px;
+    align-items: center;
+    height: fit-content;
+    font-weight: 600;
+    flex-wrap: wrap;
+    color: #6c083d;
+
+    p {
+      color: #6c083d;
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 0px;
+      margin-left: 4px;
+      transition: 0.3s all ease-in-out;
     }
+
+    &::after {
+      content: "";
+      display: block;
+      width: 0;
+      height: 1px;
+      background-color: #ffb013;
+      transition: 0.3s all ease-in-out;
+    }
+
+    &:hover {
+      color: #ffb013;
+
+      p {
+        color: #ffb013;
+        margin-bottom: 0px;
+      }
+
+      &::after {
+        width: 100%;
+      }
+    }
+
   }
+
 }
