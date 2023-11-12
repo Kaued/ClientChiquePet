@@ -1,44 +1,69 @@
 @import "../../../scss/mixings.scss";
 
-.register{
+.register {
   height: 700px;
   max-width: 1200px;
   width: 100%;
   border-radius: 20px;
 
-  &-image{
-    border-radius: 20px 0px 0px 20px;
-    width: 50%;
-    height: 100%;
-    object-fit: cover;
+  &-image {
+    position: relative;
+
+    img {
+      border-radius: 20px 0px 0px 20px;
+      object-fit: cover;
+    }
+
+    &__logo{
+      position: absolute;
+      width: 100%;
+      top: 0;
+      justify-content: center;
+      align-items: center;
+      height: 30%;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.90) 0%, rgba(255, 255, 255, 0) 100%);
+      border-radius: 20px 0px 0px 0px;
+      img{
+        border-radius: 50%;
+        height: 110px;
+        width: 110px;
+        margin-right: 10px;
+      }
+
+      p{
+        color: #ffb013;
+        font-size: 36px;
+        font-weight: 600;
+      }
+    }
   }
 
-  &-exist{  
+  &-exist {
     width: 100%;
     justify-content: flex-end;
     color: white;
     align-items: center;
 
-    p{
+    p {
       margin-right: 5px;
       margin-bottom: 0;
       font-size: 14px;
     }
 
-    button{
+    button {
       color: #6c083d;
     }
   }
 
-  &-content{
+  &-content {
     width: 50%;
     height: 100%;
     padding: 40px;
     border-radius: 0px 20px 20px 0px;
     background: #6c083d;
-    
 
-    &__title{
+
+    &__title {
       color: white;
       font-family: Lato;
       letter-spacing: 1px;
@@ -46,11 +71,11 @@
       text-align: center;
       font-size: 32px !important;
       font-weight: 500 !important;
-      
+
     }
   }
 
-  &-divider{
+  &-divider {
     margin-top: 40px;
     color: white;
     font-family: Lato;

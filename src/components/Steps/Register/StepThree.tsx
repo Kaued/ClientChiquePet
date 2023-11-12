@@ -14,8 +14,9 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import "./stepRegister.scss";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useCreateUser } from "../../../hooks/users/useCreateUser";
+import { useAppDispatch } from "../../../hooks/useAppDispatch";
 
 interface StepTwoRegister {
   birthDate: Date | string;
@@ -25,10 +26,10 @@ interface StepTwoRegister {
 
 export const StepThree = () => {
   const registerData: RegisterSlice = useAppSelector((state) => state.register);
+  const dispatch = useAppDispatch();
   const { isOpen, onToggle } = useDisclosure();
   const previousDate = new Date();
-  const submit = useCreateUser();
-  const [isLoading, setLoading] = useState<boolean>(false);
+  const {mutateAsync, isLoading} = useCreateUser();
 
   const initialState: StepTwoRegister = {
     birthDate: registerData.birthDate ? registerData.birthDate : "",
@@ -55,18 +56,15 @@ export const StepThree = () => {
     }),
     validateOnChange: false,
     onSubmit: async ({ birthDate, terms, phoneNumber }) => {
-      setLoading(true);
-      await setBirthAndTermsPhoneNumber({ birthDate, terms, phoneNumber });
-      const user = {...registerData, birthDate, phoneNumber}
-      await submit.mutate(user);
-      setLoading(false);
+      dispatch(setBirthAndTermsPhoneNumber({ birthDate, terms, phoneNumber }));
+      await mutateAsync(registerData);
     },
   });
 
   useEffect(() => {
     onToggle();
   }, []);
-  console.log(formik.values.birthDate);
+
   return (
     <SlideFade in={isOpen} offsetY="20px">
       <form className="register-form">
@@ -102,7 +100,7 @@ export const StepThree = () => {
           isInvalid={formik.errors.terms ? true : false}
           onChange={() => {
             formik.setFieldValue("terms", !formik.values.terms);
-            console.log(formik.values.terms)
+            console.log(formik.values.terms);
           }}
         >
           Aceito os termos de uso do aplicativo

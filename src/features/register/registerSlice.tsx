@@ -45,7 +45,6 @@ const registerSlice = createSlice({
       state.birthDate = action.payload.birthDate;
       state.terms = action.payload.terms;
       state.phoneNumber = action.payload.phoneNumber;
-      console.log(1);
     },
 
     setStep: (state, action: PayloadAction<{ step: number }>) => {
@@ -53,7 +52,7 @@ const registerSlice = createSlice({
       if (step >= 1) {
         state.step = state.userName && state.email ? step : 0;
       } else if (step >= 2) {
-        state.step = state.password ? step : 0;
+        state.step = state.password ? step : 1;
       } else if (step <= state.step) {
         state.step = step;
       }

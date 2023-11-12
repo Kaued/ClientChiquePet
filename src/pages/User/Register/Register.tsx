@@ -25,15 +25,22 @@ import { setStep } from "../../../features/register/registerSlice";
 import { useEffect, useState } from "react";
 import { StepTwo } from "../../../components/Steps/Register/StepTwo";
 import { StepThree } from "../../../components/Steps/Register/StepThree";
+import { useNavigate } from "react-router-dom";
+import logo from "../../../images/logo.jpg";
 
 export const Register = () => {
   const registerData = useAppSelector((state) => state.register);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const steps = [
     { title: "Primeiro", description: "Nome & Email", component: <StepOne /> },
     { title: "Segundo", description: "Senha", component: <StepTwo /> },
-    { title: "Terceiro", description: "Data de Nascimento", component: <StepThree /> },
+    {
+      title: "Terceiro",
+      description: "Data de Nascimento",
+      component: <StepThree />,
+    },
   ];
 
   const { activeStep, setActiveStep } = useSteps({
@@ -44,7 +51,7 @@ export const Register = () => {
   const max = steps.length - 1;
   const [progressPercent, setProgressPercent] = useState<number>(0);
   const [beforeStep, setBeforeStep] = useState<number>(activeStep - 1);
-  
+
   useEffect(() => {
     setBeforeStep(activeStep);
     setActiveStep(registerData.step);
@@ -80,11 +87,23 @@ export const Register = () => {
       bg={"#ffb013"}
     >
       <Flex className="register">
-        <Image src={background} className="register-image" />
+        <Flex className="register-image">
+          <Image src={background} />
+
+          <Flex className="register-image__logo">
+            <Image src={logo} />
+            <Text>ChikPet</Text>
+          </Flex>
+        </Flex>
         <Box className="register-content">
           <Flex className="register-exist">
             <Text>Já tem o uma conta?</Text>
-            <Button colorScheme="yellow" size="md" variant={"solid"}>
+            <Button
+              colorScheme="yellow"
+              size="md"
+              variant={"solid"}
+              onClick={() => navigate("/login")}
+            >
               Login
             </Button>
           </Flex>

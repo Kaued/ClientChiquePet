@@ -25,7 +25,7 @@ export const StepTwo = () => {
     password: registerData.password ? registerData.password : "",
   };
 
-  const [confirmPassword, setConfirmPassword] = useState<string>("");
+  const [confirmPassword, setConfirmPassword] = useState<string>(registerData.password ? registerData.password : "");
 
   const formik = useFormik<StepTwoRegister>({
     initialValues: initialState,
