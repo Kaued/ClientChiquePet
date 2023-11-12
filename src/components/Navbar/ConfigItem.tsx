@@ -6,14 +6,14 @@ import {
   MenuItem,
   MenuList,
   Text,
-} from '@chakra-ui/react';
+} from "@chakra-ui/react";
 import { AiOutlineUser } from "react-icons/ai";
-import { RiLogoutBoxLine } from 'react-icons/ri';
+import { RiLogoutBoxLine } from "react-icons/ri";
 
-import { logout } from '../../features/auth/authSlice';
-import { useAppDispatch } from '../../hooks/useAppDispatch';
-import { useNavigate } from 'react-router-dom';
-import './item.scss';
+import { logout } from "../../features/auth/authSlice";
+import { useAppDispatch } from "../../hooks/useAppDispatch";
+import { useNavigate } from "react-router-dom";
+import "./item.scss";
 
 export const ConfigItem = ({ text }: { text: boolean }) => {
   const dispatchUser = useAppDispatch();
@@ -52,16 +52,16 @@ export const ConfigItem = ({ text }: { text: boolean }) => {
         fontSize={"16px"}
         fontFamily={"Lato"}
       >
-        <MenuItem onClick={() => dispatchUser(logout())}>
-          <RiLogoutBoxLine />
-          <Text marginLeft={"5px"} marginBottom={0}>
-            Logout
-          </Text>
-        </MenuItem>
         <MenuItem onClick={() => navigate("/users/profile")}>
           <AiOutlineUser />
           <Text marginLeft={"5px"} marginBottom={0}>
             Acessar Perfil
+          </Text>
+        </MenuItem>
+        <MenuItem onClick={() => dispatchUser(logout())}>
+          <RiLogoutBoxLine />
+          <Text marginLeft={"5px"} marginBottom={0}>
+            Logout
           </Text>
         </MenuItem>
       </MenuList>
