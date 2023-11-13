@@ -1,15 +1,17 @@
 import { Flex, Heading, Spinner, Text } from "@chakra-ui/react";
-import { AuthSlice } from "../../features/auth/authSlice";
 import { useAppSelector } from "../../hooks/useAppSelector";
 import { useGetUser } from "../../hooks/users/useGetUser"
 import { AuthState } from "../../@types/AuthState";
 import "./profile.scss";
 import { AiOutlineUser } from "react-icons/ai";
+import { useEffect } from "react";
 
 export const Profile = () =>{
   const authData : AuthState = useAppSelector((state)=>state.auth);
   const {isLoading, data} = useGetUser(authData.email);
-  console.log(data?.birthDate);
+  useEffect(()=>{
+    document.title="Perfil";
+  },[]);
   return (
     <Flex className="profile">
       {!isLoading && data && (
