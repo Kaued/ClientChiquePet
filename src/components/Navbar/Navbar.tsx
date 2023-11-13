@@ -214,7 +214,7 @@ export const Navbar = () => {
             </Menu>
           </Flex>
 
-          {!userState.authenticated && (
+          {userState.authenticated && (
             <Flex className="navbar-utilities__user">
               <ConfigItem text={false} />
             </Flex>
@@ -227,7 +227,11 @@ export const Navbar = () => {
           returnFocusOnClose={false}
           onOverlayClick={onClose}
         >
-          <DrawerContent bg={"#6c083d"} padding={"10px"} className="navbar-tablet__list">
+          <DrawerContent
+            bg={"#6c083d"}
+            padding={"10px"}
+            className="navbar-tablet__list"
+          >
             <Flex
               justifyContent={"center"}
               alignItems={"center"}
@@ -276,7 +280,7 @@ export const Navbar = () => {
                   );
                 }
               })}
-            <ConfigItem text={true} />
+            {userState.authenticated && <ConfigItem text={true} />}
           </DrawerContent>
         </Drawer>
       </Flex>

@@ -52,7 +52,7 @@ export const ConfigItem = ({ text }: { text: boolean }) => {
         fontSize={"16px"}
         fontFamily={"Lato"}
       >
-        <MenuItem onClick={() => navigate("/users/profile")}>
+        <MenuItem onClick={() => navigate("/profile")}>
           <AiOutlineUser />
           <Text marginLeft={"5px"} marginBottom={0}>
             Acessar Perfil

@@ -2,9 +2,9 @@ import { RouteObject, createBrowserRouter } from 'react-router-dom';
 import Login from '../../pages/User/Login';
 import { useAppSelector } from '../useAppSelector';
 import { Layout } from '../../components/Default/Layout';
-import { EditUser } from '../../pages/Users/EditUser';
 import { NotFound } from '../../components/Default/NotFound';
 import { Register } from '../../pages/User/Register/Register';
+import { Profile } from '../../pages/User/Profile';
 
 export const useGetRoutes = () => {
   const userState = useAppSelector((state) => state.auth);
@@ -35,8 +35,8 @@ export const useGetRoutes = () => {
   ) {
 
     router[1].children?.push({
-      path: 'users/profile',
-      element: <EditUser autoEdit={true} />,
+      path: "profile",
+      element: <Profile />,
     });
   
   } else {
