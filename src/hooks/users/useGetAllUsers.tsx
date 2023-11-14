@@ -38,7 +38,7 @@ export const useGetAllUsers = () => {
 
   async function fetchAllUser(page: number) {
     return await request
-      .get(`/Admin?pageNumber=${page}&pageSize=${1}`, {
+      .get(`/Client?pageNumber=${page}&pageSize=${1}`, {
         headers: { 'X-Pagination': '*' },
       })
       .then(async (response) => {

@@ -23,7 +23,7 @@ export const useGetUser = (email: string) => {
     const [_key, { email }] = queryKey;
 
     return await request
-      .get(`/Admin/${email}`, {
+      .get(`/Client/${email}`, {
         headers: { 'X-Pagination': '*' },
       })
       .then(async (response) => {

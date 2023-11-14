@@ -11,7 +11,7 @@ export const useDeleteUser = () => {
 
   return useMutation(async (email: string) => {
     return request
-      .delete(`Admin/${email}`)
+      .delete(`Client/${email}`)
       .then(async (response) => {
         toast({
           status: response.status,

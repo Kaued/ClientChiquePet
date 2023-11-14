@@ -21,7 +21,7 @@ export const useEditUser = (email: string) => {
 
   return useMutation(async (data: User) => {
     return request
-      .put(`Admin/${email}`, data)
+      .put(`Client/${email}`, data)
       .then(async (response) => {
         toast({
           status: response.status,

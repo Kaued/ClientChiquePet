@@ -16,7 +16,7 @@ export const useSearchUsers = () => {
 
   const response = async (search: string) => {
     return await request
-      .get(`/Admin/search/${search}`)
+      .get(`/Client/search/${search}`)
       .then((response) => {
         return response.data as Users[];
       })
