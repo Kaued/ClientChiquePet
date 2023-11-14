@@ -16,24 +16,10 @@ interface InputProps {
 }
 
 export const InputDefault = (props: InputProps) => {
-  const {
-    type,
-    value,
-    formik,
-    required,
-    name,
-    classField,
-    placeholderField,
-    error,
-    change,
-  } = props;
+  const { type, value, formik, required, name, classField, placeholderField, error, change } = props;
 
   return (
-    <InputGroup
-      className={classField ? classField : 'default-input'}
-      display="flex"
-      flexDirection="column"
-    >
+    <InputGroup className={classField ? classField : 'default-input'} display="flex" flexDirection="column">
       <Input
         type={type}
         onChange={change ? (e) => change(e) : formik.handleChange}

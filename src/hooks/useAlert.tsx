@@ -7,13 +7,7 @@ export const useAlert = () => {
   const toast = useToast();
   const dispacth = useAppDispatch();
 
-  return async ({
-    status,
-    mensagem = [],
-  }: {
-    status: number | undefined;
-    mensagem: string[];
-  }) => {
+  return async ({ status, mensagem = [] }: { status: number | undefined; mensagem: string[] }) => {
     let type: TypeStatus = 'info';
 
     switch (status) {
@@ -25,10 +19,7 @@ export const useAlert = () => {
         break;
 
       case 400:
-        mensagem =
-          mensagem.length > 0
-            ? mensagem
-            : ['Verifique se todos os campos estão corretos'];
+        mensagem = mensagem.length > 0 ? mensagem : ['Verifique se todos os campos estão corretos'];
         type = 'error';
         break;
       case 401:
@@ -38,13 +29,11 @@ export const useAlert = () => {
         dispacth(logout());
         break;
       case 404:
-        mensagem =
-          mensagem.length > 0 ? mensagem : ['Requisição não encotrada'];
+        mensagem = mensagem.length > 0 ? mensagem : ['Requisição não encotrada'];
         type = 'error';
         break;
       case 500:
-        mensagem =
-          mensagem.length > 0 ? mensagem : ['Tente novamente mais tarde'];
+        mensagem = mensagem.length > 0 ? mensagem : ['Tente novamente mais tarde'];
         type = 'error';
         break;
       default:

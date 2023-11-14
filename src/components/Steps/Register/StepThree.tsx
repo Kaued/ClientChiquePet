@@ -1,22 +1,13 @@
-import { useFormik } from "formik";
-import { InputDefault } from "../../Default/InputDefault";
-import { useAppSelector } from "../../../hooks/useAppSelector";
-import {
-  RegisterSlice,
-  setBirthAndTermsPhoneNumber,
-} from "../../../features/register/registerSlice";
-import * as Yup from "yup";
-import {
-  Button,
-  Checkbox,
-  SlideFade,
-  Text,
-  useDisclosure,
-} from "@chakra-ui/react";
-import "./stepRegister.scss";
-import { useEffect } from "react";
-import { useCreateUser } from "../../../hooks/users/useCreateUser";
-import { useAppDispatch } from "../../../hooks/useAppDispatch";
+import { useFormik } from 'formik';
+import { InputDefault } from '../../Default/InputDefault';
+import { useAppSelector } from '../../../hooks/useAppSelector';
+import { RegisterSlice, setBirthAndTermsPhoneNumber } from '../../../features/register/registerSlice';
+import * as Yup from 'yup';
+import { Button, Checkbox, SlideFade, Text, useDisclosure } from '@chakra-ui/react';
+import './stepRegister.scss';
+import { useEffect } from 'react';
+import { useCreateUser } from '../../../hooks/users/useCreateUser';
+import { useAppDispatch } from '../../../hooks/useAppDispatch';
 
 interface StepTwoRegister {
   birthDate: Date | string;
@@ -29,12 +20,12 @@ export const StepThree = () => {
   const dispatch = useAppDispatch();
   const { isOpen, onToggle } = useDisclosure();
   const previousDate = new Date();
-  const {mutateAsync, isLoading} = useCreateUser();
+  const { mutateAsync, isLoading } = useCreateUser();
 
   const initialState: StepTwoRegister = {
-    birthDate: registerData.birthDate ? registerData.birthDate : "",
+    birthDate: registerData.birthDate ? registerData.birthDate : '',
     terms: registerData.terms ? registerData.terms : false,
-    phoneNumber: registerData.phoneNumber ? registerData.phoneNumber : "",
+    phoneNumber: registerData.phoneNumber ? registerData.phoneNumber : '',
   };
 
   useEffect(() => {
@@ -45,14 +36,10 @@ export const StepThree = () => {
     initialValues: initialState,
     validationSchema: Yup.object().shape({
       birthDate: Yup.date()
-        .required("O campo data de nascimento é necessário")
-        .test(
-          "minAge",
-          "O usuário deve ter no minímo 1 ano",
-          (val: Date) => val <= previousDate,
-        ),
+        .required('O campo data de nascimento é necessário')
+        .test('minAge', 'O usuário deve ter no minímo 1 ano', (val: Date) => val <= previousDate),
       terms: Yup.boolean().required().isTrue(),
-      phoneNumber: Yup.string().required("O campo telefone é requirido"),
+      phoneNumber: Yup.string().required('O campo telefone é requirido'),
     }),
     validateOnChange: false,
     onSubmit: async ({ birthDate, terms, phoneNumber }) => {
@@ -99,7 +86,7 @@ export const StepThree = () => {
           name="terms"
           isInvalid={formik.errors.terms ? true : false}
           onChange={() => {
-            formik.setFieldValue("terms", !formik.values.terms);
+            formik.setFieldValue('terms', !formik.values.terms);
             console.log(formik.values.terms);
           }}
         >
@@ -109,7 +96,7 @@ export const StepThree = () => {
         <Button
           colorScheme="green"
           size="md"
-          variant={"solid"}
+          variant={'solid'}
           onClick={() => formik.handleSubmit()}
           className="register-form__continue"
           isLoading={isLoading}

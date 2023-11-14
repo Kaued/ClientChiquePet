@@ -20,7 +20,7 @@ export const Layout = () => {
   }, [user]);
 
   return (
-    <Flex minW={'100%'} minH={'100%'} flexDirection={"column"}>
+    <Flex minW={'100%'} minH={'100%'} flexDirection={'column'}>
       <Navbar />
       <Outlet />
     </Flex>

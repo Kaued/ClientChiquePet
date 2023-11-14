@@ -1,16 +1,12 @@
-import { useFormik } from "formik";
-import { InputDefault } from "../../Default/InputDefault";
-import { useAppSelector } from "../../../hooks/useAppSelector";
-import {
-  RegisterSlice,
-  setPassword,
-  setStep,
-} from "../../../features/register/registerSlice";
-import * as Yup from "yup";
-import { Button, SlideFade, Text, useDisclosure } from "@chakra-ui/react";
-import { useAppDispatch } from "../../../hooks/useAppDispatch";
-import "./stepRegister.scss";
-import { useEffect, useState } from "react";
+import { useFormik } from 'formik';
+import { InputDefault } from '../../Default/InputDefault';
+import { useAppSelector } from '../../../hooks/useAppSelector';
+import { RegisterSlice, setPassword, setStep } from '../../../features/register/registerSlice';
+import * as Yup from 'yup';
+import { Button, SlideFade, Text, useDisclosure } from '@chakra-ui/react';
+import { useAppDispatch } from '../../../hooks/useAppDispatch';
+import './stepRegister.scss';
+import { useEffect, useState } from 'react';
 
 interface StepTwoRegister {
   password: string;
@@ -22,25 +18,21 @@ export const StepTwo = () => {
   const { isOpen, onToggle } = useDisclosure();
 
   const initialState: StepTwoRegister = {
-    password: registerData.password ? registerData.password : "",
+    password: registerData.password ? registerData.password : '',
   };
 
-  const [confirmPassword, setConfirmPassword] = useState<string>(registerData.password ? registerData.password : "");
+  const [confirmPassword, setConfirmPassword] = useState<string>(registerData.password ? registerData.password : '');
 
   const formik = useFormik<StepTwoRegister>({
     initialValues: initialState,
     validationSchema: Yup.object().shape({
       password: Yup.string()
-        .required("O campo senha é necessário")
-        .test(
-          "equal",
-          "As senhas não são iguais",
-          (val) => val == confirmPassword,
-        )
-        .min(6, "A senha deve ter no mínimo 6 caracteres")
+        .required('O campo senha é necessário')
+        .test('equal', 'As senhas não são iguais', (val) => val == confirmPassword)
+        .min(6, 'A senha deve ter no mínimo 6 caracteres')
         .matches(
           /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\\$%\\^&\\*])/,
-          "Deve contêr um letra minúscula, uma maiúscula, um número e um caracter especial",
+          'Deve contêr um letra minúscula, uma maiúscula, um número e um caracter especial',
         ),
     }),
     validateOnChange: false,
@@ -79,15 +71,13 @@ export const StepTwo = () => {
           value={confirmPassword}
           classField="register-form__input"
           placeholderField="Confirme a sua senha"
-          change={(val: Event) =>
-            setConfirmPassword((val.target as HTMLInputElement).value)
-          }
+          change={(val: Event) => setConfirmPassword((val.target as HTMLInputElement).value)}
         />
 
         <Button
           colorScheme="green"
           size="md"
-          variant={"solid"}
+          variant={'solid'}
           onClick={() => formik.handleSubmit()}
           className="register-form__continue"
         >

@@ -3,13 +3,7 @@ import { Button, Flex } from '@chakra-ui/react';
 import { InputDefault } from './InputDefault';
 import { AiOutlineSearch } from 'react-icons/ai';
 
-export const SeachTable = ({
-  formik,
-  placeholder,
-}: {
-  formik: any;
-  placeholder: string;
-}) => {
+export const SeachTable = ({ formik, placeholder }: { formik: any; placeholder: string }) => {
   return (
     <Flex className="mt-4" width={'100%'}>
       <InputDefault
@@ -22,11 +16,7 @@ export const SeachTable = ({
         placeholderField={placeholder}
         classField=""
       />
-      <Button
-        colorScheme="blue"
-        className="ms-2 col-lg-1"
-        onClick={() => formik.handleSubmit()}
-      >
+      <Button colorScheme="blue" className="ms-2 col-lg-1" onClick={() => formik.handleSubmit()}>
         <AiOutlineSearch />
       </Button>
     </Flex>

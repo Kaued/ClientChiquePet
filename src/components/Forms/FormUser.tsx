@@ -1,13 +1,4 @@
-import {
-  Box,
-  Button,
-  Collapse,
-  Flex,
-  FormControl,
-  FormLabel,
-  Heading,
-  useDisclosure,
-} from '@chakra-ui/react';
+import { Box, Button, Collapse, Flex, FormControl, FormLabel, Heading, useDisclosure } from '@chakra-ui/react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { InputDefault } from '../Default/InputDefault';
@@ -34,11 +25,7 @@ interface FormProps {
 }
 
 export const FormUser = ({ isAddMode, userValue, submit }: FormProps) => {
-  userValue
-    ? (userValue.birthDate = new Date(userValue.birthDate!)
-        .toISOString()
-        .split('T')[0])
-    : false;
+  userValue ? (userValue.birthDate = new Date(userValue.birthDate!).toISOString().split('T')[0]) : false;
   console.log(userValue?.birthDate);
   const title = isAddMode ? 'Registrar Vendedor' : 'Editar Vendedor';
   const initialValues: UserData = userValue
@@ -59,11 +46,7 @@ export const FormUser = ({ isAddMode, userValue, submit }: FormProps) => {
     isAddMode || isOpen
       ? Yup.string()
           .required('O campo senha é necessário')
-          .test(
-            'equal',
-            'As senhas não são iguais',
-            (val) => val == confirmPassword,
-          )
+          .test('equal', 'As senhas não são iguais', (val) => val == confirmPassword)
           .min(6, 'A senha deve ter no mínimo 6 caracteres')
           .matches(
             /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\\$%\\^&\\*])/,
@@ -78,18 +61,12 @@ export const FormUser = ({ isAddMode, userValue, submit }: FormProps) => {
     initialValues: initialValues,
     validationSchema: Yup.object().shape({
       userName: Yup.string().required('O campo nome é necessário'),
-      email: Yup.string()
-        .email('Digite o email corretamente')
-        .required('O campo email é necessário'),
+      email: Yup.string().email('Digite o email corretamente').required('O campo email é necessário'),
       password: passwordValidation,
       phoneNumber: Yup.string().required('O campo telefone é necessário'),
       birthDate: Yup.date()
         .required('O campo data de nascimento é necessário')
-        .test(
-          'minAge',
-          'O usuário deve ter no minímo 1 ano',
-          (val: Date) => val <= previousDate,
-        ),
+        .test('minAge', 'O usuário deve ter no minímo 1 ano', (val: Date) => val <= previousDate),
     }),
     validateOnChange: false,
     onSubmit: async (user) => {
@@ -101,19 +78,8 @@ export const FormUser = ({ isAddMode, userValue, submit }: FormProps) => {
 
   return (
     <Box className="container pt-2">
-      <Flex
-        width={'100%'}
-        flexWrap={'wrap'}
-        alignItems={'center'}
-        justifyContent={'space-between'}
-      >
-        <Heading
-          className="mt-4 mb-4"
-          fontFamily={'Lato'}
-          fontSize={'36px'}
-          color={'#000000'}
-          fontWeight={'600'}
-        >
+      <Flex width={'100%'} flexWrap={'wrap'} alignItems={'center'} justifyContent={'space-between'}>
+        <Heading className="mt-4 mb-4" fontFamily={'Lato'} fontSize={'36px'} color={'#000000'} fontWeight={'600'}>
           {title}
         </Heading>
         <Button colorScheme="blue" onClick={() => history(-1)}>
@@ -170,9 +136,7 @@ export const FormUser = ({ isAddMode, userValue, submit }: FormProps) => {
                   formik={formik}
                   error={formik.errors.password}
                   required={isAddMode}
-                  change={(val: Event) =>
-                    setConfirmPassword((val.target as HTMLInputElement).value)
-                  }
+                  change={(val: Event) => setConfirmPassword((val.target as HTMLInputElement).value)}
                 />
               </FormControl>
             </Box>
@@ -237,11 +201,7 @@ export const FormUser = ({ isAddMode, userValue, submit }: FormProps) => {
                       formik={formik}
                       error={formik.errors.password}
                       required={isAddMode}
-                      change={(val: Event) =>
-                        setConfirmPassword(
-                          (val.target as HTMLInputElement).value,
-                        )
-                      }
+                      change={(val: Event) => setConfirmPassword((val.target as HTMLInputElement).value)}
                     />
                   </FormControl>
                 </Box>
@@ -249,12 +209,7 @@ export const FormUser = ({ isAddMode, userValue, submit }: FormProps) => {
             </Collapse>
           </Box>
         )}
-        <Button
-          colorScheme="green"
-          type="submit"
-          className="form-button"
-          isLoading={isLoading}
-        >
+        <Button colorScheme="green" type="submit" className="form-button" isLoading={isLoading}>
           Salvar
         </Button>
       </form>

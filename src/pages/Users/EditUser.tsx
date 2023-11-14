@@ -34,13 +34,7 @@ export const EditUser = ({ autoEdit = false }: { autoEdit?: boolean }) => {
           left={`50%`}
         />
       )}
-      {!isLoading && data && (
-        <FormUser
-          isAddMode={false}
-          userValue={data as UserData}
-          submit={handleSubmit}
-        />
-      )}
+      {!isLoading && data && <FormUser isAddMode={false} userValue={data as UserData} submit={handleSubmit} />}
 
       {!data && !isLoading && <NotFound />}
     </>

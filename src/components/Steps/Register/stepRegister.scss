@@ -1,6 +1,5 @@
-.register{
-
-  &-form{
+.register {
+  &-form {
     height: max-content;
     display: flex;
     flex-direction: column;
@@ -8,38 +7,37 @@
     justify-content: center;
     margin-top: 30px;
 
-    &__label{
+    &__label {
       margin-bottom: 5px;
       margin-top: 20px;
       color: white;
       font-size: 16px;
       font-family: Lato;
-      font-weight: 400 ;
+      font-weight: 400;
     }
 
-    &__input{
-      input{
+    &__input {
+      input {
         background-color: white;
         font-family: Lato;
-        
-        &[aria-invalid=true]{
+
+        &[aria-invalid='true'] {
           border-color: #ffb013;
           box-shadow: 0 0 0 1px #ffb013;
         }
       }
 
-
-      span{
+      span {
         color: #ffb013;
       }
     }
 
-    &__checkbox{
+    &__checkbox {
       margin-top: 20px;
-      color:white;
+      color: white;
     }
 
-    &__continue{
+    &__continue {
       margin-top: 30px;
     }
   }

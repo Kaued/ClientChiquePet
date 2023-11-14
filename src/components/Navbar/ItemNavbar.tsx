@@ -5,15 +5,9 @@ import { Flex, Text } from '@chakra-ui/react';
 export const ItemNavBar = ({ path, name, icon, click }: LinkNavBar) => {
   return (
     <NavLink to={path}>
-      <Flex
-        className="navbar-item"
-        onClick={() => click!()}
-      >
+      <Flex className="navbar-item" onClick={() => click!()}>
         {icon}
-        <Text
-        >
-          {name}
-        </Text>
+        <Text>{name}</Text>
       </Flex>
     </NavLink>
   );

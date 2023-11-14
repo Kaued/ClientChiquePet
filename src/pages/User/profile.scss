@@ -1,62 +1,66 @@
-.profile{
+.profile {
   width: 100%;
   min-height: 500px;
   margin: 30px;
 
-  &-data{
+  &-data {
     display: flex;
     flex-direction: column;
     width: 100%;
 
-    &__title{
+    &__title {
       display: flex;
       color: #6c083d;
-      align-items: center;  
+      align-items: center;
       font-family: Lato;
       margin-bottom: 30px;
 
-      svg{
+      svg {
         margin-right: 10px;
       }
-      
-      &::before{
+
+      &::before {
         height: 100%;
-        content: "";
+        content: '';
         width: 10px;
         background-color: #ffb013;
         margin-right: 10px;
       }
     }
 
-    &__content{
+    &__content {
       padding: 15px;
       // flex-direction: column;
     }
 
-    &__actions{
+    &__actions {
       margin-top: auto;
       justify-content: flex-end;
 
-      button{
+      button {
         margin-left: 20px;
         font-size: 20px;
         width: 50px;
         height: 50px;
 
-        &:nth-child(1){
+        &:nth-child(1) {
           color: #6c083d;
         }
       }
     }
-  }
-  
 
-  &-item{
+    &__form {
+      color: white !important;
+      font-weight: 700;
+    }
+  }
+
+  &-item {
     display: flex;
     flex-direction: column;
     margin-bottom: 50px;
 
-    &__label{
+    &__label {
       margin-bottom: 0;
       font-family: Lato;
       color: #4e4e4e;
@@ -64,14 +68,31 @@
       padding: 5px 10px;
       font-size: 18px;
 
-      &:nth-child(1){
+      &:nth-child(1) {
         padding: 0px;
         font-weight: 700;
         color: #6c083d;
         font-size: 20px;
         width: fit-content;
       }
+    }
+  }
 
+  &-password {
+    .profile {
+      &-item {
+        padding: 0px 10px;
+
+        &:nth-child(1) {
+          padding-left: 0px;
+        }
+      }
+    }
+
+    &__button {
+      svg {
+        margin-right: 5px;
+      }
     }
   }
 }

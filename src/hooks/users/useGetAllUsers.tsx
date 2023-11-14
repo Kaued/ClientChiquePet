@@ -20,21 +20,17 @@ export const useGetAllUsers = () => {
   const request = api();
   const toast = useAlert();
 
-  const query = useInfiniteQuery(
-    ['usersAll'],
-    ({ pageParam = 1 }) => fetchAllUser(pageParam),
-    {
-      getNextPageParam: (lastPage) => {
-        lastPage = lastPage as GetAllUsers;
-        if (lastPage.meta['HasNext']) {
-          return Number(lastPage.meta['CurrentPage'] + 1);
-        }
-      },
-
-      refetchOnWindowFocus: false,
-      staleTime: 3000,
+  const query = useInfiniteQuery(['usersAll'], ({ pageParam = 1 }) => fetchAllUser(pageParam), {
+    getNextPageParam: (lastPage) => {
+      lastPage = lastPage as GetAllUsers;
+      if (lastPage.meta['HasNext']) {
+        return Number(lastPage.meta['CurrentPage'] + 1);
+      }
     },
-  );
+
+    refetchOnWindowFocus: false,
+    staleTime: 3000,
+  });
 
   async function fetchAllUser(page: number) {
     return await request
@@ -42,9 +38,7 @@ export const useGetAllUsers = () => {
         headers: { 'X-Pagination': '*' },
       })
       .then(async (response) => {
-        const pagination: Pagination = JSON.parse(
-          response.headers['x-pagination'],
-        );
+        const pagination: Pagination = JSON.parse(response.headers['x-pagination']);
         const users: Users[] = response.data;
 
         return {

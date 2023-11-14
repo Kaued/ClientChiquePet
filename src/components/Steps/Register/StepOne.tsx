@@ -1,16 +1,12 @@
-import { useFormik } from "formik";
-import { InputDefault } from "../../Default/InputDefault";
-import { useAppSelector } from "../../../hooks/useAppSelector";
-import {
-  RegisterSlice,
-  setStep,
-  setUserAndEmail,
-} from "../../../features/register/registerSlice";
-import * as Yup from "yup";
-import { Button, SlideFade, Text, useDisclosure } from "@chakra-ui/react";
-import { useAppDispatch } from "../../../hooks/useAppDispatch";
-import "./stepRegister.scss";
-import { useEffect } from "react";
+import { useFormik } from 'formik';
+import { InputDefault } from '../../Default/InputDefault';
+import { useAppSelector } from '../../../hooks/useAppSelector';
+import { RegisterSlice, setStep, setUserAndEmail } from '../../../features/register/registerSlice';
+import * as Yup from 'yup';
+import { Button, SlideFade, Text, useDisclosure } from '@chakra-ui/react';
+import { useAppDispatch } from '../../../hooks/useAppDispatch';
+import './stepRegister.scss';
+import { useEffect } from 'react';
 
 interface StepOneRegister {
   userName: string;
@@ -23,19 +19,15 @@ export const StepOne = () => {
   const { isOpen, onToggle } = useDisclosure();
 
   const initialState: StepOneRegister = {
-    userName: registerData.userName ? registerData.userName : "",
-    email: registerData.email ? registerData.email : "",
+    userName: registerData.userName ? registerData.userName : '',
+    email: registerData.email ? registerData.email : '',
   };
 
   const formik = useFormik<StepOneRegister>({
     initialValues: initialState,
     validationSchema: Yup.object().shape({
-      userName: Yup.string()
-        .required("O campo nome é obrigatório.")
-        .min(3, "O nome deve ter pelo menos 3 caracteres."),
-      email: Yup.string()
-        .required("O campo email é obrigatório.")
-        .email("Verifique se o email está correto."),
+      userName: Yup.string().required('O campo nome é obrigatório.').min(3, 'O nome deve ter pelo menos 3 caracteres.'),
+      email: Yup.string().required('O campo email é obrigatório.').email('Verifique se o email está correto.'),
     }),
     validateOnChange: false,
     onSubmit: ({ email, userName }) => {
@@ -46,8 +38,8 @@ export const StepOne = () => {
 
   useEffect(() => {
     onToggle();
-  }, [])
-  
+  }, []);
+
   return (
     <SlideFade in={isOpen} offsetY="20px">
       <form className="register-form">
@@ -78,7 +70,7 @@ export const StepOne = () => {
         <Button
           colorScheme="green"
           size="md"
-          variant={"solid"}
+          variant={'solid'}
           onClick={() => formik.handleSubmit()}
           className="register-form__continue"
         >

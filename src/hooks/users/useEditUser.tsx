@@ -27,11 +27,8 @@ export const useEditUser = (email: string) => {
           status: response.status,
           mensagem: ['Vendedor editado com sucesso'],
         });
-        await queryClient.invalidateQueries([
-          'usersAll',
-          ['user', { email: email }],
-        ]);
-        navigate('/users');
+        await queryClient.invalidateQueries(['usersAll', ['user', { email: email }]]);
+        navigate('/profile');
       })
       .catch(async (response: AxiosError) => {
         const errors = response.response?.data as ErrorApi[];

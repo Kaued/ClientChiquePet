@@ -20,11 +20,7 @@ interface DropZoneProps {
   filesAccept: string[];
 }
 
-registerPlugin(
-  FilePondPluginImageExifOrientation,
-  FilePondPluginImagePreview,
-  FilePondPluginFileValidateType,
-);
+registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview, FilePondPluginFileValidateType);
 export const DropZone = ({
   files,
   handleFiles,

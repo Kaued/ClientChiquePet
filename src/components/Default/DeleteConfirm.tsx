@@ -20,22 +20,11 @@ interface DeleteProps {
   handleDelete: UseMutationResult<void, unknown, any, unknown>;
   param: string | number;
 }
-export const DeleteConfirm = ({
-  title,
-  text,
-  handleDelete,
-  param,
-}: DeleteProps) => {
+export const DeleteConfirm = ({ title, text, handleDelete, param }: DeleteProps) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
-      <IconButton
-        colorScheme="#fbb215"
-        aria-label="Editar"
-        bg={'red'}
-        onClick={onOpen}
-        icon={<BsTrash3 />}
-      />
+      <IconButton colorScheme="#fbb215" aria-label="Editar" bg={'red'} onClick={onOpen} icon={<BsTrash3 />} />
 
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
@@ -48,11 +37,8 @@ export const DeleteConfirm = ({
             <Button colorScheme="blue" mr={3} onClick={onClose}>
               Fechar
             </Button>
-            <Button
-              colorScheme="red"
-              onClick={() => handleDelete.mutate(param)}
-            >
-              Deletar
+            <Button colorScheme="red" onClick={() => handleDelete.mutate(param)}>
+              <BsTrash3 /> Deletar
             </Button>
           </ModalFooter>
         </ModalContent>

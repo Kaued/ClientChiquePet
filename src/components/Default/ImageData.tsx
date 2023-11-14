@@ -9,13 +9,7 @@ interface ImageProps {
   classField?: string;
   label?: string;
 }
-export const ImageData = ({
-  src,
-  width,
-  height,
-  classField,
-  label,
-}: ImageProps) => {
+export const ImageData = ({ src, width, height, classField, label }: ImageProps) => {
   return (
     <Image
       src={`${Config.baseApiUrl}/${src}`}

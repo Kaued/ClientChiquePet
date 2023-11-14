@@ -28,7 +28,6 @@
           @include for-phone-only {
             display: none;
           }
-
         }
 
         svg {
@@ -120,23 +119,22 @@
         visibility: visible;
         height: auto;
       }
-
     }
 
-    &__list{
-      .navbar{
-        &-item{
+    &__list {
+      .navbar {
+        &-item {
           color: white;
           padding: 10px;
           border-radius: 10px;
           margin-bottom: 10px;
-          p{
+          p {
             color: white;
           }
 
-          &:hover{
+          &:hover {
             background-color: #00000020;
-            &::after{
+            &::after {
               display: none;
             }
           }
@@ -145,7 +143,7 @@
     }
   }
 
-  &-utilities{
+  &-utilities {
     height: max-content;
     justify-content: center;
     align-items: center;
@@ -182,13 +180,10 @@
         height: 0;
       }
     }
-
   }
-
 }
 
 .cart {
-
   &-button {
     background-color: #6c083d !important;
     padding: 10px !important;

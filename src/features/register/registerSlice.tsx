@@ -1,4 +1,4 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 export interface RegisterSlice {
   userName: string;
@@ -11,23 +11,20 @@ export interface RegisterSlice {
 }
 
 const initialState: RegisterSlice = {
-  userName: "",
-  email: "",
-  password: "",
-  birthDate: "",
+  userName: '',
+  email: '',
+  password: '',
+  birthDate: '',
   terms: false,
-  phoneNumber: "",
+  phoneNumber: '',
   step: 0,
 };
 
 const registerSlice = createSlice({
-  name: "register",
+  name: 'register',
   initialState: initialState,
   reducers: {
-    setUserAndEmail: (
-      state,
-      action: PayloadAction<{ email: string; userName: string }>,
-    ) => {
+    setUserAndEmail: (state, action: PayloadAction<{ email: string; userName: string }>) => {
       state.email = action.payload.email;
       state.userName = action.payload.userName;
     },
@@ -60,12 +57,7 @@ const registerSlice = createSlice({
   },
 });
 
-export const {
-  setUserAndEmail,
-  setBirthAndTermsPhoneNumber,
-  setPassword,
-  setStep,
-} = registerSlice.actions;
+export const { setUserAndEmail, setBirthAndTermsPhoneNumber, setPassword, setStep } = registerSlice.actions;
 
 export default registerSlice.reducer;
 
@@ -75,5 +67,4 @@ export const selectCurrentPassword = (state: RegisterSlice) => state.password;
 export const selectCurrentBirthDate = (state: RegisterSlice) => state.birthDate;
 export const selectCurrentTerms = (state: RegisterSlice) => state.terms;
 export const selectCurrentStep = (state: RegisterSlice) => state.step;
-export const selectCurrentPhoneNumber = (state: RegisterSlice) =>
-  state.phoneNumber;
+export const selectCurrentPhoneNumber = (state: RegisterSlice) => state.phoneNumber;

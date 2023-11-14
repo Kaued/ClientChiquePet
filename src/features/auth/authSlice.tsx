@@ -19,10 +19,7 @@ export interface AuthSlice {
 
 export const loginAsync = createAsyncThunk(
   'auth/loginAsyn',
-  async (
-    { email, password }: { email: string; password: string },
-    { rejectWithValue },
-  ) => {
+  async ({ email, password }: { email: string; password: string }, { rejectWithValue }) => {
     const request = api();
 
     return await request
@@ -94,8 +91,7 @@ const authSlice = createSlice({
         state.roles = payload.roles;
         state.email = payload.email;
         state.user = '';
-        axios.defaults.headers.common['Authorization'] =
-          'Bearer ' + state.token;
+        axios.defaults.headers.common['Authorization'] = 'Bearer ' + state.token;
         localStorage.setItem('user', JSON.stringify(state));
         window.location.href = '/';
       })
@@ -110,10 +106,8 @@ export const { logout } = authSlice.actions;
 
 export default authSlice.reducer;
 
-export const selectCurrenteAuthenticated = (state: AuthSlice) =>
-  state.auth.authenticated;
-export const selectCurrenteExpiration = (state: AuthSlice) =>
-  state.auth.expiration;
+export const selectCurrenteAuthenticated = (state: AuthSlice) => state.auth.authenticated;
+export const selectCurrenteExpiration = (state: AuthSlice) => state.auth.expiration;
 export const selectCurrenteToken = (state: AuthSlice) => state.auth.token;
 export const selectCurrenteRoles = (state: AuthSlice) => state.auth.roles;
 export const selectCurrenteUser = (state: AuthSlice) => state.auth.user;

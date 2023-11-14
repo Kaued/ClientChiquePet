@@ -25,20 +25,12 @@ export const useGetRoutes = () => {
       },
     ],
   });
-  
 
-  if (
-    authenticated &&
-    roles !== null &&
-    roles.includes('Client') &&
-    token !== null
-  ) {
-
+  if (authenticated && roles !== null && roles.includes('Client') && token !== null) {
     router[1].children?.push({
-      path: "profile",
+      path: 'profile',
       element: <Profile />,
     });
-  
   } else {
     router.push({
       path: 'login',

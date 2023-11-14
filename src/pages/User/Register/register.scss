@@ -1,11 +1,10 @@
-@import "../../../scss/mixings.scss";
+@import '../../../scss/mixings.scss';
 
 .register {
   height: 700px;
   max-width: 1200px;
   width: 100%;
   border-radius: 20px;
-
 
   &-image {
     position: relative;
@@ -22,7 +21,7 @@
       justify-content: center;
       align-items: center;
       height: 30%;
-      background: linear-gradient(180deg, rgba(0, 0, 0, 0.90) 0%, rgba(255, 255, 255, 0) 100%);
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.9) 0%, rgba(255, 255, 255, 0) 100%);
       border-radius: 20px 0px 0px 0px;
 
       img {
@@ -64,7 +63,6 @@
     border-radius: 0px 20px 20px 0px;
     background: #6c083d;
 
-
     &__title {
       color: white;
       font-family: Lato;
@@ -73,7 +71,6 @@
       text-align: center;
       font-size: 32px !important;
       font-weight: 500 !important;
-
     }
   }
 
@@ -88,18 +85,18 @@
   @include for-tablet-down {
     display: block !important;
 
-    &-image{
+    &-image {
       width: 100%;
       border-radius: 0;
 
-      img{
+      img {
         border-radius: 0;
       }
 
-      &__logo{
+      &__logo {
         border-radius: 0;
 
-        img{
+        img {
           width: 70px;
           height: 70px;
           border-radius: 50%;
@@ -107,17 +104,17 @@
       }
     }
 
-    &-content{
+    &-content {
       width: 100%;
       border-radius: 0;
       padding: 20px;
 
-      &__title{
+      &__title {
         font-size: 24px !important;
       }
     }
 
-    &-divider{
+    &-divider {
       font-size: 12px;
     }
 

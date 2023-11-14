@@ -1,22 +1,6 @@
 import { useEffect, useState } from 'react';
-import {
-  GetAllUsers,
-  Users,
-  useGetAllUsers,
-} from '../../hooks/users/useGetAllUsers';
-import {
-  Box,
-  Button,
-  Flex,
-  Heading,
-  Table,
-  TableCaption,
-  TableContainer,
-  Text,
-  Th,
-  Thead,
-  Tr,
-} from '@chakra-ui/react';
+import { GetAllUsers, Users, useGetAllUsers } from '../../hooks/users/useGetAllUsers';
+import { Box, Button, Flex, Heading, Table, TableCaption, TableContainer, Text, Th, Thead, Tr } from '@chakra-ui/react';
 import { SeachTable } from '../../components/Default/SearchTable';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
@@ -87,19 +71,8 @@ export const TableUsers = () => {
   }, [isLoading, data]);
   return (
     <Box className="container pt-2">
-      <Flex
-        width={'100%'}
-        flexWrap="wrap"
-        justifyContent={'space-between'}
-        alignItems={'center'}
-        className="mt-4"
-      >
-        <Heading
-          fontFamily={'Lato'}
-          fontSize={'36px'}
-          color={'#000000'}
-          fontWeight={'600'}
-        >
+      <Flex width={'100%'} flexWrap="wrap" justifyContent={'space-between'} alignItems={'center'} className="mt-4">
+        <Heading fontFamily={'Lato'} fontSize={'36px'} color={'#000000'} fontWeight={'600'}>
           Listar Vendedores
         </Heading>
         <Button colorScheme="green" onClick={() => navigate('create')}>
@@ -118,8 +91,7 @@ export const TableUsers = () => {
             {!isLoading && !isError && !isSearching && users.length > 0 && (
               <Box>
                 <Text>
-                  Exibindo: {users.length}/
-                  {pagination.TotalCount ? pagination.TotalCount : users.length}
+                  Exibindo: {users.length}/{pagination.TotalCount ? pagination.TotalCount : users.length}
                 </Text>
                 {pagination.HasNext && (
                   <Button onClick={() => fetchNextPage()} colorScheme="teal">
@@ -144,11 +116,7 @@ export const TableUsers = () => {
               <Th>Actions</Th>
             </Tr>
           </Thead>
-          <UsersData
-            data={users}
-            loading={isLoading || isSearching}
-            error={isError}
-          />
+          <UsersData data={users} loading={isLoading || isSearching} error={isError} />
         </Table>
       </TableContainer>
     </Box>

@@ -5,15 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { DeleteConfirm } from '../Default/DeleteConfirm';
 import { useDeleteUser } from '../../hooks/users/useDeleteUser';
 
-export const UsersData = ({
-  data,
-  loading,
-  error,
-}: {
-  data: Users[];
-  loading: boolean;
-  error: boolean;
-}) => {
+export const UsersData = ({ data, loading, error }: { data: Users[]; loading: boolean; error: boolean }) => {
   const navigate = useNavigate();
   const remove = useDeleteUser();
   return (

@@ -16,25 +16,20 @@ import {
   MenuList,
   Text,
   useDisclosure,
-} from "@chakra-ui/react";
-import { useAppSelector } from "../../hooks/useAppSelector";
-import { useEffect, useState } from "react";
-import { ItemNavBar } from "./ItemNavbar";
-import {
-  AiOutlineDown,
-  AiOutlineHome,
-  AiOutlineSearch,
-  AiOutlineShoppingCart,
-} from "react-icons/ai";
-import { GiHamburgerMenu } from "react-icons/gi";
-import { AuthState } from "../../@types/AuthState";
-import logo from "../../images/logo.jpg";
-import "./item.scss";
-import { ConfigItem } from "./ConfigItem";
-import "./navbar.scss";
-import { HiOutlineMail } from "react-icons/hi";
-import { BsFacebook, BsInstagram, BsWhatsapp } from "react-icons/bs";
-import { Config } from "../../environment/config";
+} from '@chakra-ui/react';
+import { useAppSelector } from '../../hooks/useAppSelector';
+import { useEffect, useState } from 'react';
+import { ItemNavBar } from './ItemNavbar';
+import { AiOutlineDown, AiOutlineHome, AiOutlineSearch, AiOutlineShoppingCart } from 'react-icons/ai';
+import { GiHamburgerMenu } from 'react-icons/gi';
+import { AuthState } from '../../@types/AuthState';
+import logo from '../../images/logo.jpg';
+import './item.scss';
+import { ConfigItem } from './ConfigItem';
+import './navbar.scss';
+import { HiOutlineMail } from 'react-icons/hi';
+import { BsFacebook, BsInstagram, BsWhatsapp } from 'react-icons/bs';
+import { Config } from '../../environment/config';
 
 export interface LinkNavBar {
   path: string;
@@ -53,10 +48,10 @@ export const Navbar = () => {
   useEffect(() => {
     setItens([
       {
-        path: "/",
-        name: "Home",
+        path: '/',
+        name: 'Home',
         icon: <AiOutlineHome />,
-        role: "",
+        role: '',
       },
     ]);
   }, []);
@@ -108,15 +103,9 @@ export const Navbar = () => {
         <Flex className="navbar-list">
           {!!itens &&
             itens.map((item) => {
-              if (userState.roles.includes(item.role) || item.role === "") {
+              if (userState.roles.includes(item.role) || item.role === '') {
                 return (
-                  <ItemNavBar
-                    key={item.path}
-                    path={item.path}
-                    name={item.name}
-                    icon={item.icon}
-                    role={item.role}
-                  />
+                  <ItemNavBar key={item.path} path={item.path} name={item.name} icon={item.icon} role={item.role} />
                 );
               }
             })}
@@ -130,11 +119,7 @@ export const Navbar = () => {
           <Flex className="navbar-utilities">
             <Flex className="navbar-utilities__cart">
               <Menu>
-                <MenuButton
-                  as={Button}
-                  rightIcon={<AiOutlineDown />}
-                  className="cart-button"
-                >
+                <MenuButton as={Button} rightIcon={<AiOutlineDown />} className="cart-button">
                   <AiOutlineShoppingCart />
                 </MenuButton>
                 <MenuList>
@@ -182,11 +167,7 @@ export const Navbar = () => {
 
           <Flex className="navbar-utilities__cart">
             <Menu>
-              <MenuButton
-                as={Button}
-                rightIcon={<AiOutlineDown />}
-                className="cart-button"
-              >
+              <MenuButton as={Button} rightIcon={<AiOutlineDown />} className="cart-button">
                 <AiOutlineShoppingCart />
               </MenuButton>
               <MenuList>
@@ -220,54 +201,32 @@ export const Navbar = () => {
             </Flex>
           )}
         </Flex>
-        <Drawer
-          isOpen={isOpen}
-          placement="left"
-          onClose={onClose}
-          returnFocusOnClose={false}
-          onOverlayClick={onClose}
-        >
-          <DrawerContent
-            bg={"#6c083d"}
-            padding={"10px"}
-            className="navbar-tablet__list"
-          >
+        <Drawer isOpen={isOpen} placement="left" onClose={onClose} returnFocusOnClose={false} onOverlayClick={onClose}>
+          <DrawerContent bg={'#6c083d'} padding={'10px'} className="navbar-tablet__list">
             <Flex
-              justifyContent={"center"}
-              alignItems={"center"}
-              marginTop={"20px"}
-              paddingBottom={"25px"}
-              marginBottom={"25px"}
-              borderBottom={"2px solid #00000020"}
+              justifyContent={'center'}
+              alignItems={'center'}
+              marginTop={'20px'}
+              paddingBottom={'25px'}
+              marginBottom={'25px'}
+              borderBottom={'2px solid #00000020'}
             >
-              <Image
-                src={logo}
-                alt="logo"
-                w={"45px"}
-                h={"45px"}
-                borderRadius={"10px"}
-              />
-              <Text
-                fontSize="32px"
-                fontFamily={"Lato"}
-                color={"white"}
-                marginLeft={"5px"}
-                marginBottom={"0"}
-              >
+              <Image src={logo} alt="logo" w={'45px'} h={'45px'} borderRadius={'10px'} />
+              <Text fontSize="32px" fontFamily={'Lato'} color={'white'} marginLeft={'5px'} marginBottom={'0'}>
                 ChikPet
               </Text>
               <CloseButton
                 onClick={onClose}
-                fontSize={"16px"}
-                color={"white"}
-                position={"absolute"}
-                right={"-15px"}
-                bg={"#6c083d"}
+                fontSize={'16px'}
+                color={'white'}
+                position={'absolute'}
+                right={'-15px'}
+                bg={'#6c083d'}
               ></CloseButton>
             </Flex>
             {!!itens &&
               itens.map((item) => {
-                if (userState.roles.includes(item.role) || item.role === "") {
+                if (userState.roles.includes(item.role) || item.role === '') {
                   return (
                     <ItemNavBar
                       key={item.path}
