@@ -1,18 +1,18 @@
 import { Box, Button, Collapse, Flex, Heading, Spinner, Text, useDisclosure } from '@chakra-ui/react';
-import { useAppSelector } from '../../hooks/useAppSelector';
-import { useGetUser } from '../../hooks/users/useGetUser';
-import { AuthState } from '../../@types/AuthState';
-import { FaCheck, FaEdit, FaLock } from 'react-icons/fa';
-import './profile.scss';
-import { AiOutlineUser } from 'react-icons/ai';
-import { useEffect, useState } from 'react';
-import { DeleteConfirm } from '../../components/Default/DeleteConfirm';
-import { useDeleteUser } from '../../hooks/users/useDeleteUser';
-import { InputDefault } from '../../components/Default/InputDefault';
 import { useFormik } from 'formik';
-import * as Yup from 'yup';
-import { useEditUser } from '../../hooks/users/useEditUser';
+import { useEffect, useState } from 'react';
+import { AiOutlineUser } from 'react-icons/ai';
+import { FaCheck, FaEdit, FaLock } from 'react-icons/fa';
 import { RxCross1 } from 'react-icons/rx';
+import * as Yup from 'yup';
+import { AuthState } from '../../@types/AuthState';
+import { DeleteConfirm } from '../../components/Default/DeleteConfirm';
+import { InputDefault } from '../../components/Default/InputDefault';
+import { useAppSelector } from '../../hooks/useAppSelector';
+import { useDeleteUser } from '../../hooks/users/useDeleteUser';
+import { useEditUser } from '../../hooks/users/useEditUser';
+import { useGetUser } from '../../hooks/users/useGetUser';
+import './profile.scss';
 
 interface UserData {
   email: string;
