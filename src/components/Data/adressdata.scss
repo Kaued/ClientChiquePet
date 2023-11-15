@@ -1,0 +1,47 @@
+.data{
+  &-address{
+    width: 100%;
+    flex-direction: column;
+
+    .chakra-table__container{
+      width: 100%;
+      margin-bottom: 10px;
+    }
+    &__table{
+      width: 100% !important;
+      background-color: #d6d6d6;
+      border-radius: 20px;
+      max-height: 100px;
+      overflow: scroll;
+
+      th,td{
+        text-align: center;
+      }
+
+      th{
+        color: #6c083d;
+        font-family: Lato;
+        font-size: 14px;
+        font-weight: 700;
+      }
+
+      td{
+        svg{
+          color: #6c083d;
+
+        }
+      }
+    }
+
+    &__actions{
+      button{
+        margin-left: 10px;
+      }
+      .delete__button{
+        svg{
+          color: white;
+        }
+      }
+    }
+  }
+}

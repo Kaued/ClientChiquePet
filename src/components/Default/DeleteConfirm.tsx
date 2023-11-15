@@ -33,6 +33,7 @@ export const DeleteConfirm = ({
       <IconButton
         colorScheme="#fbb215"
         aria-label="Editar"
+        className="delete__button"
         bg={"red"}
         onClick={onOpen}
         icon={<BsTrash3 />}

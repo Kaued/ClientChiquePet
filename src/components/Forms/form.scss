@@ -3,4 +3,19 @@
     width: 100%;
     margin-top: 1em;
   }
+
+  &-address{
+
+    &__button{
+      margin-left: auto;
+
+      svg{
+        margin-right: 5px;
+      }
+
+      &--edit, &--bottom{
+        margin-left: 0px;
+      }
+    }
+  }
 }

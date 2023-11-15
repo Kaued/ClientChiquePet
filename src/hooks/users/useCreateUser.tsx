@@ -29,7 +29,7 @@ export const useCreateUser = () => {
       .then(async (response) => {
         toast({
           status: response.status,
-          mensagem: ['Vendedor criado com sucesso'],
+          mensagem: ['Usuário criado com sucesso'],
         });
         navigate('/login');
       })

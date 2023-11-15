@@ -1,34 +1,40 @@
-import { useNavigate } from 'react-router-dom';
 import { useAlert } from '../useAlert';
 import { api } from '../../api/axios';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import { ErrorApi } from '../../@types/ErrorApi';
+import { useAppSelector } from '../useAppSelector';
+import { AuthState } from '../../@types/AuthState';
+import { useNavigate } from 'react-router-dom';
 
-interface User {
-  email: string;
-  userName: string;
-  password?: string;
-  birthDate?: Date | string;
-  phoneNumber: string;
+interface Address {
+  cep: string;
+  street: string;
+  neighborhood: string;
+  city: string;
+  district: string;
+  number: number;
+  complement?: string
 }
 
-export const useEditUser = (email: string) => {
+export const useCreateAddress = () => {
   const request = api();
-  const toast = useAlert();
   const navigate = useNavigate();
+  const toast = useAlert();
   const queryClient = useQueryClient();
+  const authData: AuthState = useAppSelector((state) => state.auth);
 
-  return useMutation(async (data: User) => {
+  return useMutation(async (data: Address) => {
     return request
-      .put(`Client/${email}`, data)
+      .post('/Address', data)
       .then(async (response) => {
         toast({
           status: response.status,
-          mensagem: ['Usuário editado com sucesso'],
+          mensagem: ['Endereço criado com sucesso'],
         });
-        await queryClient.invalidateQueries(['usersAll', ['user', { email: email }]]);
-        navigate('/profile');
+        await queryClient.invalidateQueries([
+          ["addressAll", { email: authData.email }],
+        ]);
       })
       .catch(async (response: AxiosError) => {
         const errors = response.response?.data as ErrorApi[];
