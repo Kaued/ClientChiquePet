@@ -76,7 +76,7 @@ export const StepThree = () => {
           required={true}
           value={formik.values.phoneNumber}
           classField="register-form__input"
-          placeholderField="Digite sua data de Nascimento"
+          placeholderField="Digite seu telefone"
         />
 
         <Checkbox

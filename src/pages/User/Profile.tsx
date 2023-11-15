@@ -1,4 +1,4 @@
-import { Box, Button, Collapse, Flex, Heading, Input, Spinner, Text, useDisclosure } from '@chakra-ui/react';
+import { Box, Button, Collapse, Flex, Heading, Spinner, Text, useDisclosure } from '@chakra-ui/react';
 import { useAppSelector } from '../../hooks/useAppSelector';
 import { useGetUser } from '../../hooks/users/useGetUser';
 import { AuthState } from '../../@types/AuthState';
@@ -83,7 +83,7 @@ export const Profile = () => {
   }, [data]);
 
   return (
-    <Flex className="profile container">
+    <Flex className="profile container-lg">
       {!isLoading && data && (
         <Flex className="profile-data">
           <Heading className="profile-data__title">
@@ -92,7 +92,7 @@ export const Profile = () => {
           </Heading>
 
           <Flex className="row profile-data__content">
-            <Flex className="profile-item col-lg-6">
+            <Flex className="profile-item col-lg-6 col-12">
               <Text className="profile-item__label">Nome:</Text>
               {!isEditing && <Text className="profile-item__label">{data.userName}</Text>}
               {isEditing && (
@@ -103,12 +103,11 @@ export const Profile = () => {
                   name="userName"
                   required={true}
                   type="text"
-                  classField="profile-item__input"
                   placeholderField="Digite o nome"
                 />
               )}
             </Flex>
-            <Flex className="profile-item col-lg-6">
+            <Flex className="profile-item col-lg-6 col-12">
               <Text className="profile-item__label">Email:</Text>
               {!isEditing && <Text className="profile-item__label">{data.email}</Text>}
               {isEditing && (
@@ -119,12 +118,11 @@ export const Profile = () => {
                   name="email"
                   required={true}
                   type="email"
-                  classField="profile-item__input"
                   placeholderField="Digite o email"
                 />
               )}
             </Flex>
-            <Flex className="profile-item col-lg-6">
+            <Flex className="profile-item col-lg-6 col-12">
               <Text className="profile-item__label">Data de Nascimento:</Text>
               {!isEditing && (
                 <Text className="profile-item__label">{new Date(data.birthDate).toLocaleDateString('pt-br')}</Text>
@@ -140,7 +138,7 @@ export const Profile = () => {
                 />
               )}
             </Flex>
-            <Flex className="profile-item col-lg-6">
+            <Flex className="profile-item col-lg-6 col-12">
               <Text className="profile-item__label">Telefone:</Text>
               {!isEditing && <Text className="profile-item__label">{data.phoneNumber}</Text>}
               {isEditing && (
@@ -151,7 +149,6 @@ export const Profile = () => {
                   name="phoneNumber"
                   required={true}
                   type="text"
-                  classField="profile-item__input"
                   placeholderField="Digite o telefone"
                 />
               )}
@@ -165,7 +162,7 @@ export const Profile = () => {
                 </Button>
                 <Collapse in={isOpen} animateOpacity>
                   <Flex width={'100%'} flexWrap={'wrap'} justifyContent={'start'} className="profile-password">
-                    <Flex className="profile-item col-lg-6">
+                    <Flex className="profile-item col-lg-6 col-12">
                       <Text className="profile-item__label">Senha:</Text>
                       <InputDefault
                         name={'password'}
@@ -176,7 +173,7 @@ export const Profile = () => {
                         required={isOpen}
                       />
                     </Flex>
-                    <Flex className="profile-item col-lg-6">
+                    <Flex className="profile-item col-lg-6 col-12">
                       <Text className="profile-item__label">Confimar Senha:</Text>
                       <InputDefault
                         name={'confirmPassword'}

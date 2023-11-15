@@ -9,9 +9,10 @@ import {
   ModalHeader,
   ModalOverlay,
   useDisclosure,
-} from '@chakra-ui/react';
-import { UseMutationResult } from '@tanstack/react-query';
-import { BsTrash3 } from 'react-icons/bs';
+} from "@chakra-ui/react";
+import { UseMutationResult } from "@tanstack/react-query";
+import { BsTrash3 } from "react-icons/bs";
+import { RxCross1 } from "react-icons/rx";
 
 interface DeleteProps {
   title: string;
@@ -20,11 +21,22 @@ interface DeleteProps {
   handleDelete: UseMutationResult<void, unknown, any, unknown>;
   param: string | number;
 }
-export const DeleteConfirm = ({ title, text, handleDelete, param }: DeleteProps) => {
+export const DeleteConfirm = ({
+  title,
+  text,
+  handleDelete,
+  param,
+}: DeleteProps) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
-      <IconButton colorScheme="#fbb215" aria-label="Editar" bg={'red'} onClick={onOpen} icon={<BsTrash3 />} />
+      <IconButton
+        colorScheme="#fbb215"
+        aria-label="Editar"
+        bg={"red"}
+        onClick={onOpen}
+        icon={<BsTrash3 />}
+      />
 
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
@@ -34,10 +46,19 @@ export const DeleteConfirm = ({ title, text, handleDelete, param }: DeleteProps)
           <ModalBody>{text}</ModalBody>
 
           <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={onClose}>
-              Fechar
+            <Button
+              colorScheme="blue"
+              mr={3}
+              onClick={onClose}
+              className="delete-content__button"
+            >
+              <RxCross1 /> Fechar
             </Button>
-            <Button colorScheme="red" onClick={() => handleDelete.mutate(param)}>
+            <Button
+              colorScheme="red"
+              onClick={() => handleDelete.mutate(param)}
+              className="delete-content__button"
+            >
               <BsTrash3 /> Deletar
             </Button>
           </ModalFooter>

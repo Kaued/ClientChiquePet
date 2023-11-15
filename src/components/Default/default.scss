@@ -17,3 +17,15 @@
     border-radius: 50%;
   }
 }
+
+.delete{
+
+  &-content{
+
+    &__button{
+      svg{
+        margin-right: 5px;
+      }
+    }
+  }
+}
