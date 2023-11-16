@@ -40,7 +40,7 @@ export const SelectDefault = (props: SelectProps) => {
         onBlur={() => (blur ? blur() : null)}>
         
         {options.map((option)=>{
-          return <option value={option.value}>{option.text}</option>;  
+          return <option value={option.value} key={option.value}>{option.text}</option>;  
         })}
         </Select>
       {!!error && <span className="input-error">{error}</span>}

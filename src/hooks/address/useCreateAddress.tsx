@@ -1,11 +1,10 @@
-import { useAlert } from '../useAlert';
-import { api } from '../../api/axios';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
-import { ErrorApi } from '../../@types/ErrorApi';
-import { useAppSelector } from '../useAppSelector';
 import { AuthState } from '../../@types/AuthState';
-import { useNavigate } from 'react-router-dom';
+import { ErrorApi } from '../../@types/ErrorApi';
+import { api } from '../../api/axios';
+import { useAlert } from '../useAlert';
+import { useAppSelector } from '../useAppSelector';
 
 interface Address {
   cep: string;
@@ -19,7 +18,6 @@ interface Address {
 
 export const useCreateAddress = () => {
   const request = api();
-  const navigate = useNavigate();
   const toast = useAlert();
   const queryClient = useQueryClient();
   const authData: AuthState = useAppSelector((state) => state.auth);

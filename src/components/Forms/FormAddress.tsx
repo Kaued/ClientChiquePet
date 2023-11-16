@@ -1,5 +1,4 @@
 import {
-  Box,
   Button,
   Flex,
   FormControl,
@@ -17,7 +16,6 @@ import {
 import { UseMutationResult } from "@tanstack/react-query";
 import { useFormik } from "formik";
 import { FaPlus } from "react-icons/fa6";
-import { MdEdit } from "react-icons/md";
 import { RxCross1 } from "react-icons/rx";
 import * as Yup from "yup";
 import { InputDefault } from "../Default/InputDefault";
@@ -38,12 +36,15 @@ interface AddressData {
   complement?: string;
 }
 
-type AddressSubmit = UseMutationResult<void, unknown, AddressData, unknown> | any;
+type AddressSubmit =
+  | UseMutationResult<void, unknown, AddressData, unknown>
+  | any;
 
 interface FormAddressData {
   addressValues?: AddressData;
   isAddMode: boolean;
   submit: AddressSubmit;
+  open?: boolean;
 }
 
 type CepQuery = {
@@ -59,6 +60,7 @@ export const FormAddress = ({
   isAddMode,
   addressValues,
   submit,
+  open
 }: FormAddressData) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const title: string = isAddMode
@@ -74,7 +76,7 @@ export const FormAddress = ({
     complement: "",
   };
   const formik = useFormik<AddressData>({
-    initialValues: isAddMode ? initialValues : addressValues!,
+    initialValues: typeof addressValues === "undefined" ? initialValues : addressValues!,
     validationSchema: Yup.object().shape({
       cep: Yup.string()
         .required("O campo cep é obrigatório")
@@ -83,17 +85,27 @@ export const FormAddress = ({
       city: Yup.string().required("O campo cidade é obrigatório"),
       district: Yup.string().required("O campo distrito é obrigatório"),
       neighborhood: Yup.string().required("O campo bairro é obrigatório"),
-      number: Yup.string().required("O campo número é obrigatório").min(0, "Número invalido"),
+      number: Yup.string()
+        .required("O campo número é obrigatório")
+        .min(0, "Número invalido"),
       complement: Yup.string().max(125, "Máximo de 125 carácteres"),
     }),
     validateOnChange: false,
     onSubmit: async (data) => {
       await submit.mutateAsync(data);
+      onClose();
     },
   });
 
   const toast = useAlert();
   const [isGetCep, setGetCep] = useState<boolean>();
+
+  useEffect(() => {
+    if (typeof open !== "undefined" || (typeof addressValues !== "undefined")){
+      formik.setValues(addressValues!);
+      onOpen();
+    } 
+  }, [addressValues, open]);
 
   const districts = [
     { value: "AC", text: "Acre" },
@@ -161,17 +173,6 @@ export const FormAddress = ({
           <FaPlus /> Adicionar
         </Button>
       )}
-
-      {!isAddMode && (
-        <Button
-          colorScheme="yellow"
-          onClick={onOpen}
-          className="form-address__button--edit"
-        >
-          <MdEdit />
-        </Button>
-      )}
-
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
@@ -283,7 +284,9 @@ export const FormAddress = ({
 
           <ModalFooter>
             <Button
-              onClick={onClose}
+              onClick={()=>{
+                onClose();
+              }}
               colorScheme="red"
               mr={3}
               className="form-address__button--bottom"

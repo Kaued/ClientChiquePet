@@ -1,4 +1,5 @@
 import {
+  Button,
   Flex,
   Heading,
   Table,
@@ -9,23 +10,37 @@ import {
   Thead,
   Tr,
 } from "@chakra-ui/react";
-import { Address, GetAllAddress } from "../../hooks/address/useGetAllAddress";
-import "./adressdata.scss";
-import { FormAddress } from "../Forms/FormAddress";
-import { useCreateAddress } from "../../hooks/address/useCreateAddress";
+import { useState } from "react";
 import { FaLocationDot } from "react-icons/fa6";
-import { useEditAddress } from "../../hooks/address/useEditAddress";
+import { MdEdit } from "react-icons/md";
+import { useCreateAddress } from "../../hooks/address/useCreateAddress";
 import { useDeleteAddress } from "../../hooks/address/useDeleteAddress";
+import { useEditAddress } from "../../hooks/address/useEditAddress";
+import { Address } from "../../hooks/address/useGetAllAddress";
 import { DeleteConfirm } from "../Default/DeleteConfirm";
+import { FormAddress } from "../Forms/FormAddress";
+import "./adressdata.scss";
 
 interface AddressDataProps {
   data: any;
 }
-export const AddressData = ({data}: AddressDataProps) =>{
+
+interface AddressEditValues {
+  address: Address;
+  id: number;
+}
+export const AddressData = ({ data }: AddressDataProps) => {
   const createAddress = useCreateAddress();
   const editAddress = useEditAddress();
   const removeAddress = useDeleteAddress();
-  
+  const [addressEdit, setAddressEdit] = useState<AddressEditValues>();
+  const [openEdit, setOpenEdit] = useState<boolean>();
+
+  const editThisAddress = ({ address, id }: AddressEditValues) => {
+    setAddressEdit({ address, id });
+    setOpenEdit((open)=>!open);
+  };
+
   return (
     <Flex className="data-address">
       <TableContainer>
@@ -54,11 +69,19 @@ export const AddressData = ({data}: AddressDataProps) =>{
                     <Td>{address.city}</Td>
                     <Td>
                       <Flex className="data-address__actions">
-                        <FormAddress
-                          isAddMode={false}
-                          addressValues={address}
-                          submit={editAddress(address.addressId)}
-                        />
+                        <Button
+                          colorScheme="yellow"
+                          onClick={() =>
+                            editThisAddress({
+                              address: address,
+                              id: address.addressId,
+                            })
+                          }
+                          className="form-address__button--edit"
+                        >
+                          <MdEdit />
+                        </Button>
+
                         <DeleteConfirm
                           handleDelete={removeAddress}
                           param={address.addressId}
@@ -73,7 +96,7 @@ export const AddressData = ({data}: AddressDataProps) =>{
             </Tbody>
           )}
 
-          {!data && (
+          {!!data && data.data.length<=0 && (
             <Tbody>
               <Tr>
                 <Td colSpan={5}>
@@ -85,6 +108,13 @@ export const AddressData = ({data}: AddressDataProps) =>{
         </Table>
       </TableContainer>
       <FormAddress isAddMode={true} submit={createAddress} />
+
+      <FormAddress
+        isAddMode={false}
+        open={openEdit}
+        addressValues={addressEdit?.address}
+        submit={editAddress(addressEdit?.id ? addressEdit.id : 0)}
+      />
     </Flex>
   );
 };
