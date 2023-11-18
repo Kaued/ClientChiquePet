@@ -5,6 +5,8 @@ import { ErrorApi } from '../../@types/ErrorApi';
 import { api } from '../../api/axios';
 import { useAlert } from '../useAlert';
 import { useAppSelector } from '../useAppSelector';
+import { useAppDispatch } from '../useAppDispatch';
+import { setRefresh } from '../../features/address/addressSlice';
 
 interface Address {
   cep: string;
@@ -21,6 +23,7 @@ export const useCreateAddress = () => {
   const toast = useAlert();
   const queryClient = useQueryClient();
   const authData: AuthState = useAppSelector((state) => state.auth);
+  const dispatch = useAppDispatch();
 
   return useMutation(async (data: Address) => {
     return request
@@ -33,6 +36,7 @@ export const useCreateAddress = () => {
         await queryClient.invalidateQueries([
           ["addressAll", { email: authData.email }],
         ]);
+        dispatch(setRefresh({ refresh: true }));
       })
       .catch(async (response: AxiosError) => {
         const errors = response.response?.data as ErrorApi[];

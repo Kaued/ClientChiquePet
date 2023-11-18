@@ -178,7 +178,7 @@ export const FormAddress = ({
         <ModalContent>
           <ModalHeader>{title}</ModalHeader>
           <ModalCloseButton />
-          <ModalBody pb={6}>
+          <ModalBody pb={6} minH={"200px"}>
             {!isGetCep && (
               <Flex flexWrap={"wrap"} className="row">
                 <FormControl className="mb-4 col-12">
@@ -278,13 +278,14 @@ export const FormAddress = ({
                 position={"absolute"}
                 top={"50%"}
                 left={"50%"}
+                transform={"translate(-50%,-50%)"}
               />
             )}
           </ModalBody>
 
           <ModalFooter>
             <Button
-              onClick={()=>{
+              onClick={() => {
                 onClose();
               }}
               colorScheme="red"

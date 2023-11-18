@@ -3,6 +3,7 @@ import { AnyAction, Store, ThunkDispatch, configureStore } from '@reduxjs/toolki
 import authSlice from '../features/auth/authSlice';
 import thunkMiddleware from 'redux-thunk';
 import registerSlice from '../features/register/registerSlice';
+import addressSlice from '../features/address/addressSlice';
 
 export type RootState = ReturnType<any>;
 
@@ -16,6 +17,7 @@ export const store: AppStore = configureStore({
   reducer: {
     auth: authSlice,
     register: registerSlice,
+    address: addressSlice
   },
   middleware: [thunkMiddleware],
 });

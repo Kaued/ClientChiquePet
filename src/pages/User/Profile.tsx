@@ -4,6 +4,7 @@ import {
   Collapse,
   Flex,
   Heading,
+  IconButton,
   Spinner,
   Text,
   useDisclosure,
@@ -11,20 +12,22 @@ import {
 import { useFormik } from "formik";
 import { useEffect, useState } from "react";
 import { AiOutlineUser } from "react-icons/ai";
-import { FaCheck, FaEdit, FaLock } from "react-icons/fa";
+import { FaCheck, FaChevronDown, FaChevronUp, FaEdit, FaLock } from "react-icons/fa";
+import { FaLocationDot } from "react-icons/fa6";
 import { RxCross1 } from "react-icons/rx";
 import * as Yup from "yup";
 import { AuthState } from "../../@types/AuthState";
+import { AddressData } from "../../components/Data/AddressData";
 import { DeleteConfirm } from "../../components/Default/DeleteConfirm";
 import { InputDefault } from "../../components/Default/InputDefault";
+import { AddressSlice, setRefresh } from "../../features/address/addressSlice";
+import { useGetAllAddress } from "../../hooks/address/useGetAllAddress";
+import { useAppDispatch } from "../../hooks/useAppDispatch";
 import { useAppSelector } from "../../hooks/useAppSelector";
 import { useDeleteUser } from "../../hooks/users/useDeleteUser";
 import { useEditUser } from "../../hooks/users/useEditUser";
 import { useGetUser } from "../../hooks/users/useGetUser";
 import "./profile.scss";
-import { AddressData } from "../../components/Data/AddressData";
-import { FaLocationDot } from "react-icons/fa6";
-import { useGetAllAddress } from "../../hooks/address/useGetAllAddress";
 
 interface UserData {
   email: string;
@@ -36,6 +39,8 @@ interface UserData {
 
 export const Profile = () => {
   const authData: AuthState = useAppSelector((state) => state.auth);
+  const addressSlice: AddressSlice = useAppSelector((state) => state.address);
+  const dispatch = useAppDispatch();
   const address = useGetAllAddress();
   const { isLoading, data } = useGetUser(authData.email);
   const [isEditing, setEditing] = useState(false);
@@ -48,6 +53,7 @@ export const Profile = () => {
   });
   const previousDate = new Date();
   const { isOpen, onToggle } = useDisclosure();
+  const addressOpen = useDisclosure();
   const [confirmPassword, setConfirmPassword] = useState("");
   const editUser = useEditUser(data?.email!);
   const passwordValidation = isOpen
@@ -97,6 +103,13 @@ export const Profile = () => {
   useEffect(() => {
     previousDate.setFullYear(previousDate.getFullYear() - 1);
   });
+
+  useEffect(() => {
+    if (addressSlice.refresh) {
+      address.refetch();
+      dispatch(setRefresh({ refresh: false }));
+    }
+  }, [addressSlice.refresh]);
   useEffect(() => {
     if (data) {
       setInitialValues(data);
@@ -280,14 +293,26 @@ export const Profile = () => {
           )}
 
           {!isEditing && (
-            <Flex className="profile-address">
+            <Flex className="profile-address  mt-5">
               <Flex className="profile-address__title">
                 <FaLocationDot />
                 <Heading>Endereços</Heading>
+                <IconButton
+                  colorScheme="whiteAlpha"
+                  color={"#6c083d"}
+                  aria-label="Abrir endereços"
+                  className="ms-auto"
+                  onClick={() => addressOpen.onToggle()}
+                  icon={
+                    addressOpen.isOpen ? <FaChevronUp /> : <FaChevronDown />
+                  }
+                />
               </Flex>
-              <AddressData data={address.data} />
+              <Collapse in={addressOpen.isOpen} animateOpacity>
+                <AddressData data={address.data} />
+              </Collapse>
             </Flex>
-          )}  
+          )}
         </Flex>
       )}
 
@@ -301,6 +326,7 @@ export const Profile = () => {
           position={"absolute"}
           top={"50%"}
           left={"50%"}
+          transform={"translate(-50%,-50%)"}
         />
       )}
     </Flex>

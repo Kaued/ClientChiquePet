@@ -5,12 +5,15 @@ import { AxiosError } from 'axios';
 import { ErrorApi } from '../../@types/ErrorApi';
 import { useAppSelector } from '../useAppSelector';
 import { AuthState } from '../../@types/AuthState';
+import { setRefresh } from '../../features/address/addressSlice';
+import { useAppDispatch } from '../useAppDispatch';
 
 export const useDeleteAddress = () => {
   const request = api();
   const toast = useAlert();
   const queryClient = useQueryClient();
   const authData: AuthState = useAppSelector((state) => state.auth);
+  const dispatch = useAppDispatch();
 
   return useMutation(async (id: number) => {
     return request
@@ -24,6 +27,7 @@ export const useDeleteAddress = () => {
           "addressAll",
           { email: authData.email },
         ]);
+        dispatch(setRefresh({ refresh: true }));
       })
       .catch((response: AxiosError) => {
         const errors = response.response?.data as ErrorApi[];

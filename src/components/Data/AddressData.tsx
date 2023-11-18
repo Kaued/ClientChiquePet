@@ -48,10 +48,10 @@ export const AddressData = ({ data }: AddressDataProps) => {
           <Thead>
             <Tr>
               <Th></Th>
-              <Th>Cep</Th>
-              <Th>Rua</Th>
-              <Th>Número</Th>
-              <Th>Cidade</Th>
+              <Th></Th>
+              <Th></Th>
+              <Th></Th>
+              <Th></Th>
               <Th></Th>
             </Tr>
           </Thead>
@@ -96,11 +96,13 @@ export const AddressData = ({ data }: AddressDataProps) => {
             </Tbody>
           )}
 
-          {!!data && data.data.length<=0 && (
+          {!!data && data.data.length <= 0 && (
             <Tbody>
               <Tr>
                 <Td colSpan={5}>
-                  <Heading>Não foi possível encontrar nenhum endereço</Heading>
+                  <Heading fontSize={"32px"} color={"#6c083d"}>
+                    Não foi possível encontrar nenhum endereço
+                  </Heading>
                 </Td>
               </Tr>
             </Tbody>

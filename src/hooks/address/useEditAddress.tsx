@@ -5,6 +5,8 @@ import { AxiosError } from "axios";
 import { ErrorApi } from "../../@types/ErrorApi";
 import { useAppSelector } from "../useAppSelector";
 import { AuthState } from "../../@types/AuthState";
+import { useAppDispatch } from "../useAppDispatch";
+import { setRefresh } from "../../features/address/addressSlice";
 
 interface Address {
   id: string,
@@ -23,6 +25,7 @@ export const useEditAddress = () => {
     const toast = useAlert();
     const queryClient = useQueryClient();
     const authData: AuthState = useAppSelector((state) => state.auth);
+    const dispatch = useAppDispatch();
 
     return useMutation(async (data: Address) => {
       return request
@@ -36,6 +39,7 @@ export const useEditAddress = () => {
             ["addressAll", { email: authData.email }],
             ["address", { id: id }],
           ]);
+          dispatch(setRefresh({ refresh: true }));
         })
         .catch(async (response: AxiosError) => {
           const errors = response.response?.data as ErrorApi[];
