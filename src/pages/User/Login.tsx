@@ -1,4 +1,4 @@
-import { FormControl, FormLabel, Button, FormHelperText, Flex, Box, Checkbox } from '@chakra-ui/react';
+import { FormControl, FormLabel, Button, FormHelperText, Flex, Box, Checkbox, Link } from '@chakra-ui/react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { InputDefault } from '../../components/Default/InputDefault';
@@ -9,6 +9,7 @@ import './login.scss';
 import logo from '../../images/logo.jpg';
 import { useAppSelector } from '../../hooks/useAppSelector';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
+import { useNavigate } from 'react-router-dom';
 
 interface FormValues {
   email: string;
@@ -24,6 +25,7 @@ const Login = () => {
   const userState = useAppSelector((state) => state.auth);
   const dispacth = useAppDispatch();
   const alertToRef = useAlert();
+  const navigate  = useNavigate();
   const alert = useRef(alertToRef).current;
 
   const formik = useFormik<FormValues>({
@@ -105,7 +107,7 @@ const Login = () => {
           <Button colorScheme="green" type="submit" className="login-button" isLoading={userState.status === 'pedding'}>
             Login
           </Button>
-          <FormHelperText>Não compartilhe seu acesso com ninguem.</FormHelperText>
+          <FormHelperText>Não tem uma conta? <Link onClick={()=>navigate("/register")} color={"blue"}>Clique aqui</Link></FormHelperText>
         </FormControl>
       </form>
     </Flex>

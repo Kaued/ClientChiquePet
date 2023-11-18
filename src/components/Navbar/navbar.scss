@@ -105,44 +105,6 @@
     }
   }
 
-  &-tablet {
-    display: none;
-
-    @include for-tablet-down {
-      margin: 20px auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-
-      .navbar-utilities__user,
-      .navbar-utilities__cart {
-        visibility: visible;
-        height: auto;
-      }
-    }
-
-    &__list {
-      .navbar {
-        &-item {
-          color: white;
-          padding: 10px;
-          border-radius: 10px;
-          margin-bottom: 10px;
-          p {
-            color: white;
-          }
-
-          &:hover {
-            background-color: #00000020;
-            &::after {
-              display: none;
-            }
-          }
-        }
-      }
-    }
-  }
-
   &-utilities {
     height: max-content;
     justify-content: center;
@@ -162,6 +124,10 @@
         font-size: 24px;
         color: #6c083d;
       }
+
+      @include for-tablet-down{
+        width: 100%;
+      }
     }
 
     &__cart {
@@ -175,12 +141,71 @@
     }
 
     &__user {
+      display: flex;
       @include for-tablet-down {
+        display: none;
+      }
+    }
+
+    &__notLogin{
+      display: flex;
+      @include for-tablet-down{
         visibility: hidden;
         height: 0;
+        width: 0;
+        display: none;
+      }
+      button{
+        color: #6c083d;
+        &:nth-child(1){
+          background-color: #6c083d;  
+          color: white;
+        }
+        margin-left: 10px;
       }
     }
   }
+
+    &-tablet {
+      display: none;
+  
+      @include for-tablet-down {
+        margin: 20px auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+  
+        .navbar-utilities__user,
+        .navbar-utilities__cart{
+          visibility: visible;
+          height: auto;
+
+        }
+      }
+  
+      &__list {
+        .navbar {
+          &-item {
+            color: white;
+            padding: 10px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+  
+            p {
+              color: white;
+            }
+  
+            &:hover {
+              background-color: #00000020;
+  
+              &::after {
+                display: none;
+              }
+            }
+          }
+        }
+      }
+    }
 }
 
 .cart {
@@ -197,6 +222,22 @@
 
       &:nth-child(1) {
         font-size: 20px;
+      }
+    }
+  }
+}
+
+.chakra-modal__content-container{
+
+  .navbar-utilities__notLogin{
+    display: flex;
+    visibility: visible;
+    height: auto;
+    width: 100%;
+
+    button{
+      &:nth-child(1){
+        background-color: #50062d;
       }
     }
   }

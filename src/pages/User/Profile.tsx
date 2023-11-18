@@ -294,7 +294,10 @@ export const Profile = () => {
 
           {!isEditing && (
             <Flex className="profile-address  mt-5">
-              <Flex className="profile-address__title">
+              <Flex
+                className="profile-address__title"
+                onClick={() => addressOpen.onToggle()}
+              >
                 <FaLocationDot />
                 <Heading>Endereços</Heading>
                 <IconButton
@@ -302,7 +305,6 @@ export const Profile = () => {
                   color={"#6c083d"}
                   aria-label="Abrir endereços"
                   className="ms-auto"
-                  onClick={() => addressOpen.onToggle()}
                   icon={
                     addressOpen.isOpen ? <FaChevronUp /> : <FaChevronDown />
                   }

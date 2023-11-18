@@ -5,6 +5,7 @@ import { Layout } from '../../components/Default/Layout';
 import { NotFound } from '../../components/Default/NotFound';
 import { Register } from '../../pages/User/Register/Register';
 import { Profile } from '../../pages/User/Profile';
+import { Home } from '../../pages/Home/Home';
 
 export const useGetRoutes = () => {
   const userState = useAppSelector((state) => state.auth);
@@ -21,7 +22,7 @@ export const useGetRoutes = () => {
     children: [
       {
         path: '',
-        element: <div>oi</div>,
+        element: <Home />,
       },
     ],
   });
