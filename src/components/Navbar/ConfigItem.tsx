@@ -34,7 +34,7 @@ export const ConfigItem = ({ text }: { text: boolean }) => {
           )}
         </Flex>
       </MenuButton>
-      <MenuList boxShadow={'0px 0px 7px 0px rgba(0,0,0,0.75)'} fontSize={'16px'} fontFamily={'Lato'}>
+      <MenuList boxShadow={'0px 0px 7px 0px rgba(0,0,0,0.75)'} fontSize={'16px'} fontFamily={'Lato'} zIndex={2}>
         <MenuItem onClick={() => navigate('/profile')}>
           <AiOutlineUser />
           <Text marginLeft={'5px'} marginBottom={0}>

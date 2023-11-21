@@ -1,0 +1,87 @@
+@import '../../scss/mixings.scss';
+
+.slideProduct {
+  flex-direction: column;
+  padding: 0px 40px;
+  margin: 50px 0px;
+
+  &-title {
+    width: fit-content;
+    margin: 20px 0px;
+    font-family: Lato;
+    font-size: 28px;
+    color: #6c083d;
+    display: flex;
+    margin-bottom: 0px;
+
+    &::before {
+      height: auto;
+      content: '';
+      width: 10px;
+      background-color: #ffb013;
+      margin-right: 10px;
+    }
+  }
+
+  &-swipper {
+    margin-top: 10px;
+    width: 100%;
+
+    .swiper {
+      z-index: -1;
+      &-button {
+
+        &-prev,
+        &-next {
+          
+          color: #ffb013;
+          font-weight: 700;
+          @include for-tablet-up{
+            display: block;
+          }
+          &::after{
+            font-size: 32px;
+          }
+        }
+
+      }
+
+      &-pagination {
+        &-bullet {
+          background-color: white;
+          opacity: 1;
+
+          &-active {
+            background-color: #ffb013;
+          }
+        }
+      }
+    }
+
+    &__slide {
+      width: 300px;
+      padding: 20px 0px;
+    }
+  }
+
+  &-link{
+    margin-left: auto;
+    display: flex;
+    align-items: end;
+    color: #6c083d;
+    font-family: Lato;
+    font-size: 16px;
+    text-transform: uppercase;
+    text-decoration:  underline !important;
+    font-weight: 600;
+    transition: .3s all ease-in-out;
+
+    &:hover{
+      color: #ffb013;
+    }
+  }
+
+  @include for-tablet-down{
+    padding: 0px 15px;
+  }
+}
