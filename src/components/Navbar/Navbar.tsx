@@ -6,36 +6,33 @@ import {
   DrawerContent,
   Flex,
   Image,
-  Input,
-  InputGroup,
-  InputLeftElement,
   Link,
   Menu,
   MenuButton,
   MenuItem,
   MenuList,
   Text,
-  useDisclosure,
+  useDisclosure
 } from "@chakra-ui/react";
-import { useAppSelector } from "../../hooks/useAppSelector";
 import { useEffect, useState } from "react";
-import { ItemNavBar } from "./ItemNavbar";
 import {
   AiOutlineDown,
   AiOutlineHome,
-  AiOutlineSearch,
-  AiOutlineShoppingCart,
+  AiOutlineShoppingCart
 } from "react-icons/ai";
-import { GiHamburgerMenu } from "react-icons/gi";
-import { AuthState } from "../../@types/AuthState";
-import logo from "../../images/logo.jpg";
-import "./item.scss";
-import { ConfigItem } from "./ConfigItem";
-import "./navbar.scss";
-import { HiOutlineMail } from "react-icons/hi";
 import { BsFacebook, BsInstagram, BsWhatsapp } from "react-icons/bs";
-import { Config } from "../../environment/config";
+import { GiHamburgerMenu } from "react-icons/gi";
+import { HiOutlineMail } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
+import { AuthState } from "../../@types/AuthState";
+import { Config } from "../../environment/config";
+import { useAppSelector } from "../../hooks/useAppSelector";
+import logo from "../../images/logo.jpg";
+import { ConfigItem } from "./ConfigItem";
+import { ItemNavBar } from "./ItemNavbar";
+import { Search } from "./Search";
+import "./item.scss";
+import "./navbar.scss";
 
 export interface LinkNavBar {
   path: string;
@@ -183,12 +180,7 @@ export const Navbar = () => {
 
         <Flex className="navbar-utilities">
           <Flex className="navbar-utilities__search">
-            <InputGroup>
-              <InputLeftElement pointerEvents="none">
-                <AiOutlineSearch />
-              </InputLeftElement>
-              <Input type="text" placeholder="Pesquisar" />
-            </InputGroup>
+            <Search />
           </Flex>
 
           <Flex className="navbar-utilities__cart">

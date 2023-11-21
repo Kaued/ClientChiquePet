@@ -1,0 +1,132 @@
+@import '../../scss/mixings.scss';
+
+.footer {
+  width: 100%;
+  justify-content: center;
+  padding: 30px 20px;
+  height: 270px;
+  background-color: #6c083d;
+  flex-wrap: wrap;
+
+  a{
+    transition: .3s all ease-in-out;
+    &:hover{
+      color: #ffb013;
+    }
+  }
+
+  &-logo {
+    flex-direction: column;
+    align-items: center;
+    border-right: 1px solid white;
+    height: 100%;
+
+    img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      color: #ffb013;
+      font-family: Lato;
+      font-weight: 600;
+    }
+  }
+
+  &-links {
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    border-right: 1px solid white;
+
+    h2 {
+      color: white;
+      font-size: 24px;
+      font-family: Lato;
+      font-weight: 600;
+      display: block;
+
+      &::after {
+        background-color: #ffb013;
+        width: 75%;
+        content: "";
+        display: block;
+        height: 3px;
+        margin: 5px auto;
+      }
+    }
+
+    a {
+      color: white
+    }
+  }
+
+  &-contact {
+    flex-direction: column;
+    align-items: center;
+
+    h2 {
+      color: white;
+      font-size: 24px;
+      font-family: Lato;
+      font-weight: 600;
+      display: block;
+
+      &::after {
+        background-color: #ffb013;
+        width: 75%;
+        content: "";
+        display: block;
+        height: 3px;
+        margin: 5px auto;
+      }
+    }
+
+    div{
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 10px;
+
+      h2{
+        font-size: 16px;
+        width: 100%;
+        text-align: center;
+        &::after{
+          display: none;
+        }
+      }
+
+      a{
+        color: white;
+        margin-right: 5px;
+      }
+
+    }
+  }
+
+  &-rights{
+    background-color: #ffb013;
+    width: 100%;
+    flex-wrap: wrap;
+    p{
+      justify-content: center;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      color: #6c083d;
+      font-size: 12px;
+    }
+  }
+
+  @include for-tablet-down{
+    height: 100%;
+
+    &-contact, &-links, &-logo{
+      border: none;
+      margin-bottom: 20px;
+    }
+  }
+}

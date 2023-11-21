@@ -9,6 +9,7 @@ export interface ConfigValues {
   email: {
     text: string;
     href: string;
+    window: string;
     name: string;
   }[];
 }

@@ -25,6 +25,7 @@ export const Config: ConfigValues = {
   email: [
     {
       href: 'https://www.whatsapp.com/?lang=pt_BR',
+      window: "blank",
       name: 'Contato',
       text: 'chikpetcontato@chikkpet.com',
     },

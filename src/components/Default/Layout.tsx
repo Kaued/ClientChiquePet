@@ -6,6 +6,7 @@ import { logout } from '../../features/auth/authSlice';
 import { Flex } from '@chakra-ui/react';
 import { Navbar } from '../Navbar/Navbar';
 import { Outlet } from 'react-router-dom';
+import { Footer } from '../Footer/Footer';
 
 export const Layout = () => {
   const userState = useAppSelector((state) => state.auth) as AuthState;
@@ -23,6 +24,7 @@ export const Layout = () => {
     <Flex minW={'100%'} minH={'100%'} flexDirection={'column'}>
       <Navbar />
       <Outlet />
+      <Footer />
     </Flex>
   );
 };
