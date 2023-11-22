@@ -20,18 +20,18 @@ export type Products = {
   category: Categories;
 };
 
-export const useGetProduct = (productId: number) => {
+export const useGetProduct = (name: string) => {
   const request = api();
   const toast = useAlert();
 
-  const data = useQuery(['product', { productId }], fetchUser);
+  const data = useQuery(['product', { name }], fetchUser);
 
   async function fetchUser({ queryKey }: any) {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [_key, { productId }] = queryKey;
+    const [_key, { name }] = queryKey;
 
     return await request
-      .get(`/Product/${productId}`, {
+      .get(`/Product/${name}`, {
         headers: { 'X-Pagination': '*' },
       })
       .then(async (response) => {
