@@ -1,4 +1,4 @@
-import { Pagination } from "swiper/modules";
+import { Autoplay, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
@@ -20,7 +20,12 @@ export const BannerHome = () => {
   return (
     <Flex className="bannerHome">
       <Swiper
-        modules={[Pagination]}
+        modules={[Pagination, Autoplay]}
+        loop={true}
+        autoplay={{
+          delay: 7000,
+          disableOnInteraction: false,
+        }}
         slidesPerView={1}
         pagination={{ clickable: true }}
       >

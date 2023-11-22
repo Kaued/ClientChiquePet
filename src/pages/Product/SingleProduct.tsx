@@ -1,7 +1,7 @@
 import { Button, Card, CardBody, CardHeader, Divider, Flex, Heading, Spinner, Stack, Table, TableContainer, Tbody, Td, Text, Th, Thead, Tr } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import { FaCartShopping } from "react-icons/fa6";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import * as Yup from "yup";
 import { InputDefault } from "../../components/Default/InputDefault";
 import { ImagesProductSlide } from "../../components/Products/ImagesProductSlide";
@@ -11,6 +11,9 @@ import parse from 'html-react-parser';
 import { useGetAllCategoriesProducts } from "../../hooks/categories/useGetAllCategoriesProducts";
 import { useEffect, useState } from "react";
 import { SlideProduct } from "../../components/Products/SlideProducts";
+import { AiOutlineRollback } from "react-icons/ai";
+import { useAppDispatch } from "../../hooks/useAppDispatch";
+import { addItemCart } from "../../features/cart/cartSlice";
 
 export const SingleProduct = () => {
   const { productParam } = useParams();
@@ -18,25 +21,30 @@ export const SingleProduct = () => {
   const sameProductsSearch = useGetAllCategoriesProducts();
   const [categoryName, setCategoryName] = useState("nada");
   const sameProducts = sameProductsSearch(categoryName);
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const formkik = useFormik<{ qtd: number }>({
     initialValues: {
       qtd: 0
     },
     validationSchema: Yup.object().shape({
-      name: Yup.number().required("Selecione a quantidade").min(0, "Mínimo de 1 produto")
+      qtd: Yup.number().required("Selecione a quantidade").min(0, "Mínimo de 1 produto")
     }),
     validateOnChange: false,
     onSubmit: ({ qtd }) => {
       if (product.data) {
-        console.log(qtd)
+        dispatch(addItemCart({product: product.data, qtd:qtd}));
       }
+      console.log(1);
     }
   });
 
   useEffect(() => {
     if (product.data && !product.isLoading) {
       setCategoryName(product.data.category.name);
+    }else if(!product.data && !product.isLoading){
+      navigate("/");
     }
   })
   return (
@@ -48,7 +56,7 @@ export const SingleProduct = () => {
           </Flex>
 
           <Flex className="product-content col-lg-7  col-12">
-            <Heading className="product-content__title">{product.data.name}</Heading>
+            <Heading className="product-content__title">{product.data.name} <Button colorScheme="teal" onClick={()=>navigate(-1)}><AiOutlineRollback /></Button></Heading>
             <Text className="product-content__subtitle">{product.data.category.name}</Text>
 
             <TableContainer className="product-content__table">
@@ -67,6 +75,10 @@ export const SingleProduct = () => {
                     <Td>Altura (cm)</Td>
                     <Td>{product.data.height.toFixed(2)}</Td>
                   </Tr>
+                  <Tr>
+                    <Td>Categoria</Td>
+                    <Td>{product.data.category.name}</Td>
+                  </Tr>
                 </Tbody>
               </Table>
             </TableContainer>
@@ -75,6 +87,8 @@ export const SingleProduct = () => {
               <span>R$</span>
               {product.data.price.toFixed(2)}
             </Text>
+
+            <Text className="product-content__stock"><strong>Quantidade em estoque:</strong> {product.data.stock}</Text>
 
             <Flex className="product-content__form">
               <Text>Qtd:</Text>
@@ -90,7 +104,7 @@ export const SingleProduct = () => {
             </Flex>
 
             <Button className="product-content__button" colorScheme="blank" onClick={() => formkik.handleSubmit()}>
-              <FaCartShopping />Comprar
+              <FaCartShopping />{product.data.stock>0 ? "Comprar" : "Encomendar"}
             </Button>
 
           </Flex>

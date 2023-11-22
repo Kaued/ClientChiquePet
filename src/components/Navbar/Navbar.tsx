@@ -35,6 +35,7 @@ import { ItemNavBar } from "./ItemNavbar";
 import { Search } from "./Search";
 import "./item.scss";
 import "./navbar.scss";
+import { CartSlice } from "../../features/cart/cartSlice";
 
 export interface LinkNavBar {
   path: string;
@@ -47,6 +48,7 @@ export const Navbar = () => {
   const userState = useAppSelector((state) => state.auth) as AuthState;
   // const { isOpen, onOpen, onClose } = useDisclosure();
   const [itens, setItens] = useState<LinkNavBar[]>([]);
+  const cartState = useAppSelector((state)=>state.cart) as CartSlice;
 
   const { isOpen, onClose, onOpen } = useDisclosure();
   const navigate = useNavigate();
@@ -212,6 +214,7 @@ export const Navbar = () => {
                 as={Button}
                 rightIcon={<AiOutlineDown />}
                 className="cart-button"
+                onClick={()=>console.log(cartState.item)}
               >
                 <AiOutlineShoppingCart />
               </MenuButton>
