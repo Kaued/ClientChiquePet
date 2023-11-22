@@ -30,7 +30,7 @@ export const ListProductSearch = () => {
     } else {
       navigate("/produtos");
     }
-  }, []);
+  }, [search]);
 
   return (
     <Flex className="listProduct">

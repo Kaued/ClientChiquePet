@@ -1,6 +1,7 @@
 import { Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
 import { useFormik } from "formik";
 import { FaSearch } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 
 interface SearchValue {
@@ -12,13 +13,15 @@ export const Search = () => {
     search: "",
   };
 
+  const navigate = useNavigate();
+
   const formik = useFormik<SearchValue>({
     initialValues: initialValue,
     validationSchema: Yup.object().shape({
       search: Yup.string().required(),
     }),
     onSubmit: async ({ search }) => {
-      console.log(search);
+      navigate('/produtos/pesquisar/'+search)
     },
   });
 

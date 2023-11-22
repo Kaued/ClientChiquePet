@@ -9,6 +9,7 @@ import { Home } from '../../pages/Home/Home';
 import { ListProduct } from '../../pages/Product/ListProduct';
 import { ListProductSearch } from '../../pages/Product/ListProductSearch';
 import { ListProductCategory } from '../../pages/Product/ListProductCategory';
+import { SingleProduct } from '../../pages/Product/SingleProduct';
 
 export const useGetRoutes = () => {
   const userState = useAppSelector((state) => state.auth);
@@ -42,6 +43,11 @@ export const useGetRoutes = () => {
       {
         path: "produtos/categoria/:filter",
         element: <ListProductCategory />,
+      },
+
+      {
+        path: "produto/:productParam",
+        element: <SingleProduct />,
       },
     ],
   });

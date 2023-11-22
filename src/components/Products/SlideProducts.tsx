@@ -1,6 +1,6 @@
 import { FreeMode, Pagination, Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Flex, Heading, Link } from "@chakra-ui/react";
+import { Flex, Heading, Link, Spinner } from "@chakra-ui/react";
 
 import "swiper/css";
 import "swiper/css/free-mode";
@@ -18,14 +18,14 @@ import { CardProduct } from "./CardProduct";
 interface SlideProductProps {
   query: UseInfiniteQueryResult<GetAllProducts | any>;
   title: string;
-  link : string;
+  link: string;
 }
 
 export const SlideProduct = ({ query, title, link }: SlideProductProps) => {
   const navigate = useNavigate();
   const [data, setData] = useState<Products[]>([]);
   const [hasNext, setHasNext] = useState<boolean>(false);
-  
+
   useEffect(() => {
     if (!!query.data && !query.isLoading) {
       setData([]);
@@ -40,7 +40,7 @@ export const SlideProduct = ({ query, title, link }: SlideProductProps) => {
     <Flex className="slideProduct">
       <Flex>
         <Heading className="slideProduct-title">{title}</Heading>
-        <Link onClick={()=>navigate(link)} className="slideProduct-link">Ver Mais</Link>
+        <Link onClick={() => navigate(link)} className="slideProduct-link">Ver Mais</Link>
       </Flex>
       {!query.isLoading && (
         <Swiper
@@ -68,6 +68,29 @@ export const SlideProduct = ({ query, title, link }: SlideProductProps) => {
                 <CardProduct data={product} navigate={navigate} />
               </SwiperSlide>
             ))}
+
+          {data.length <= 0 && (
+            <SwiperSlide
+              className="slideProduct-swipper__slide--notFound"
+            >
+              <Heading>Nenhum produto encontrado</Heading>
+            </SwiperSlide>
+          )}
+
+          {query.isLoading && (
+            <SwiperSlide
+              className="slideProduct-swipper__slide--isLoading"
+            >
+              <Spinner
+                thickness="4px"
+                speed="0.65s"
+                emptyColor="gray.200"
+                color="blue.500"
+                size="xl"
+              />
+            </SwiperSlide>
+          )}
+
         </Swiper>
       )}
     </Flex>

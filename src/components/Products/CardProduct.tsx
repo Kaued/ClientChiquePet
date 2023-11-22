@@ -55,7 +55,7 @@ export const CardProduct = ({
         </Stack>
       </CardBody>
       <CardFooter className="cardProduct-footer">
-        <Button variant="solid" onClick={()=>navigate("/")}>
+        <Button variant="solid" onClick={()=>navigate("/produto/"+data.name)}>
           <FaCartShopping /> Comprar
         </Button>
       </CardFooter>

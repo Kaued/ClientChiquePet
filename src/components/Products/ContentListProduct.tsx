@@ -1,4 +1,4 @@
-import { Button, Flex, Spinner } from "@chakra-ui/react";
+import { Button, Flex, Heading, Spinner } from "@chakra-ui/react";
 import { CardProduct } from "./CardProduct";
 import { Products } from "../../hooks/products/useGetProduct";
 import { NavigateFunction } from "react-router-dom";
@@ -25,6 +25,12 @@ export const ContentListProduct = ({
             <CardProduct data={product} navigate={navigate} key={product.productId}/>
           ))}
       </Flex>
+
+      {data && data.length<=0 && (
+        <Heading className="listProduct-content__list--notFound">
+          Nenhum produto foi encotrado
+        </Heading>
+      )}
 
       {isLoading && (
         <Spinner
