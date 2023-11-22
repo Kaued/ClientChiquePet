@@ -38,7 +38,7 @@ export const useGetAllCategories = () => {
 
   async function fetchAllCategory(page: number) {
     return await request
-      .get(`/Category?pageNumber=${page}&pageSize=${1}`, {
+      .get(`/Category?pageNumber=${page}&pageSize=${20}`, {
         headers: { 'X-Pagination': '*' },
       })
       .then(async (response) => {
@@ -58,7 +58,6 @@ export const useGetAllCategories = () => {
           mensagem: ['Ocorreu um erro!'],
         });
         console.log(response);
-        return 'teste';
       });
   }
   return query;

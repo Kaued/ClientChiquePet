@@ -17,10 +17,10 @@ export const Home = () => {
   return (
     <Box>
       <BannerHome />
-      <SlideProduct query={news} title="Novidades" link="product/news" />
-      <SlideProduct query={popular} title="Mais Vendidos" link="product/popular" />
+      <SlideProduct query={news} title="Novidades" link="produtos/news" />
+      <SlideProduct query={popular} title="Mais Vendidos" link="produtos/popular" />
       <MiddleBannerHome />
-      <SlideProduct query={allProducts} title="Todos os Produtos" link="product" />
+      <SlideProduct query={allProducts} title="Todos os Produtos" link="produtos" />
     </Box>
   );
 };

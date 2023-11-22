@@ -49,7 +49,7 @@ export const useGetAllProducts = () => {
 
     async function fetchAllProducts(page: number) {
       return await request
-        .get(`/Product?pageNumber=${page}&pageSize=${10}${filter ? '&filter='+filter : ''}`, {
+        .get(`/Product?pageNumber=${page}&pageSize=${20}${filter ? '&filter='+filter : ''}`, {
           headers: { "X-Pagination": "*" },
         })
         .then(async (response) => {
@@ -68,7 +68,7 @@ export const useGetAllProducts = () => {
             status: response.response?.status,
             mensagem: ["Ocorreu um erro!"],
           });
-          return "teste";
+          
         });
     }
     return query;

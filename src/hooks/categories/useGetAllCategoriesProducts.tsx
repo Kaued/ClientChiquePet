@@ -4,6 +4,7 @@ import { useAlert } from "../useAlert";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { Pagination } from "../../@types/Pagination";
 import { Products } from "../products/useGetProduct";
+import { GetAllProducts } from "../products/useGetAllProducts";
 
 export type Categories = {
   categoryId: number;
@@ -20,13 +21,13 @@ export const useGetAllCategoriesProducts = () => {
   const request = api();
   const toast = useAlert();
 
-  return (filter: number) => {
+  return (filter: string) => {
     const query = useInfiniteQuery(
       ["categoriesAll", {id: filter}],
       ({ pageParam = 1 }) => fetchAllCategory(pageParam),
       {
         getNextPageParam: (lastPage) => {
-          lastPage = lastPage as GetAllCategoriesProducts;
+          lastPage = lastPage as GetAllProducts;
           if (lastPage.meta["HasNext"]) {
             return Number(lastPage.meta["CurrentPage"] + 1);
           }
@@ -39,19 +40,19 @@ export const useGetAllCategoriesProducts = () => {
 
     async function fetchAllCategory(page: number) {
       return await request
-        .get(`/Category/${filter}/products?pageNumber=${page}&pageSize=${1}`, {
+        .get(`/Category/${filter}/products?pageNumber=${page}&pageSize=${20}`, {
           headers: { "X-Pagination": "*" },
         })
         .then(async (response) => {
           const pagination: Pagination = JSON.parse(
             response.headers["x-pagination"],
           );
-          const categories: Categories[] = response.data;
+          const categories: Products[] = response.data;
           console.log(categories);
           return {
             data: categories,
             meta: pagination,
-          } as GetAllCategoriesProducts;
+          } as GetAllProducts;
         })
         .catch((response: AxiosError) => {
           toast({
@@ -59,7 +60,6 @@ export const useGetAllCategoriesProducts = () => {
             mensagem: ["Ocorreu um erro!"],
           });
           console.log(response);
-          return "teste";
         });
     }
     return query;

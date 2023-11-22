@@ -12,20 +12,22 @@ import {
   MenuItem,
   MenuList,
   Text,
-  useDisclosure
+  useDisclosure,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import {
   AiOutlineDown,
   AiOutlineHome,
-  AiOutlineShoppingCart
+  AiOutlineShoppingCart,
 } from "react-icons/ai";
+import { BiCategory } from "react-icons/bi";
 import { BsFacebook, BsInstagram, BsWhatsapp } from "react-icons/bs";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { HiOutlineMail } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
 import { AuthState } from "../../@types/AuthState";
 import { Config } from "../../environment/config";
+import { useGetAllCategories } from "../../hooks/categories/useGetAllCategories";
 import { useAppSelector } from "../../hooks/useAppSelector";
 import logo from "../../images/logo.jpg";
 import { ConfigItem } from "./ConfigItem";
@@ -44,10 +46,11 @@ export interface LinkNavBar {
 export const Navbar = () => {
   const userState = useAppSelector((state) => state.auth) as AuthState;
   // const { isOpen, onOpen, onClose } = useDisclosure();
-  const [itens, setItens] = useState<LinkNavBar[]>();
+  const [itens, setItens] = useState<LinkNavBar[]>([]);
 
   const { isOpen, onClose, onOpen } = useDisclosure();
   const navigate = useNavigate();
+  const category = useGetAllCategories();
 
   useEffect(() => {
     setItens([
@@ -59,6 +62,26 @@ export const Navbar = () => {
       },
     ]);
   }, []);
+
+  useEffect(() => {
+    if (category.data && !category.isLoading) {
+      category.data.pages.forEach((categ) => {
+        if (categ) {
+          categ.data.forEach((c) => {
+            setItens((i) => [
+              ...i,
+              {
+                path: `/produtos/categoria/${c.name}`,
+                name: c.name,
+                icon: <BiCategory />,
+                role: "",
+              },
+            ]);
+          });
+        }
+      });
+    }
+  }, [category.data]);
 
   return (
     <Flex className="header">

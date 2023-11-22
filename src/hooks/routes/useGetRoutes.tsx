@@ -6,6 +6,9 @@ import { NotFound } from '../../components/Default/NotFound';
 import { Register } from '../../pages/User/Register/Register';
 import { Profile } from '../../pages/User/Profile';
 import { Home } from '../../pages/Home/Home';
+import { ListProduct } from '../../pages/Product/ListProduct';
+import { ListProductSearch } from '../../pages/Product/ListProductSearch';
+import { ListProductCategory } from '../../pages/Product/ListProductCategory';
 
 export const useGetRoutes = () => {
   const userState = useAppSelector((state) => state.auth);
@@ -17,12 +20,28 @@ export const useGetRoutes = () => {
   const token = userState.roles;
 
   router.push({
-    path: '/',
+    path: "/",
     element: <Layout />,
     children: [
       {
-        path: '',
+        path: "",
         element: <Home />,
+      },
+      {
+        path: "produtos",
+        element: <ListProduct />,
+      },
+      {
+        path: "produtos/:filter",
+        element: <ListProduct />,
+      },
+      {
+        path: "produtos/pesquisar/:search",
+        element: <ListProductSearch />,
+      },
+      {
+        path: "produtos/categoria/:filter",
+        element: <ListProductCategory />,
       },
     ],
   });
