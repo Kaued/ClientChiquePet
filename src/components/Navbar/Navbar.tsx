@@ -7,18 +7,12 @@ import {
   Flex,
   Image,
   Link,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuList,
   Text,
-  useDisclosure,
+  useDisclosure
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import {
-  AiOutlineDown,
-  AiOutlineHome,
-  AiOutlineShoppingCart,
+  AiOutlineHome
 } from "react-icons/ai";
 import { BiCategory } from "react-icons/bi";
 import { BsFacebook, BsInstagram, BsWhatsapp } from "react-icons/bs";
@@ -30,12 +24,12 @@ import { Config } from "../../environment/config";
 import { useGetAllCategories } from "../../hooks/categories/useGetAllCategories";
 import { useAppSelector } from "../../hooks/useAppSelector";
 import logo from "../../images/logo.jpg";
+import { Cart } from "./Cart";
 import { ConfigItem } from "./ConfigItem";
 import { ItemNavBar } from "./ItemNavbar";
 import { Search } from "./Search";
 import "./item.scss";
 import "./navbar.scss";
-import { CartSlice } from "../../features/cart/cartSlice";
 
 export interface LinkNavBar {
   path: string;
@@ -48,7 +42,6 @@ export const Navbar = () => {
   const userState = useAppSelector((state) => state.auth) as AuthState;
   // const { isOpen, onOpen, onClose } = useDisclosure();
   const [itens, setItens] = useState<LinkNavBar[]>([]);
-  const cartState = useAppSelector((state)=>state.cart) as CartSlice;
 
   const { isOpen, onClose, onOpen } = useDisclosure();
   const navigate = useNavigate();
@@ -153,37 +146,7 @@ export const Navbar = () => {
           </Flex>
           <Flex className="navbar-utilities">
             <Flex className="navbar-utilities__cart">
-              <Menu>
-                <MenuButton
-                  as={Button}
-                  rightIcon={<AiOutlineDown />}
-                  className="cart-button"
-                >
-                  <AiOutlineShoppingCart />
-                </MenuButton>
-                <MenuList>
-                  <MenuItem minH="48px">
-                    <Image
-                      boxSize="2rem"
-                      borderRadius="full"
-                      src="https://placekitten.com/100/100"
-                      alt="Fluffybuns the destroyer"
-                      mr="12px"
-                    />
-                    <span>Fluffybuns the Destroyer</span>
-                  </MenuItem>
-                  <MenuItem minH="40px">
-                    <Image
-                      boxSize="2rem"
-                      borderRadius="full"
-                      src="https://placekitten.com/120/120"
-                      alt="Simon the pensive"
-                      mr="12px"
-                    />
-                    <span>Simon the pensive</span>
-                  </MenuItem>
-                </MenuList>
-              </Menu>
+              <Cart />
             </Flex>
 
             {userState.authenticated && (
@@ -209,38 +172,7 @@ export const Navbar = () => {
           </Flex>
 
           <Flex className="navbar-utilities__cart">
-            <Menu>
-              <MenuButton
-                as={Button}
-                rightIcon={<AiOutlineDown />}
-                className="cart-button"
-                onClick={()=>console.log(cartState.item)}
-              >
-                <AiOutlineShoppingCart />
-              </MenuButton>
-              <MenuList>
-                <MenuItem minH="48px">
-                  <Image
-                    boxSize="2rem"
-                    borderRadius="full"
-                    src="https://placekitten.com/100/100"
-                    alt="Fluffybuns the destroyer"
-                    mr="12px"
-                  />
-                  <span>Fluffybuns the Destroyer</span>
-                </MenuItem>
-                <MenuItem minH="40px">
-                  <Image
-                    boxSize="2rem"
-                    borderRadius="full"
-                    src="https://placekitten.com/120/120"
-                    alt="Simon the pensive"
-                    mr="12px"
-                  />
-                  <span>Simon the pensive</span>
-                </MenuItem>
-              </MenuList>
-            </Menu>
+            <Cart />
           </Flex>
 
           {userState.authenticated && (

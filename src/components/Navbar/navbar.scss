@@ -209,25 +209,6 @@
     }
 }
 
-.cart {
-  &-button {
-    background-color: #6c083d !important;
-    padding: 10px !important;
-
-    svg {
-      color: white;
-    }
-
-    span {
-      font-size: 12px;
-
-      &:nth-child(1) {
-        font-size: 20px;
-      }
-    }
-  }
-}
-
 .chakra-modal__content-container{
 
   .navbar-utilities__notLogin{
