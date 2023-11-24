@@ -12,4 +12,11 @@ export interface ConfigValues {
     window: string;
     name: string;
   }[];
+  address: {
+    nCdEmpresa: string,
+    sDsSenha: string,
+    nCdServico: string,
+    sCepOrigem: string,
+    sCdAvisoRecebimento: string,
+  }
 }

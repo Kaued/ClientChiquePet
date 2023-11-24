@@ -49,7 +49,7 @@ export const Cart = () => {
               <CartItem key={index} index={index} item={product} />
             ))}
           {cartSlice.item.length >0 && (
-            <Flex className="cart-end" onClick={()=>navigate(0)}><FaShoppingCart />Finalizar Compra</Flex>
+            <Flex className="cart-end" onClick={()=>navigate("/carrinho")}><FaShoppingCart />Finalizar Compra</Flex>
           )}
           {cartSlice.item.length<=0 &&(
             <MenuItem className="cart-notFound"><Heading>Não há produtos no carrinho</Heading></MenuItem>
@@ -70,7 +70,7 @@ export const Cart = () => {
             <Button colorScheme="yellow" mr={3} onClick={() => setOrder(false)}>
               Não
             </Button>
-            <Button colorScheme="red" onClick={() => setOrder(true)}>
+            <Button colorScheme="teal" onClick={() => setOrder(true)}>
               Sim
             </Button>
           </ModalFooter>

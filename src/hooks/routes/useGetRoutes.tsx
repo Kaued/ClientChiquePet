@@ -10,6 +10,7 @@ import { ListProduct } from '../../pages/Product/ListProduct';
 import { ListProductSearch } from '../../pages/Product/ListProductSearch';
 import { ListProductCategory } from '../../pages/Product/ListProductCategory';
 import { SingleProduct } from '../../pages/Product/SingleProduct';
+import { EndCart } from '../../pages/Cart/EndCart';
 
 export const useGetRoutes = () => {
   const userState = useAppSelector((state) => state.auth);
@@ -48,6 +49,11 @@ export const useGetRoutes = () => {
       {
         path: "produto/:productParam",
         element: <SingleProduct />,
+      },
+
+      {
+        path: "carrinho",
+        element: <EndCart />,
       },
     ],
   });
