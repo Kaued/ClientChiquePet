@@ -14,6 +14,7 @@ import { SlideProduct } from "../../components/Products/SlideProducts";
 import { AiOutlineRollback } from "react-icons/ai";
 import { useAppDispatch } from "../../hooks/useAppDispatch";
 import { addItemCart } from "../../features/cart/cartSlice";
+import { useAlert } from "../../hooks/useAlert";
 
 export const SingleProduct = () => {
   const { productParam } = useParams();
@@ -23,18 +24,20 @@ export const SingleProduct = () => {
   const sameProducts = sameProductsSearch(categoryName);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const toast = useAlert();
 
   const formkik = useFormik<{ qtd: number }>({
     initialValues: {
       qtd: 0
     },
     validationSchema: Yup.object().shape({
-      qtd: Yup.number().required("Selecione a quantidade").min(0, "Mínimo de 1 produto")
+      qtd: Yup.number().required("Selecione a quantidade").min(1, "Mínimo de 1 produto")
     }),
     validateOnChange: false,
     onSubmit: ({ qtd }) => {
       if (product.data) {
         dispatch(addItemCart({product: product.data, qtd:qtd}));
+        toast({mensagem: ["Produto adicionado ao carrinho"], status:200});
       }
       console.log(1);
     }
@@ -46,7 +49,12 @@ export const SingleProduct = () => {
     }else if(!product.data && !product.isLoading){
       navigate("/");
     }
-  })
+  });
+
+  useEffect(() => {
+    document.title = `Produto | ${product.data ? product.data.name: ''}`;
+  }, [product.data]);
+
   return (
     <Flex className="product">
       {product.data && !product.isLoading && (
@@ -104,7 +112,7 @@ export const SingleProduct = () => {
             </Flex>
 
             <Button className="product-content__button" colorScheme="blank" onClick={() => formkik.handleSubmit()}>
-              <FaCartShopping />{product.data.stock>0 ? "Comprar" : "Encomendar"}
+              <FaCartShopping />{product.data.stock>=formkik.values.qtd ? "Comprar" : "Encomendar"}
             </Button>
 
           </Flex>

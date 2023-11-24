@@ -32,6 +32,10 @@ export const ListProductSearch = () => {
     }
   }, [search]);
 
+  useEffect(() => {
+    document.title = `Pesquisa: ${search}`;
+  }, [search]);
+
   return (
     <Flex className="listProduct">
       <HeaderListProduct title="Pesquisa:" subtitle={search} />

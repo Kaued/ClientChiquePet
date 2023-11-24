@@ -32,6 +32,10 @@ export const ListProductCategory = () => {
     }
   }, [request!.data]);
 
+  useEffect(() => {
+    document.title = `Categoria | ${filter}`;
+  }, [filter]);
+
   return (
     <Flex className="listProduct">
       <HeaderListProduct title="Categoria:" subtitle={filter} />

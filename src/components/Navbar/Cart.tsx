@@ -49,7 +49,7 @@ export const Cart = () => {
               <CartItem key={index} index={index} item={product} />
             ))}
           {cartSlice.item.length >0 && (
-            <Flex className="cart-end" onClick={()=>navigate("/carrinho")}><FaShoppingCart />Finalizar Compra</Flex>
+            <Flex className="cart-end" onClick={()=>navigate("/carrinho")}><FaShoppingCart />Finalizar {cartSlice.isOrder ? "Encomenda" : "Compra"}</Flex>
           )}
           {cartSlice.item.length<=0 &&(
             <MenuItem className="cart-notFound"><Heading>Não há produtos no carrinho</Heading></MenuItem>

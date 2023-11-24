@@ -13,7 +13,7 @@ import {
 } from "@chakra-ui/react";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { FaCartShopping } from "react-icons/fa6";
-import { CartSlice, removeItemCart } from "../../features/cart/cartSlice";
+import { CartSlice, removeAllItems } from "../../features/cart/cartSlice";
 import { useAppDispatch } from "../../hooks/useAppDispatch";
 import { useAppSelector } from "../../hooks/useAppSelector";
 import { CartItem } from "../Navbar/CartItem";
@@ -24,10 +24,8 @@ export const Cart = () => {
   const dispatch = useAppDispatch();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const removeAll = () => {
-    cartSlice.item.forEach((_i, index) => {
-      dispatch(removeItemCart({ index }));
-    });
+  const removeAll = async () => {
+    dispatch(removeAllItems());
     onClose();
   };
 
@@ -42,8 +40,11 @@ export const Cart = () => {
           cartSlice.item.map((item, index) => (
             <CartItem index={index} item={item} key={index} />
           ))}
+        {cartSlice.item.length<=0 &&(
+          <Heading className="cartShow-notFound">Nenhum produto no carrinho</Heading>
+        )}
       </Flex>
-      <Button className="cartShow-button" onClick={() => onOpen} colorScheme="blank">
+      <Button className="cartShow-button" onClick={() => onOpen()} colorScheme="blank">
         <FaRegTrashAlt />
         Remover todo os produtos
       </Button>

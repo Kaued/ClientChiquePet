@@ -20,7 +20,6 @@ export const EditUser = ({ autoEdit = false }: { autoEdit?: boolean }) => {
   const email = !autoEdit ? search.get('email') : userState.email;
   const { data, isLoading } = useGetUser(email as string);
   const handleSubmit = useEditUser(email as string);
-  console.log(data);
   return (
     <>
       {isLoading && (

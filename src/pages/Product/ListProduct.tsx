@@ -35,6 +35,10 @@ export const ListProduct = () => {
     }
   }, [request.data]);
 
+  useEffect(() => {
+    document.title = `Produtos ${filter ? (filter=="news" ? "Novos" : "Populares") : ""}`;
+  }, [filter]);
+
   return (
     <Flex className="listProduct">
       {!filter && <HeaderListProduct title="Todos os Produtos" />}

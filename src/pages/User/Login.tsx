@@ -65,6 +65,10 @@ const Login = () => {
     }
   }, [userState, alert]);
 
+  useEffect(() => {
+    document.title = "Login";
+  }, []);
+
   return (
     <Flex minH={'100vh'} width={'100%'} justify="center" alignItems="center" bg={'#ffb013'}>
       <form onSubmit={formik.handleSubmit} className="login">
