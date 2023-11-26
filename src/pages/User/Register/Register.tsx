@@ -58,6 +58,10 @@ export const Register = () => {
   }, [registerData.step]);
 
   useEffect(() => {
+    document.title = "Cadastro";
+  }, []);
+
+  useEffect(() => {
     let state = progressPercent;
 
     if (beforeStep > activeStep) {

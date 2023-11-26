@@ -23,7 +23,7 @@ export const Layout = () => {
   return (
     <Flex minW={"100%"} minH={"100%"} flexDirection={"column"}>
       <Navbar />
-      <Box w={"100%"} minH={"500px"}>
+      <Box w={"100%"} minH={"600px"}>
         <Outlet />
       </Box>
       <Footer />

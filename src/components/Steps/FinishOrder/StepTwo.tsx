@@ -26,6 +26,7 @@ import { useAppDispatch } from "../../../hooks/useAppDispatch";
 import { useAppSelector } from "../../../hooks/useAppSelector";
 import "./finishStep.scss";
 import { useGetAddress } from "../../../hooks/address/useGetAddress";
+import { useCreateOrder } from "../../../hooks/Orders/useCreateOrder";
 
 export const StepTwo = () => {
   const finishOrder: finishOrderSliceValue = useAppSelector(
@@ -33,9 +34,10 @@ export const StepTwo = () => {
   );
   const cartSlice: CartSlice = useAppSelector((state) => state.cart);
   const navigate = useNavigate();
+  const order = useCreateOrder();
 
   const dispatch = useAppDispatch();
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { isOpen, onOpen } = useDisclosure();
 
   const address = useGetAddress(finishOrder.addressId);
 
@@ -54,7 +56,9 @@ export const StepTwo = () => {
 
   const [total, setTotal] = useState(0);
 
-  const finishCart = () => {};
+  const finishCart = async () => {
+    await order.mutateAsync(finishOrder);
+  };
 
   useEffect(() => {
     if (cartSlice.item.length > 0) {
@@ -98,7 +102,7 @@ export const StepTwo = () => {
         <Flex className="total-address">
           {!address.isLoading && address.data && (
             <Text>
-              <strong>Endereço de entrega:`
+              <strong>Endereço de entrega:
                 </strong>{" "}
               {`${address.data.number} - ${address.data.street}, ${address.data.neighborhood} - ${address.data.city} ${address.data.district} - ${address.data.cep}`}
             </Text>
@@ -120,7 +124,7 @@ export const StepTwo = () => {
         </Flex>
 
         <Flex className="total-end">
-          <Button colorScheme="blank" onClick={() => finishCart()}>
+          <Button colorScheme="blank" onClick={() => finishCart()} isLoading={order.isLoading}>
             <FaCartShopping />
             Finalizar {cartSlice.isOrder ? "Encomenda" : "Compra"}
           </Button>

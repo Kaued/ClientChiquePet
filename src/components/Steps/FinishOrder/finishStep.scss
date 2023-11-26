@@ -1,5 +1,8 @@
+@use '../../../scss/mixings.scss' as *;
+
 .finishStep {
-  width: 100%;
+  width: 400px;
+  max-width: 100%;
   flex-direction: column;
   flex-wrap: wrap;
 
@@ -33,6 +36,10 @@
         background-color: #4b062a;
       }
     }
+  }
+
+  @include for-tablet-down{
+    padding: 10px;
   }
 }
 

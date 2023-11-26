@@ -47,10 +47,21 @@ const finishOrderSlice = createSlice({
     setStepOrder: (state, action: PayloadAction<{ step: number }>) => {
       const step = action.payload.step;
       if (step >= 1) {
-        state.step = state.addressId>0 ? step : 0;
+        state.step = state.addressId > 0 ? step : 0;
       } else if (step <= state.step) {
         state.step = step;
       }
+      localStorage.setItem("finishOrder", JSON.stringify(state));
+    },
+
+    removeFinishOrder: (state) => {
+      state = {
+        item: [],
+        addressId: 0,
+        isOrder: false,
+        step: 0,
+      };
+      localStorage.setItem("finishOrder", JSON.stringify(state));
     },
   },
 });

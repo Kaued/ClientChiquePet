@@ -1,5 +1,21 @@
-import { Box, Flex, Progress, Step, StepDescription, StepIcon, StepIndicator, StepStatus, StepTitle, Stepper, Tooltip, useSteps } from "@chakra-ui/react"
-import { finishOrderSliceValue, setStepOrder } from "../../features/finishOrder/finishOrderSlice";
+import {
+  Box,
+  Flex,
+  Progress,
+  Step,
+  StepDescription,
+  StepIcon,
+  StepIndicator,
+  StepStatus,
+  StepTitle,
+  Stepper,
+  Tooltip,
+  useSteps,
+} from "@chakra-ui/react";
+import {
+  finishOrderSliceValue,
+  setStepOrder,
+} from "../../features/finishOrder/finishOrderSlice";
 import { useAppSelector } from "../../hooks/useAppSelector";
 import { useEffect, useState } from "react";
 import { StepOne } from "../../components/Steps/FinishOrder/StepOne";
@@ -7,20 +23,15 @@ import { useAppDispatch } from "../../hooks/useAppDispatch";
 import "./finishCart.scss";
 import { StepTwo } from "../../components/Steps/FinishOrder/StepTwo";
 
-export const FinishCart = () =>{
-
-  const finishOrder: finishOrderSliceValue = useAppSelector((state)=>state.finishOrder);
+export const FinishCart = () => {
+  const finishOrder: finishOrderSliceValue = useAppSelector(
+    (state) => state.finishOrder,
+  );
   const dispatch = useAppDispatch();
 
   const steps = [
     { title: "Primeiro", description: "Nome & Email", component: <StepOne /> },
     { title: "Segundo", description: "Pagamento", component: <StepTwo /> },
-    // { title: "Segundo", description: "Senha", component: <StepTwo /> },
-    // {
-    //   title: "Terceiro",
-    //   description: "Data de Nascimento",
-    //   component: <StepThree />,
-    // },
   ];
 
   const { activeStep, setActiveStep } = useSteps({
@@ -36,6 +47,10 @@ export const FinishCart = () =>{
     setBeforeStep(activeStep);
     setActiveStep(finishOrder.step);
   }, [finishOrder.step]);
+
+  useEffect(() => {
+    document.title = "Finalizando Pedido";
+  }, []);
 
   useEffect(() => {
     let state = progressPercent;
@@ -109,4 +124,4 @@ export const FinishCart = () =>{
       {steps[activeStep].component}
     </Flex>
   );
-}
+};

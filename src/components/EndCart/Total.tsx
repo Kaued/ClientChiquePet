@@ -62,6 +62,9 @@ export const Total = () => {
         </Flex>
       </Flex>
 
+      <Flex className="total-time">
+        <Text><strong>Tempo estimado:</strong>{cartSlice.isOrder ? '10 dias': '6 dias'}</Text>
+      </Flex>
       <Flex className="total-end">
         <Button colorScheme="blank" onClick={()=>finishCart()}>
           <FaCartShopping />Finalizar {cartSlice.isOrder ? "Encomenda" : "Compra"}

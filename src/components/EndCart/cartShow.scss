@@ -1,3 +1,5 @@
+@use '../../scss/mixings.scss' as *;
+
 .cartShow {
   flex-direction: column;
   width: 100%;
@@ -64,5 +66,9 @@
     &:hover{
       background-color: #4b062a;
     }
+  }
+
+  @include for-tablet-down{
+    padding: 0;
   }
 }

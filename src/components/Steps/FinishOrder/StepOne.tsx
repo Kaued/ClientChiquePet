@@ -103,8 +103,8 @@ export const StepOne = () => {
 
   return (
     <SlideFade in={isOpen} offsetY="20px">
-      <FormAddress isAddMode={true} submit={createAddress} />
       <Flex className="finishStep">
+      <FormAddress isAddMode={true} submit={createAddress} />
         {!address.isLoading &&
           !!address.data &&
           address.data.data.length > 0 && (
