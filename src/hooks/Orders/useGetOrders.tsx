@@ -33,7 +33,7 @@ export const useGetOrder = (id: number) => {
 
   async function fetchUser({ queryKey }: any) {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [_key, { name }] = queryKey;
+    const [_key, { id }] = queryKey;
 
     return await request
       .get(`/Order/${id}`, {
