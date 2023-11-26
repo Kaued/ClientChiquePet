@@ -33,6 +33,7 @@ export const ImagesProductSlide = ({ images }: { images: ImageUrlValue[] }) => {
         onSwiper={setThumbsSwiper}
         spaceBetween={5}
         slidesPerView={4}
+        centeredSlides={true  }
         freeMode={true}
         watchSlidesProgress={true}
         modules={[FreeMode, Navigation, Thumbs]}

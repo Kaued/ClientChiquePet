@@ -13,7 +13,7 @@ import { useFormik } from "formik";
 import { useEffect, useState } from "react";
 import { AiOutlineUser } from "react-icons/ai";
 import { FaCheck, FaChevronDown, FaChevronUp, FaEdit, FaLock } from "react-icons/fa";
-import { FaLocationDot } from "react-icons/fa6";
+import { FaLocationDot, FaTableList } from "react-icons/fa6";
 import { RxCross1 } from "react-icons/rx";
 import * as Yup from "yup";
 import { AuthState } from "../../@types/AuthState";
@@ -28,6 +28,8 @@ import { useDeleteUser } from "../../hooks/users/useDeleteUser";
 import { useEditUser } from "../../hooks/users/useEditUser";
 import { useGetUser } from "../../hooks/users/useGetUser";
 import "./profile.scss";
+import { OrderData } from "../../components/Data/OrderData";
+import { useGetAllOrder } from "../../hooks/Orders/useGetAllOrders";
 
 interface UserData {
   email: string;
@@ -54,21 +56,23 @@ export const Profile = () => {
   const previousDate = new Date();
   const { isOpen, onToggle } = useDisclosure();
   const addressOpen = useDisclosure();
+  const ordersOpen = useDisclosure();
+  const orderData = useGetAllOrder();
   const [confirmPassword, setConfirmPassword] = useState("");
   const editUser = useEditUser(data?.email!);
   const passwordValidation = isOpen
     ? Yup.string()
-        .required("O campo senha é necessário")
-        .test(
-          "equal",
-          "As senhas não são iguais",
-          (val) => val == confirmPassword,
-        )
-        .min(6, "A senha deve ter no mínimo 6 caracteres")
-        .matches(
-          /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\\$%\\^&\\*])/,
-          "Deve contêr um letra minúscula, uma maiúscula, um número e um caracter especial",
-        )
+      .required("O campo senha é necessário")
+      .test(
+        "equal",
+        "As senhas não são iguais",
+        (val) => val == confirmPassword,
+      )
+      .min(6, "A senha deve ter no mínimo 6 caracteres")
+      .matches(
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\\$%\\^&\\*])/,
+        "Deve contêr um letra minúscula, uma maiúscula, um número e um caracter especial",
+      )
     : Yup.string().notRequired();
   const formik = useFormik<UserData>({
     initialValues: initialValues,
@@ -98,6 +102,8 @@ export const Profile = () => {
 
   useEffect(() => {
     document.title = "Perfil";
+    ordersOpen.onOpen();
+    addressOpen.onOpen();
   }, []);
 
   useEffect(() => {
@@ -293,44 +299,73 @@ export const Profile = () => {
           )}
 
           {!isEditing && (
-            <Flex className="profile-address  mt-5">
-              <Flex
-                className="profile-address__title"
-                onClick={() => addressOpen.onToggle()}
-              >
-                <FaLocationDot />
-                <Heading>Endereços</Heading>
-                <IconButton
-                  colorScheme="whiteAlpha"
-                  color={"#6c083d"}
-                  aria-label="Abrir endereços"
-                  className="ms-auto"
-                  icon={
-                    addressOpen.isOpen ? <FaChevronUp /> : <FaChevronDown />
-                  }
-                />
+            <>
+              <Flex className="profile-address mt-5">
+                <Flex
+                  className="profile-address__title"
+                  onClick={() => addressOpen.onToggle()}
+                >
+                  <FaLocationDot />
+                  <Heading>Endereços</Heading>
+                  <IconButton
+                    colorScheme="whiteAlpha"
+                    color={"#6c083d"}
+                    aria-label="Abrir endereços"
+                    className="ms-auto"
+                    icon={
+                      addressOpen.isOpen ? <FaChevronUp /> : <FaChevronDown />
+                    }
+                  />
+                </Flex>
+                <Collapse in={addressOpen.isOpen} animateOpacity>
+                  <AddressData data={address.data} />
+                </Collapse>
               </Flex>
-              <Collapse in={addressOpen.isOpen} animateOpacity>
-                <AddressData data={address.data} />
-              </Collapse>
-            </Flex>
-          )}
-        </Flex>
-      )}
 
-      {isLoading && (
-        <Spinner
-          thickness="4px"
-          speed="0.65s"
-          emptyColor="gray.200"
-          color="blue.500"
-          size="xl"
-          position={"absolute"}
-          top={"50%"}
-          left={"50%"}
-          transform={"translate(-50%,-50%)"}
-        />
-      )}
-    </Flex>
+              <Flex className="profile-orders mt-5">
+                <Flex
+                  className="profile-orders__title"
+                  onClick={() => ordersOpen.onToggle()}
+                >
+                  <FaTableList />
+                  <Heading>Pedidos</Heading>
+                  <IconButton
+                    colorScheme="whiteAlpha"
+                    color={"#6c083d"}
+                    aria-label="Abrir endereços"
+                    className="ms-auto"
+                    icon={
+                      ordersOpen.isOpen ? <FaChevronUp /> : <FaChevronDown />
+                    }
+                  />
+                </Flex>
+
+                <Collapse in={ordersOpen.isOpen} animateOpacity>
+                  <OrderData data={orderData} loadMore={false} />
+                </Collapse>
+              </Flex>
+            </>
+          )}
+
+        </Flex>
+      )
+      }
+
+      {
+        isLoading && (
+          <Spinner
+            thickness="4px"
+            speed="0.65s"
+            emptyColor="gray.200"
+            color="blue.500"
+            size="xl"
+            position={"absolute"}
+            top={"50%"}
+            left={"50%"}
+            transform={"translate(-50%,-50%)"}
+          />
+        )
+      }
+    </Flex >
   );
 };

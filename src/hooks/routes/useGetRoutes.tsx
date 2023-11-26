@@ -12,6 +12,7 @@ import { ListProductCategory } from '../../pages/Product/ListProductCategory';
 import { SingleProduct } from '../../pages/Product/SingleProduct';
 import { EndCart } from '../../pages/Cart/EndCart';
 import { FinishCart } from '../../pages/Cart/FinishCart';
+import { OrderList } from '../../pages/Order/OrderList';
 
 export const useGetRoutes = () => {
   const userState = useAppSelector((state) => state.auth);
@@ -69,6 +70,10 @@ export const useGetRoutes = () => {
       {
         path: "finalizar/pedido",
         element: <FinishCart />,
+      },
+      {
+        path: "profile/pedidos",
+        element: <OrderList />,
       },
     );
   } else {

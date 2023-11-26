@@ -30,7 +30,7 @@ export const StepThree = () => {
 
   useEffect(() => {
     previousDate.setFullYear(previousDate.getFullYear() - 1);
-  });
+  }, []);
 
   const formik = useFormik<StepTwoRegister>({
     initialValues: initialState,
@@ -44,7 +44,8 @@ export const StepThree = () => {
     validateOnChange: false,
     onSubmit: async ({ birthDate, terms, phoneNumber }) => {
       dispatch(setBirthAndTermsPhoneNumber({ birthDate, terms, phoneNumber }));
-      await mutateAsync(registerData);
+      const register : RegisterSlice = {...registerData, birthDate: birthDate, phoneNumber: phoneNumber}
+      await mutateAsync(register);
     },
   });
 

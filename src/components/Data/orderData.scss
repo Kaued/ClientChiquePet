@@ -1,0 +1,33 @@
+.orderData {
+  flex-wrap: wrap;
+  flex-direction: column;
+  width: 100%;
+
+  &-list {
+    width: 100%;
+    background-color: #e2e2e230;
+    border-radius: 4px;
+    flex-direction: column;
+
+    hr{
+      border-color: #dddddd;
+      margin: 0;
+    }
+  }
+
+  &-loadMore{
+    width: fit-content;
+    background-color: #6c083d;
+    color: white;
+    font-size: 16px;
+    font-family: Lato;
+    font-weight: 500;
+    margin-left: auto;
+    transition: 0.3s all ease-in-out;
+    margin: 10px auto;
+
+    &:hover {
+      background-color: #4b062a;
+    }
+  }
+}

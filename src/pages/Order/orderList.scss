@@ -1,0 +1,42 @@
+@import "../../scss/mixings.scss";
+
+.orderList {
+  margin-top: 50px;
+  width: 100%;
+  padding: 0 40px;
+  flex-direction: column;
+
+  &-header {
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    &__title {
+      display: flex;
+      color: #6c083d;
+      align-items: center;
+      font-family: Lato;
+      margin-bottom: 30px;
+
+      svg {
+        margin-right: 10px;
+      }
+
+      &::before {
+        height: 100%;
+        content: '';
+        width: 10px;
+        background-color: #ffb013;
+        margin-right: 10px;
+      }
+    }
+  }
+
+  @include for-tablet-down{
+    padding: 10px;
+    margin-top: 20px;
+
+    &-header{
+      justify-content: flex-end;
+    }
+  }
+}

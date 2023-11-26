@@ -5,7 +5,7 @@ export interface finishOrderSliceValue {
     productId: number;
     qtd: number;
   }[];
-  addressId: number;
+  addressId: number;  
   isOrder: boolean;
   step: number;
 }
@@ -77,3 +77,4 @@ export const selectCurrentAddressId = (state: finishOrderSliceValue) =>
 export const selectCurrentIsOrder = (state: finishOrderSliceValue) =>
   state.isOrder;
 export const selectCurrentStep = (state: finishOrderSliceValue) => state.step;
+  

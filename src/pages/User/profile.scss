@@ -132,6 +132,40 @@
     }
   }
 
+  &-orders {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    &__title {
+      display: flex;
+      color: #6c083d;
+      align-items: center;
+      font-family: Lato;
+      margin-bottom: 30px;
+      cursor: pointer;
+      
+      svg {
+        margin-right: 5px;
+        font-size: 20px
+      }
+
+      h2{
+        font-size: 24px;
+        margin-bottom: 0;
+      }
+
+      &::before {
+        height: 10px;
+        content: '';
+        width: 10px;
+        background-color: #ffb013;
+        margin-right: 10px;
+      }
+    }
+  }
+
   @include for-tablet-down {
     &-data {
 

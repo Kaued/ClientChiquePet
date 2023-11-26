@@ -55,8 +55,7 @@ export const useGetAllOrder = () => {
   async function fetchAllOrder(page: number) {
     return await request
       .get(
-        `/Client/orders?pageNumber=${page}&pageSize=${20}
-        }`,
+        `/Client/orders?pageNumber=${page}&pageSize=${20}`,
         {
           headers: { "X-Pagination": "*" },
         },
