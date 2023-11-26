@@ -1,12 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useQuery } from '@tanstack/react-query';
-import { api } from '../../api/axios';
-import { useAlert } from '../useAlert';
 import { AxiosError } from 'axios';
-import { ImageUrlValue } from '../../@types/ImageUrlValue';
-import { Categories } from '../categories/useGetAllCategories';
+import { api } from '../../api/axios';
 import { Address } from '../address/useGetAllAddress';
 import { Products } from '../products/useGetProduct';
+import { useAlert } from '../useAlert';
 
 export type Order = {
   orderId: number;
