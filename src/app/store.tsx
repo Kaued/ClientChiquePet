@@ -5,6 +5,7 @@ import thunkMiddleware from 'redux-thunk';
 import registerSlice from '../features/register/registerSlice';
 import addressSlice from '../features/address/addressSlice';
 import cartSlice from '../features/cart/cartSlice';
+import finishOrderSlice from '../features/finishOrder/finishOrderSlice';
 
 export type RootState = ReturnType<any>;
 
@@ -19,7 +20,8 @@ export const store: AppStore = configureStore({
     auth: authSlice,
     register: registerSlice,
     address: addressSlice,
-    cart: cartSlice
+    cart: cartSlice,
+    finishOrder: finishOrderSlice
   },
   middleware: [thunkMiddleware],
 });

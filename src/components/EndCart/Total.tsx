@@ -4,11 +4,25 @@ import { FaCartShopping } from "react-icons/fa6";
 import { CartSlice } from "../../features/cart/cartSlice";
 import { useAppSelector } from "../../hooks/useAppSelector";
 import { useEffect, useState } from "react";
+import { useAlert } from "../../hooks/useAlert";
+import { useNavigate } from "react-router-dom";
+import { AuthState } from "../../@types/AuthState";
 
 export const Total = () => {
   const cartSlice: CartSlice = useAppSelector((state)=>state.cart);
-  const [total, setTotal] = useState(0);
+  const authSate: AuthState = useAppSelector((state)=>state.auth);
 
+  const [total, setTotal] = useState(0);
+  const toast = useAlert();
+  const navigate = useNavigate();
+
+  const finishCart = () =>{
+    if(authSate.authenticated){
+      navigate("/finalizar/pedido");
+    }else{
+      toast({status: 400, mensagem:["E necessário estar logado para finalizar o pedido"]});
+    }
+  }
   useEffect(()=>{
     if(cartSlice.item.length>0){
       setTotal(0);
@@ -18,7 +32,7 @@ export const Total = () => {
     }else{
       setTotal(0);
     }
-  }, [cartSlice])
+  }, [cartSlice]);
   return (
     <Flex className="total">
       <Heading className="total-title">
@@ -49,7 +63,7 @@ export const Total = () => {
       </Flex>
 
       <Flex className="total-end">
-        <Button colorScheme="blank">
+        <Button colorScheme="blank" onClick={()=>finishCart()}>
           <FaCartShopping />Finalizar {cartSlice.isOrder ? "Encomenda" : "Compra"}
         </Button>
       </Flex>

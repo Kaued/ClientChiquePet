@@ -11,6 +11,7 @@ import { ListProductSearch } from '../../pages/Product/ListProductSearch';
 import { ListProductCategory } from '../../pages/Product/ListProductCategory';
 import { SingleProduct } from '../../pages/Product/SingleProduct';
 import { EndCart } from '../../pages/Cart/EndCart';
+import { FinishCart } from '../../pages/Cart/FinishCart';
 
 export const useGetRoutes = () => {
   const userState = useAppSelector((state) => state.auth);
@@ -55,14 +56,21 @@ export const useGetRoutes = () => {
         path: "carrinho",
         element: <EndCart />,
       },
+
     ],
   });
 
   if (authenticated && roles !== null && roles.includes('Client') && token !== null) {
-    router[1].children?.push({
-      path: 'profile',
-      element: <Profile />,
-    });
+    router[1].children?.push(
+      {
+        path: "profile",
+        element: <Profile />,
+      },
+      {
+        path: "finalizar/pedido",
+        element: <FinishCart />,
+      },
+    );
   } else {
     router.push({
       path: 'login',
