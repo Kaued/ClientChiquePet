@@ -13,6 +13,7 @@ import { SingleProduct } from '../../pages/Product/SingleProduct';
 import { EndCart } from '../../pages/Cart/EndCart';
 import { FinishCart } from '../../pages/Cart/FinishCart';
 import { OrderList } from '../../pages/Order/OrderList';
+import { SingleOrder } from '../../pages/Order/SingleOrder';
 
 export const useGetRoutes = () => {
   const userState = useAppSelector((state) => state.auth);
@@ -74,6 +75,10 @@ export const useGetRoutes = () => {
       {
         path: "profile/pedidos",
         element: <OrderList />,
+      },
+      {
+        path: "pedido/:id",
+        element: <SingleOrder />,
       },
     );
   } else {

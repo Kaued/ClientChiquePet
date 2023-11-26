@@ -17,9 +17,11 @@ export const OrderItem = ({ data, navigate }: OrdemItemValue) => {
 
   useEffect(() => {
     setStatus(Config.statusOrder.find((a) => a.statusId == data.statusOrder)!);
-    data.orderProducts.forEach((product) => {
-      setTotalProduct((t) => t + product.qtd);
-    })
+    let total = 0
+    data.orderProducts.forEach(() => {
+      total+=1
+    });
+    setTotalProduct(total);
   }, [data.statusOrder]);
 
   console.log(status);

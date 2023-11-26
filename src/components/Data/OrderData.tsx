@@ -51,10 +51,7 @@ export const OrderData = ({ data, loadMore }: OrderDataValues) => {
             emptyColor="gray.200"
             color="blue.500"
             size="xl"
-            position={"absolute"}
-            top={"50%"}
-            left={"50%"}
-            transform={"translate(-50%,-50%)"}
+            margin={"10px auto"}
           />
         )}
 
