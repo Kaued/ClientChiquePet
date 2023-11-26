@@ -8,6 +8,7 @@ import { removeAllItems } from '../../features/cart/cartSlice';
 import { useAlert } from '../useAlert';
 import { useAppDispatch } from '../useAppDispatch';
 import { useAppSelector } from '../useAppSelector';
+import { removeFinishOrder } from '../../features/finishOrder/finishOrderSlice';
 
 interface Order {
   item: {
@@ -39,6 +40,7 @@ export const useCreateOrder = () => {
           ["orderAll", { email: authData.email }],
         ]);
         dispatch(removeAllItems());
+        dispatch(removeFinishOrder());
         navigate("/profile");
       })
       .catch(async (response: AxiosError) => {

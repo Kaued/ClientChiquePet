@@ -66,7 +66,7 @@ const finishOrderSlice = createSlice({
   },
 });
 
-export const { setAddressOrder, setItemsOrder, setStepOrder } =
+export const { setAddressOrder, setItemsOrder, setStepOrder, removeFinishOrder } =
   finishOrderSlice.actions;
 
 export default finishOrderSlice.reducer;
