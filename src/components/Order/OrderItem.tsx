@@ -1,5 +1,5 @@
 import { NavigateFunction } from "react-router-dom"
-import { Order } from "../../hooks/Orders/useGetAllOrders"
+import { Order } from "../../hooks/orders/useGetAllOrders"
 import { Badge, Button, Divider, Flex, Heading, Text } from "@chakra-ui/react"
 import { Config } from "../../environment/config"
 import { useEffect, useState } from "react"

@@ -1,7 +1,7 @@
 import { Button, Flex, Spinner } from "@chakra-ui/react"
 import { UseInfiniteQueryResult } from "@tanstack/react-query";
 import { useEffect, useState } from "react"
-import { GetAllOrder, Order } from "../../hooks/Orders/useGetAllOrders";
+import { GetAllOrder, Order } from "../../hooks/orders/useGetAllOrders";
 import { OrderItem } from "../Order/OrderItem";
 import { useNavigate } from "react-router-dom";
 import "./orderData.scss"

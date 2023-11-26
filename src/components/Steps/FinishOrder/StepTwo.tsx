@@ -26,7 +26,7 @@ import { useAppDispatch } from "../../../hooks/useAppDispatch";
 import { useAppSelector } from "../../../hooks/useAppSelector";
 import "./finishStep.scss";
 import { useGetAddress } from "../../../hooks/address/useGetAddress";
-import { useCreateOrder } from "../../../hooks/Orders/useCreateOrder";
+import { useCreateOrder } from "../../../hooks/orders/useCreateOrder";
 
 export const StepTwo = () => {
   const finishOrder: finishOrderSliceValue = useAppSelector(

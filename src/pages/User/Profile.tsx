@@ -29,7 +29,7 @@ import { useEditUser } from "../../hooks/users/useEditUser";
 import { useGetUser } from "../../hooks/users/useGetUser";
 import "./profile.scss";
 import { OrderData } from "../../components/Data/OrderData";
-import { useGetAllOrder } from "../../hooks/Orders/useGetAllOrders";
+import { useGetAllOrder } from "../../hooks/orders/useGetAllOrders";
 
 interface UserData {
   email: string;

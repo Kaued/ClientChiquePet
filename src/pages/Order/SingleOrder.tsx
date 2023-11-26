@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { useGetOrder } from "../../hooks/Orders/useGetOrders";
+import { useGetOrder } from "../../hooks/orders/useGetOrders";
 import {
   Badge,
   Button,

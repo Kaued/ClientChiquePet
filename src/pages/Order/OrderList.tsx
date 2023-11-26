@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useGetAllOrder } from "../../hooks/Orders/useGetAllOrders"
+import { useGetAllOrder } from "../../hooks/orders/useGetAllOrders"
 import { Button, Flex, Heading } from "@chakra-ui/react";
 import { OrderData } from "../../components/Data/OrderData";
 import { AiOutlineRollback } from "react-icons/ai";
