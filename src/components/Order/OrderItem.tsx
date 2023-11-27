@@ -40,7 +40,7 @@ export const OrderItem = ({ data, navigate }: OrdemItemValue) => {
 
         <Text className="orderItem-total col-lg-4 col-12"><span>R$</span>{data.totalPrice.toFixed(2)}</Text>
 
-        <Button colorScheme="blank" onClick={() => navigate("/pedido/" + data.orderId)} className="orderItem-button">Abri Pedido</Button>
+        <Button colorScheme="blank" onClick={() => navigate("/pedido/" + data.orderId)} className="orderItem-button">Abrir Pedido</Button>
 
       </Flex>
       <Divider />
