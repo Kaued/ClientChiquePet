@@ -1,4 +1,4 @@
-import { Button, Flex, Spinner } from "@chakra-ui/react"
+import { Button, Flex, Heading, Spinner } from "@chakra-ui/react"
 import { UseInfiniteQueryResult } from "@tanstack/react-query";
 import { useEffect, useState } from "react"
 import { GetAllOrder, Order } from "../../hooks/orders/useGetAllOrders";
@@ -44,6 +44,9 @@ export const OrderData = ({ data, loadMore }: OrderDataValues) => {
           return (<OrderItem data={order} navigate={navigate} key={order.orderId} />);
         })}
 
+        {!data.isLoading && orders.length<=0 && (
+          <Heading className="orderData-notFound">Você ainda não fez nenhum pedido.</Heading>
+        )}
         {data.isLoading && (
           <Spinner
             thickness="4px"
@@ -57,7 +60,7 @@ export const OrderData = ({ data, loadMore }: OrderDataValues) => {
 
       </Flex>
 
-      {!loadMore && (
+      {!loadMore && orders.length>0 && (
         <Button className="orderData-loadMore" colorScheme="blank" onClick={()=>navigate("pedidos")}>
           Ver Mais
         </Button>
