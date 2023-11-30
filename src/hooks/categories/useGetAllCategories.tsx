@@ -20,21 +20,17 @@ export const useGetAllCategories = () => {
   const request = api();
   const toast = useAlert();
 
-  const query = useInfiniteQuery(
-    ['categoriesAll'],
-    ({ pageParam = 1 }) => fetchAllCategory(pageParam),
-    {
-      getNextPageParam: (lastPage) => {
-        lastPage = lastPage as GetAllCategories;
-        if (lastPage.meta['HasNext']) {
-          return Number(lastPage.meta['CurrentPage'] + 1);
-        }
-      },
-
-      refetchOnWindowFocus: false,
-      staleTime: 3000,
+  const query = useInfiniteQuery(['categoriesAll'], ({ pageParam = 1 }) => fetchAllCategory(pageParam), {
+    getNextPageParam: (lastPage) => {
+      lastPage = lastPage as GetAllCategories;
+      if (lastPage.meta['HasNext']) {
+        return Number(lastPage.meta['CurrentPage'] + 1);
+      }
     },
-  );
+
+    refetchOnWindowFocus: false,
+    staleTime: 3000,
+  });
 
   async function fetchAllCategory(page: number) {
     return await request
@@ -42,9 +38,7 @@ export const useGetAllCategories = () => {
         headers: { 'X-Pagination': '*' },
       })
       .then(async (response) => {
-        const pagination: Pagination = JSON.parse(
-          response.headers['x-pagination'],
-        );
+        const pagination: Pagination = JSON.parse(response.headers['x-pagination']);
         const categories: Categories[] = response.data;
         console.log(categories);
         return {

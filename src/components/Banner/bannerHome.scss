@@ -8,7 +8,6 @@
   .swiper {
     z-index: 1;
     &-button {
-
       &-prev,
       &-next {
         color: #6c083d;
@@ -56,10 +55,10 @@
         color: white;
         font-size: 44px;
         font-family: Lato;
-        font-weight: 800; 
+        font-weight: 800;
         line-height: 56px;
       }
-      p{
+      p {
         margin-top: 50px;
         color: white;
         margin-left: 20px;
@@ -69,27 +68,27 @@
     }
   }
 
-  @include for-tablet-down{
+  @include for-tablet-down {
     &-slide {
       min-height: 600px;
-        &__content {
-          margin: 0;
-          padding: 20px;
-          margin-top: 40px;
-          align-items: center;
+      &__content {
+        margin: 0;
+        padding: 20px;
+        margin-top: 40px;
+        align-items: center;
 
-          h2 {
-            font-size: 28px;
-            line-height: 32px;
-            width: fit-content;
-            text-align: center;
-            margin: 0 auto;
-          }
-    
-          p {
-            display: none;
-          }
+        h2 {
+          font-size: 28px;
+          line-height: 32px;
+          width: fit-content;
+          text-align: center;
+          margin: 0 auto;
+        }
+
+        p {
+          display: none;
         }
       }
+    }
   }
 }

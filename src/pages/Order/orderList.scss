@@ -1,4 +1,4 @@
-@import "../../scss/mixings.scss";
+@import '../../scss/mixings.scss';
 
 .orderList {
   margin-top: 50px;
@@ -31,11 +31,11 @@
     }
   }
 
-  @include for-tablet-down{
+  @include for-tablet-down {
     padding: 10px;
     margin-top: 20px;
 
-    &-header{
+    &-header {
       justify-content: flex-end;
     }
   }

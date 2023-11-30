@@ -29,7 +29,7 @@
       font-family: Lato;
       font-weight: 500;
       margin-left: auto;
-      transition: .3s all ease-in-out;
+      transition: 0.3s all ease-in-out;
       align-self: flex-end;
 
       &:hover {
@@ -38,7 +38,7 @@
     }
   }
 
-  @include for-tablet-down{
+  @include for-tablet-down {
     padding: 10px;
   }
 }
@@ -112,8 +112,8 @@
     }
   }
 
-  &-address{  
-    p{
+  &-address {
+    p {
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -132,7 +132,7 @@
       justify-content: center;
       font-size: 24px;
       padding: 20px;
-      transition: .3s all ease-in-out;
+      transition: 0.3s all ease-in-out;
 
       svg {
         margin-right: 10px;

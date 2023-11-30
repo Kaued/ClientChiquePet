@@ -1,11 +1,11 @@
-import { Flex } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { Products } from "../../hooks/products/useGetProduct";
-import { useSearchProducts } from "../../hooks/products/useSearchProducts";
-import { ContentListProduct } from "../../components/Products/ContentListProduct";
-import { HeaderListProduct } from "../../components/Products/HeaderListProduct";
-import "./listProduct.scss";
+import { Flex } from '@chakra-ui/react';
+import { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { Products } from '../../hooks/products/useGetProduct';
+import { useSearchProducts } from '../../hooks/products/useSearchProducts';
+import { ContentListProduct } from '../../components/Products/ContentListProduct';
+import { HeaderListProduct } from '../../components/Products/HeaderListProduct';
+import './listProduct.scss';
 
 export const ListProductSearch = () => {
   const searchProduct = useSearchProducts();
@@ -28,7 +28,7 @@ export const ListProductSearch = () => {
       };
       search();
     } else {
-      navigate("/produtos");
+      navigate('/produtos');
     }
   }, [search]);
 
@@ -39,11 +39,7 @@ export const ListProductSearch = () => {
   return (
     <Flex className="listProduct">
       <HeaderListProduct title="Pesquisa:" subtitle={search} />
-      <ContentListProduct
-        data={data}
-        navigate={navigate}
-        isLoading={loading}
-      />
+      <ContentListProduct data={data} navigate={navigate} isLoading={loading} />
     </Flex>
   );
 };

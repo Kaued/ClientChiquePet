@@ -9,13 +9,13 @@
     border-radius: 4px;
     flex-direction: column;
 
-    hr{
+    hr {
       border-color: #dddddd;
       margin: 0;
     }
   }
 
-  &-loadMore{
+  &-loadMore {
     width: fit-content;
     background-color: #6c083d;
     color: white;
@@ -31,7 +31,7 @@
     }
   }
 
-  &-notFound{
+  &-notFound {
     text-align: center;
     padding: 15px;
     font-size: 32px;

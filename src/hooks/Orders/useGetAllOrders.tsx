@@ -1,12 +1,12 @@
-import { useInfiniteQuery } from "@tanstack/react-query";
-import { AxiosError } from "axios";
-import { AuthState } from "../../@types/AuthState";
-import { Pagination } from "../../@types/Pagination";
-import { api } from "../../api/axios";
-import { Address } from "../address/useGetAllAddress";
-import { Products } from "../products/useGetProduct";
-import { useAlert } from "../useAlert";
-import { useAppSelector } from "../useAppSelector";
+import { useInfiniteQuery } from '@tanstack/react-query';
+import { AxiosError } from 'axios';
+import { AuthState } from '../../@types/AuthState';
+import { Pagination } from '../../@types/Pagination';
+import { api } from '../../api/axios';
+import { Address } from '../address/useGetAllAddress';
+import { Products } from '../products/useGetProduct';
+import { useAlert } from '../useAlert';
+import { useAppSelector } from '../useAppSelector';
 
 export type Order = {
   orderId: number;
@@ -35,15 +35,15 @@ export interface GetAllOrder {
 export const useGetAllOrder = () => {
   const request = api();
   const toast = useAlert();
-  const authSlice: AuthState = useAppSelector((state)=>state.auth);
+  const authSlice: AuthState = useAppSelector((state) => state.auth);
   const query = useInfiniteQuery(
-    ["orderAll", { email: authSlice.email}],
+    ['orderAll', { email: authSlice.email }],
     ({ pageParam = 1 }) => fetchAllOrder(pageParam),
     {
       getNextPageParam: (lastPage) => {
         lastPage = lastPage as GetAllOrder;
-        if (lastPage.meta["HasNext"]) {
-          return Number(lastPage.meta["CurrentPage"] + 1);
+        if (lastPage.meta['HasNext']) {
+          return Number(lastPage.meta['CurrentPage'] + 1);
         }
       },
 
@@ -54,16 +54,11 @@ export const useGetAllOrder = () => {
 
   async function fetchAllOrder(page: number) {
     return await request
-      .get(
-        `/Client/orders?pageNumber=${page}&pageSize=${20}`,
-        {
-          headers: { "X-Pagination": "*" },
-        },
-      )
+      .get(`/Client/orders?pageNumber=${page}&pageSize=${20}`, {
+        headers: { 'X-Pagination': '*' },
+      })
       .then(async (response) => {
-        const pagination: Pagination = JSON.parse(
-          response.headers["x-pagination"],
-        );
+        const pagination: Pagination = JSON.parse(response.headers['x-pagination']);
         const order: Order[] = response.data;
 
         return {
@@ -74,7 +69,7 @@ export const useGetAllOrder = () => {
       .catch((response: AxiosError) => {
         toast({
           status: response.response?.status,
-          mensagem: ["Ocorreu um erro!"],
+          mensagem: ['Ocorreu um erro!'],
         });
       });
   }

@@ -12,16 +12,16 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
-  useDisclosure
-} from "@chakra-ui/react";
-import { AiOutlineDown, AiOutlineShoppingCart } from "react-icons/ai";
-import { CartSlice, setIsOrder } from "../../features/cart/cartSlice";
-import { useAppDispatch } from "../../hooks/useAppDispatch";
-import { useAppSelector } from "../../hooks/useAppSelector";
-import { CartItem } from "./CartItem";
-import "./cart.scss";
-import { FaShoppingCart } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+  useDisclosure,
+} from '@chakra-ui/react';
+import { AiOutlineDown, AiOutlineShoppingCart } from 'react-icons/ai';
+import { CartSlice, setIsOrder } from '../../features/cart/cartSlice';
+import { useAppDispatch } from '../../hooks/useAppDispatch';
+import { useAppSelector } from '../../hooks/useAppSelector';
+import { CartItem } from './CartItem';
+import './cart.scss';
+import { FaShoppingCart } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 
 export const Cart = () => {
   const cartSlice: CartSlice = useAppSelector((state) => state.cart);
@@ -36,23 +36,22 @@ export const Cart = () => {
   return (
     <>
       <Menu closeOnSelect={false}>
-        <MenuButton
-          as={Button}
-          rightIcon={<AiOutlineDown />}
-          className="cart-button"
-        >
+        <MenuButton as={Button} rightIcon={<AiOutlineDown />} className="cart-button">
           <AiOutlineShoppingCart />
         </MenuButton>
-        <MenuList zIndex={2} maxH={"500px"} overflowY={"auto"}>
+        <MenuList zIndex={2} maxH={'500px'} overflowY={'auto'}>
           {cartSlice.item.length > 0 &&
-            cartSlice.item.map((product, index) => (
-              <CartItem key={index} index={index} item={product} />
-            ))}
-          {cartSlice.item.length >0 && (
-            <Flex className="cart-end" onClick={()=>navigate("/carrinho")}><FaShoppingCart />Finalizar {cartSlice.isOrder ? "Encomenda" : "Compra"}</Flex>
+            cartSlice.item.map((product, index) => <CartItem key={index} index={index} item={product} />)}
+          {cartSlice.item.length > 0 && (
+            <Flex className="cart-end" onClick={() => navigate('/carrinho')}>
+              <FaShoppingCart />
+              Finalizar {cartSlice.isOrder ? 'Encomenda' : 'Compra'}
+            </Flex>
           )}
-          {cartSlice.item.length<=0 &&(
-            <MenuItem className="cart-notFound"><Heading>Não há produtos no carrinho</Heading></MenuItem>
+          {cartSlice.item.length <= 0 && (
+            <MenuItem className="cart-notFound">
+              <Heading>Não há produtos no carrinho</Heading>
+            </MenuItem>
           )}
         </MenuList>
       </Menu>
@@ -62,8 +61,8 @@ export const Cart = () => {
           <ModalHeader>Deseja realizar uma encomenda?</ModalHeader>
 
           <ModalBody>
-            A quantidade de um dos produtos e superior a do estoque, você ainda
-            pode continuar seu pedido. Basta apenas realizar uma encomenda.
+            A quantidade de um dos produtos e superior a do estoque, você ainda pode continuar seu pedido. Basta apenas
+            realizar uma encomenda.
           </ModalBody>
 
           <ModalFooter>

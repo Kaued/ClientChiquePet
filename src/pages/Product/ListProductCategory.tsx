@@ -1,12 +1,12 @@
-import { Flex } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { GetAllProducts } from "../../hooks/products/useGetAllProducts";
-import { Products } from "../../hooks/products/useGetProduct";
-import { ContentListProduct } from "../../components/Products/ContentListProduct";
-import { HeaderListProduct } from "../../components/Products/HeaderListProduct";
-import "./listProduct.scss";
-import { useGetAllCategoriesProducts } from "../../hooks/categories/useGetAllCategoriesProducts";
+import { Flex } from '@chakra-ui/react';
+import { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { GetAllProducts } from '../../hooks/products/useGetAllProducts';
+import { Products } from '../../hooks/products/useGetProduct';
+import { ContentListProduct } from '../../components/Products/ContentListProduct';
+import { HeaderListProduct } from '../../components/Products/HeaderListProduct';
+import './listProduct.scss';
+import { useGetAllCategoriesProducts } from '../../hooks/categories/useGetAllCategoriesProducts';
 
 export const ListProductCategory = () => {
   const { filter } = useParams();
@@ -28,7 +28,7 @@ export const ListProductCategory = () => {
         });
       }
     } else {
-      navigate("/produtos");
+      navigate('/produtos');
     }
   }, [request!.data]);
 

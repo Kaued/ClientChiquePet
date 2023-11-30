@@ -16,12 +16,12 @@
     }
   }
 
-  div{
+  div {
     z-index: 10 !important;
   }
 
-  &-notFound{
-    h2{
+  &-notFound {
+    h2 {
       padding: 10px;
       font-size: 16px;
       color: #6c083d;
@@ -29,10 +29,9 @@
       font-weight: 700;
       max-width: 300px;
     }
-    
   }
 
-  &-end{
+  &-end {
     padding: 10px;
     justify-content: center;
     align-items: center;
@@ -43,19 +42,19 @@
     margin: 10px;
     border-radius: 8px;
     cursor: pointer;
-    svg{
+    svg {
       margin-right: 5px;
     }
   }
 }
 
-.cartItem{
+.cartItem {
   cursor: context-menu;
   position: relative;
   align-items: center;
   padding: 15px;
-  
-  &-image{
+
+  &-image {
     height: auto;
     padding: 5px;
     width: 100px;
@@ -63,12 +62,12 @@
     object-fit: cover;
   }
 
-  &-content{
+  &-content {
     flex-direction: column;
     padding-left: 10px;
   }
 
-  &-title{
+  &-title {
     font-size: 20px !important;
     font-family: Lato;
     font-weight: 600;
@@ -76,32 +75,32 @@
     margin: 0;
   }
 
-  &-category{
+  &-category {
     font-size: 12px;
     margin-bottom: 10px;
   }
 
-  &-price{
+  &-price {
     font-size: 20px;
     font-family: Lato;
     font-weight: 500;
-    
-    span{
+
+    span {
       font-weight: 700;
       font-size: 12px;
       margin-right: 5px;
     }
   }
 
-  &-form{
+  &-form {
     padding-right: 10px;
     width: 100%;
 
-    &__item{
+    &__item {
       width: 100px !important;
       padding-right: 30px;
       margin-right: auto;
-      input{
+      input {
         height: fit-content;
         padding: 5px;
         text-align: center;
@@ -110,10 +109,9 @@
     }
   }
 
-  &-remove{
-    transform: 50% ;
+  &-remove {
+    transform: 50%;
     width: 30px;
     cursor: pointer;
   }
-
 }

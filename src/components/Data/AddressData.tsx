@@ -1,25 +1,14 @@
-import {
-  Button,
-  Flex,
-  Heading,
-  Table,
-  TableContainer,
-  Tbody,
-  Td,
-  Th,
-  Thead,
-  Tr,
-} from "@chakra-ui/react";
-import { useState } from "react";
-import { FaLocationDot } from "react-icons/fa6";
-import { MdEdit } from "react-icons/md";
-import { useCreateAddress } from "../../hooks/address/useCreateAddress";
-import { useDeleteAddress } from "../../hooks/address/useDeleteAddress";
-import { useEditAddress } from "../../hooks/address/useEditAddress";
-import { Address } from "../../hooks/address/useGetAllAddress";
-import { DeleteConfirm } from "../Default/DeleteConfirm";
-import { FormAddress } from "../Forms/FormAddress";
-import "./adressdata.scss";
+import { Button, Flex, Heading, Table, TableContainer, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/react';
+import { useState } from 'react';
+import { FaLocationDot } from 'react-icons/fa6';
+import { MdEdit } from 'react-icons/md';
+import { useCreateAddress } from '../../hooks/address/useCreateAddress';
+import { useDeleteAddress } from '../../hooks/address/useDeleteAddress';
+import { useEditAddress } from '../../hooks/address/useEditAddress';
+import { Address } from '../../hooks/address/useGetAllAddress';
+import { DeleteConfirm } from '../Default/DeleteConfirm';
+import { FormAddress } from '../Forms/FormAddress';
+import './adressdata.scss';
 
 interface AddressDataProps {
   data: any;
@@ -38,7 +27,7 @@ export const AddressData = ({ data }: AddressDataProps) => {
 
   const editThisAddress = ({ address, id }: AddressEditValues) => {
     setAddressEdit({ address, id });
-    setOpenEdit((open)=>!open);
+    setOpenEdit((open) => !open);
   };
 
   return (
@@ -100,7 +89,7 @@ export const AddressData = ({ data }: AddressDataProps) => {
             <Tbody>
               <Tr>
                 <Td colSpan={5}>
-                  <Heading fontSize={"32px"} color={"#6c083d"}>
+                  <Heading fontSize={'32px'} color={'#6c083d'}>
                     Não foi possível encontrar nenhum endereço
                   </Heading>
                 </Td>

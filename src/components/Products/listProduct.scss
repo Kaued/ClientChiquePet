@@ -27,7 +27,7 @@
         font-size: 42px;
         display: flex;
         align-items: center;
-        p{
+        p {
           margin: 0;
           margin-left: 10px;
           font-size: 32px;
@@ -54,7 +54,7 @@
       flex-wrap: wrap;
       padding: 0px 40px;
 
-      &--notFound{
+      &--notFound {
         width: 100%;
         height: 100%;
         justify-content: center;
@@ -64,7 +64,7 @@
     }
   }
 
-  &-showMore{
+  &-showMore {
     color: white;
     background: #6c083d;
     width: 250px;

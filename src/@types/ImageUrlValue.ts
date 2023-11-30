@@ -1,5 +1,5 @@
 export interface ImageUrlValue {
-    path: string,
-    productId: number,
-    type: string
+  path: string;
+  productId: number;
+  type: string;
 }

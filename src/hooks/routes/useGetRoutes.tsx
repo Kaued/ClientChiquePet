@@ -25,59 +25,58 @@ export const useGetRoutes = () => {
   const token = userState.roles;
 
   router.push({
-    path: "/",
+    path: '/',
     element: <Layout />,
     children: [
       {
-        path: "",
+        path: '',
         element: <Home />,
       },
       {
-        path: "produtos",
+        path: 'produtos',
         element: <ListProduct />,
       },
       {
-        path: "produtos/:filter",
+        path: 'produtos/:filter',
         element: <ListProduct />,
       },
       {
-        path: "produtos/pesquisar/:search",
+        path: 'produtos/pesquisar/:search',
         element: <ListProductSearch />,
       },
       {
-        path: "produtos/categoria/:filter",
+        path: 'produtos/categoria/:filter',
         element: <ListProductCategory />,
       },
 
       {
-        path: "produto/:productParam",
+        path: 'produto/:productParam',
         element: <SingleProduct />,
       },
 
       {
-        path: "carrinho",
+        path: 'carrinho',
         element: <EndCart />,
       },
-
     ],
   });
 
   if (authenticated && roles !== null && roles.includes('Client') && token !== null) {
     router[1].children?.push(
       {
-        path: "profile",
+        path: 'profile',
         element: <Profile />,
       },
       {
-        path: "finalizar/pedido",
+        path: 'finalizar/pedido',
         element: <FinishCart />,
       },
       {
-        path: "profile/pedidos",
+        path: 'profile/pedidos',
         element: <OrderList />,
       },
       {
-        path: "pedido/:id",
+        path: 'pedido/:id',
         element: <SingleOrder />,
       },
     );

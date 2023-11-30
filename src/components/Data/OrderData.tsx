@@ -1,25 +1,22 @@
-import { Button, Flex, Heading, Spinner } from "@chakra-ui/react"
-import { UseInfiniteQueryResult } from "@tanstack/react-query";
-import { useEffect, useState } from "react"
-import { GetAllOrder, Order } from "../../hooks/orders/useGetAllOrders";
-import { OrderItem } from "../Order/OrderItem";
-import { useNavigate } from "react-router-dom";
-import "./orderData.scss"
+import { Button, Flex, Heading, Spinner } from '@chakra-ui/react';
+import { UseInfiniteQueryResult } from '@tanstack/react-query';
+import { useEffect, useState } from 'react';
+import { GetAllOrder, Order } from '../../hooks/orders/useGetAllOrders';
+import { OrderItem } from '../Order/OrderItem';
+import { useNavigate } from 'react-router-dom';
+import './orderData.scss';
 
 interface OrderDataValues {
-  data: UseInfiniteQueryResult<void | GetAllOrder, unknown>,
-  loadMore: boolean
+  data: UseInfiniteQueryResult<void | GetAllOrder, unknown>;
+  loadMore: boolean;
 }
 
 export const OrderData = ({ data, loadMore }: OrderDataValues) => {
-
   const [orders, setOrders] = useState<Order[]>([]);
   const [hasNext, setHasNext] = useState<boolean>(false);
   const navigate = useNavigate();
 
-
   useEffect(() => {
-
     if (!data.isLoading && data.data) {
       setOrders([]);
 
@@ -32,19 +29,18 @@ export const OrderData = ({ data, loadMore }: OrderDataValues) => {
       if (data.data.pages[-1]) {
         setHasNext(data.data.pages[-1]!.meta.HasNext);
       }
-
     }
   }, [data.isLoading, data.data]);
 
   return (
     <Flex className="orderData">
-
       <Flex className="orderData-list">
-        {orders.length > 0 && orders.map((order) => {
-          return (<OrderItem data={order} navigate={navigate} key={order.orderId} />);
-        })}
+        {orders.length > 0 &&
+          orders.map((order) => {
+            return <OrderItem data={order} navigate={navigate} key={order.orderId} />;
+          })}
 
-        {!data.isLoading && orders.length<=0 && (
+        {!data.isLoading && orders.length <= 0 && (
           <Heading className="orderData-notFound">Você ainda não fez nenhum pedido.</Heading>
         )}
         {data.isLoading && (
@@ -54,14 +50,13 @@ export const OrderData = ({ data, loadMore }: OrderDataValues) => {
             emptyColor="gray.200"
             color="blue.500"
             size="xl"
-            margin={"10px auto"}
+            margin={'10px auto'}
           />
         )}
-
       </Flex>
 
-      {!loadMore && orders.length>0 && (
-        <Button className="orderData-loadMore" colorScheme="blank" onClick={()=>navigate("pedidos")}>
+      {!loadMore && orders.length > 0 && (
+        <Button className="orderData-loadMore" colorScheme="blank" onClick={() => navigate('pedidos')}>
           Ver Mais
         </Button>
       )}
@@ -72,5 +67,5 @@ export const OrderData = ({ data, loadMore }: OrderDataValues) => {
         </Button>
       )}
     </Flex>
-  )
-}
+  );
+};

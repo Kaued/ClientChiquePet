@@ -10,9 +10,9 @@ interface SelectProps {
   classField?: string;
   placeholderField?: string;
   options: {
-    value: string | number,
-    text: string
-  }[],
+    value: string | number;
+    text: string;
+  }[];
   error?: string;
   // eslint-disable-next-line @typescript-eslint/ban-types
   change?: Function;
@@ -20,14 +20,10 @@ interface SelectProps {
 }
 
 export const SelectDefault = (props: SelectProps) => {
-  const { value, formik, required, name, classField, placeholderField, error,  options, change, blur } = props;
+  const { value, formik, required, name, classField, placeholderField, error, options, change, blur } = props;
 
   return (
-    <InputGroup
-      className={classField ? classField : "default-input"}
-      display="flex"
-      flexDirection="column"
-    >
+    <InputGroup className={classField ? classField : 'default-input'} display="flex" flexDirection="column">
       <Select
         onChange={change ? (e) => change(e) : formik.handleChange}
         value={value}
@@ -37,12 +33,16 @@ export const SelectDefault = (props: SelectProps) => {
         placeholder={placeholderField}
         isInvalid={!!error}
         id={name}
-        onBlur={() => (blur ? blur() : null)}>
-        
-        {options.map((option)=>{
-          return <option value={option.value} key={option.value}>{option.text}</option>;  
+        onBlur={() => (blur ? blur() : null)}
+      >
+        {options.map((option) => {
+          return (
+            <option value={option.value} key={option.value}>
+              {option.text}
+            </option>
+          );
         })}
-        </Select>
+      </Select>
       {!!error && <span className="input-error">{error}</span>}
     </InputGroup>
   );

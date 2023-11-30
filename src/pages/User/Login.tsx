@@ -25,7 +25,7 @@ const Login = () => {
   const userState = useAppSelector((state) => state.auth);
   const dispacth = useAppDispatch();
   const alertToRef = useAlert();
-  const navigate  = useNavigate();
+  const navigate = useNavigate();
   const alert = useRef(alertToRef).current;
 
   const formik = useFormik<FormValues>({
@@ -66,7 +66,7 @@ const Login = () => {
   }, [userState, alert]);
 
   useEffect(() => {
-    document.title = "Login";
+    document.title = 'Login';
   }, []);
 
   return (
@@ -111,7 +111,12 @@ const Login = () => {
           <Button colorScheme="green" type="submit" className="login-button" isLoading={userState.status === 'pedding'}>
             Login
           </Button>
-          <FormHelperText>Não tem uma conta? <Link onClick={()=>navigate("/register")} color={"blue"}>Clique aqui</Link></FormHelperText>
+          <FormHelperText>
+            Não tem uma conta?{' '}
+            <Link onClick={() => navigate('/register')} color={'blue'}>
+              Clique aqui
+            </Link>
+          </FormHelperText>
         </FormControl>
       </form>
     </Flex>

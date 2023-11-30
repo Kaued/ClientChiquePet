@@ -15,7 +15,7 @@ interface Address {
   city: string;
   district: string;
   number: number;
-  complement?: string
+  complement?: string;
 }
 
 export const useCreateAddress = () => {
@@ -33,9 +33,7 @@ export const useCreateAddress = () => {
           status: response.status,
           mensagem: ['Endereço criado com sucesso'],
         });
-        await queryClient.invalidateQueries([
-          ["addressAll", { email: authData.email }],
-        ]);
+        await queryClient.invalidateQueries([['addressAll', { email: authData.email }]]);
         dispatch(setRefresh({ refresh: true }));
       })
       .catch(async (response: AxiosError) => {

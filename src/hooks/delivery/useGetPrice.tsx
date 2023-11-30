@@ -1,5 +1,5 @@
-import { api } from "../../api/axios";
-import { useAlert } from "../useAlert";
+import { api } from '../../api/axios';
+import { useAlert } from '../useAlert';
 
 export interface RequestPriceDelivery {
   address: {
@@ -23,6 +23,4 @@ export interface RequestPriceDelivery {
 export const useGetPrice = ({ address }: RequestPriceDelivery) => {
   const request = api();
   const toast = useAlert();
-
- 
 };

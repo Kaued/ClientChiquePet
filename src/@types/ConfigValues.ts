@@ -1,4 +1,4 @@
-import { StautsOrderValue } from "./StatusOrderValue";
+import { StautsOrderValue } from './StatusOrderValue';
 
 export interface ConfigValues {
   baseApiUrl: string;
@@ -14,5 +14,5 @@ export interface ConfigValues {
     window: string;
     name: string;
   }[];
-  statusOrder: StautsOrderValue[]
+  statusOrder: StautsOrderValue[];
 }

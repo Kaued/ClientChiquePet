@@ -1,4 +1,4 @@
-@import "../../scss/mixings.scss";
+@import '../../scss/mixings.scss';
 
 .order {
   width: 100%;
@@ -35,7 +35,7 @@
         margin-right: 10px;
       }
 
-      button{
+      button {
         margin-left: auto;
         width: fit-content;
       }
@@ -85,7 +85,6 @@
         font-family: Lato;
         font-weight: 700;
         color: #6c083d;
-
       }
 
       p {
@@ -163,9 +162,7 @@
   @include for-tablet-down {
     padding: 20px;
 
-
     &-product {
-
       &__content {
         align-items: center;
         justify-content: center;

@@ -10,14 +10,14 @@ import {
   ModalHeader,
   ModalOverlay,
   useDisclosure,
-} from "@chakra-ui/react";
-import { FaRegTrashAlt } from "react-icons/fa";
-import { FaCartShopping } from "react-icons/fa6";
-import { CartSlice, removeAllItems } from "../../features/cart/cartSlice";
-import { useAppDispatch } from "../../hooks/useAppDispatch";
-import { useAppSelector } from "../../hooks/useAppSelector";
-import { CartItem } from "../Navbar/CartItem";
-import "./cartShow.scss";
+} from '@chakra-ui/react';
+import { FaRegTrashAlt } from 'react-icons/fa';
+import { FaCartShopping } from 'react-icons/fa6';
+import { CartSlice, removeAllItems } from '../../features/cart/cartSlice';
+import { useAppDispatch } from '../../hooks/useAppDispatch';
+import { useAppSelector } from '../../hooks/useAppSelector';
+import { CartItem } from '../Navbar/CartItem';
+import './cartShow.scss';
 
 export const Cart = () => {
   const cartSlice: CartSlice = useAppSelector((state) => state.cart);
@@ -37,12 +37,8 @@ export const Cart = () => {
       </Heading>
       <Flex className="cartShow-list">
         {cartSlice.item.length > 0 &&
-          cartSlice.item.map((item, index) => (
-            <CartItem index={index} item={item} key={index} />
-          ))}
-        {cartSlice.item.length<=0 &&(
-          <Heading className="cartShow-notFound">Nenhum produto no carrinho</Heading>
-        )}
+          cartSlice.item.map((item, index) => <CartItem index={index} item={item} key={index} />)}
+        {cartSlice.item.length <= 0 && <Heading className="cartShow-notFound">Nenhum produto no carrinho</Heading>}
       </Flex>
       <Button className="cartShow-button" onClick={() => onOpen()} colorScheme="blank">
         <FaRegTrashAlt />

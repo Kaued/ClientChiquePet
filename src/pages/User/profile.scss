@@ -1,4 +1,4 @@
-@import "../../scss/mixings.scss";
+@import '../../scss/mixings.scss';
 
 .profile {
   width: 100%;
@@ -111,13 +111,13 @@
       font-family: Lato;
       margin-bottom: 30px;
       cursor: pointer;
-      
+
       svg {
         margin-right: 5px;
-        font-size: 20px
+        font-size: 20px;
       }
 
-      h2{
+      h2 {
         font-size: 24px;
         margin-bottom: 0;
       }
@@ -145,13 +145,13 @@
       font-family: Lato;
       margin-bottom: 30px;
       cursor: pointer;
-      
+
       svg {
         margin-right: 5px;
-        font-size: 20px
+        font-size: 20px;
       }
 
-      h2{
+      h2 {
         font-size: 24px;
         margin-bottom: 0;
       }
@@ -168,7 +168,6 @@
 
   @include for-tablet-down {
     &-data {
-
       &__title {
         font-size: 24px !important;
       }

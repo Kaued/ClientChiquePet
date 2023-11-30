@@ -1,16 +1,16 @@
-.imageProduct{
+.imageProduct {
   width: 100%;
   position: relative;
-  &-swipper{
+  &-swipper {
     width: 100%;
 
-    img{
+    img {
       border-radius: 10px;
       height: 100%;
       width: 100%;
       object-fit: cover;
     }
-    &__thumb{
+    &__thumb {
       width: 70%;
       position: absolute;
       bottom: 10px;
@@ -18,7 +18,7 @@
       left: 50%;
       transform: translateX(-50%);
 
-      img{
+      img {
         max-height: 100px;
       }
     }

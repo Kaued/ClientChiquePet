@@ -23,10 +23,7 @@ export const useDeleteAddress = () => {
           status: response.status,
           mensagem: ['Endereço removido com sucesso'],
         });
-        await queryClient.invalidateQueries([
-          "addressAll",
-          { email: authData.email },
-        ]);
+        await queryClient.invalidateQueries(['addressAll', { email: authData.email }]);
         dispatch(setRefresh({ refresh: true }));
       })
       .catch((response: AxiosError) => {

@@ -6,8 +6,8 @@ export const CreateUsers = () => {
   const handleSubmit = useCreateUser();
 
   useEffect(() => {
-    document.title = "Registra-se";
+    document.title = 'Registra-se';
   }, []);
-  
+
   return <FormUser isAddMode={true} submit={handleSubmit} />;
 };

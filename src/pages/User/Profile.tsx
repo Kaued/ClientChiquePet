@@ -1,35 +1,25 @@
-import {
-  Box,
-  Button,
-  Collapse,
-  Flex,
-  Heading,
-  IconButton,
-  Spinner,
-  Text,
-  useDisclosure,
-} from "@chakra-ui/react";
-import { useFormik } from "formik";
-import { useEffect, useState } from "react";
-import { AiOutlineUser } from "react-icons/ai";
-import { FaCheck, FaChevronDown, FaChevronUp, FaEdit, FaLock } from "react-icons/fa";
-import { FaLocationDot, FaTableList } from "react-icons/fa6";
-import { RxCross1 } from "react-icons/rx";
-import * as Yup from "yup";
-import { AuthState } from "../../@types/AuthState";
-import { AddressData } from "../../components/Data/AddressData";
-import { DeleteConfirm } from "../../components/Default/DeleteConfirm";
-import { InputDefault } from "../../components/Default/InputDefault";
-import { AddressSlice, setRefresh } from "../../features/address/addressSlice";
-import { useGetAllAddress } from "../../hooks/address/useGetAllAddress";
-import { useAppDispatch } from "../../hooks/useAppDispatch";
-import { useAppSelector } from "../../hooks/useAppSelector";
-import { useDeleteUser } from "../../hooks/users/useDeleteUser";
-import { useEditUser } from "../../hooks/users/useEditUser";
-import { useGetUser } from "../../hooks/users/useGetUser";
-import "./profile.scss";
-import { OrderData } from "../../components/Data/OrderData";
-import { useGetAllOrder } from "../../hooks/orders/useGetAllOrders";
+import { Box, Button, Collapse, Flex, Heading, IconButton, Spinner, Text, useDisclosure } from '@chakra-ui/react';
+import { useFormik } from 'formik';
+import { useEffect, useState } from 'react';
+import { AiOutlineUser } from 'react-icons/ai';
+import { FaCheck, FaChevronDown, FaChevronUp, FaEdit, FaLock } from 'react-icons/fa';
+import { FaLocationDot, FaTableList } from 'react-icons/fa6';
+import { RxCross1 } from 'react-icons/rx';
+import * as Yup from 'yup';
+import { AuthState } from '../../@types/AuthState';
+import { AddressData } from '../../components/Data/AddressData';
+import { DeleteConfirm } from '../../components/Default/DeleteConfirm';
+import { InputDefault } from '../../components/Default/InputDefault';
+import { AddressSlice, setRefresh } from '../../features/address/addressSlice';
+import { useGetAllAddress } from '../../hooks/address/useGetAllAddress';
+import { useAppDispatch } from '../../hooks/useAppDispatch';
+import { useAppSelector } from '../../hooks/useAppSelector';
+import { useDeleteUser } from '../../hooks/users/useDeleteUser';
+import { useEditUser } from '../../hooks/users/useEditUser';
+import { useGetUser } from '../../hooks/users/useGetUser';
+import './profile.scss';
+import { OrderData } from '../../components/Data/OrderData';
+import { useGetAllOrder } from '../../hooks/orders/useGetAllOrders';
 
 interface UserData {
   email: string;
@@ -47,49 +37,39 @@ export const Profile = () => {
   const { isLoading, data } = useGetUser(authData.email);
   const [isEditing, setEditing] = useState(false);
   const [initialValues, setInitialValues] = useState<UserData>({
-    email: "",
-    phoneNumber: "",
-    userName: "",
-    password: "",
-    birthDate: "",
+    email: '',
+    phoneNumber: '',
+    userName: '',
+    password: '',
+    birthDate: '',
   });
   const previousDate = new Date();
   const { isOpen, onToggle } = useDisclosure();
   const addressOpen = useDisclosure();
   const ordersOpen = useDisclosure();
   const orderData = useGetAllOrder();
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState('');
   const editUser = useEditUser(data?.email!);
   const passwordValidation = isOpen
     ? Yup.string()
-      .required("O campo senha é necessário")
-      .test(
-        "equal",
-        "As senhas não são iguais",
-        (val) => val == confirmPassword,
-      )
-      .min(6, "A senha deve ter no mínimo 6 caracteres")
-      .matches(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\\$%\\^&\\*])/,
-        "Deve contêr um letra minúscula, uma maiúscula, um número e um caracter especial",
-      )
+        .required('O campo senha é necessário')
+        .test('equal', 'As senhas não são iguais', (val) => val == confirmPassword)
+        .min(6, 'A senha deve ter no mínimo 6 caracteres')
+        .matches(
+          /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\\$%\\^&\\*])/,
+          'Deve contêr um letra minúscula, uma maiúscula, um número e um caracter especial',
+        )
     : Yup.string().notRequired();
   const formik = useFormik<UserData>({
     initialValues: initialValues,
     validationSchema: Yup.object().shape({
-      userName: Yup.string().required("O campo nome é necessário"),
-      email: Yup.string()
-        .email("Digite o email corretamente")
-        .required("O campo email é necessário"),
+      userName: Yup.string().required('O campo nome é necessário'),
+      email: Yup.string().email('Digite o email corretamente').required('O campo email é necessário'),
       password: passwordValidation,
-      phoneNumber: Yup.string().required("O campo telefone é necessário"),
+      phoneNumber: Yup.string().required('O campo telefone é necessário'),
       birthDate: Yup.date()
-        .required("O campo data de nascimento é necessário")
-        .test(
-          "minAge",
-          "O usuário deve ter no minímo 1 ano",
-          (val: Date) => val <= previousDate,
-        ),
+        .required('O campo data de nascimento é necessário')
+        .test('minAge', 'O usuário deve ter no minímo 1 ano', (val: Date) => val <= previousDate),
     }),
     validateOnChange: false,
     onSubmit: async (user) => {
@@ -101,7 +81,7 @@ export const Profile = () => {
   const deleteUser = useDeleteUser();
 
   useEffect(() => {
-    document.title = "Perfil";
+    document.title = 'Perfil';
     ordersOpen.onOpen();
     addressOpen.onOpen();
   }, []);
@@ -120,10 +100,7 @@ export const Profile = () => {
     if (data) {
       setInitialValues(data);
       formik.setValues(data);
-      formik.setFieldValue(
-        "birthDate",
-        new Date(data.birthDate).toISOString().split("T")[0],
-      );
+      formik.setFieldValue('birthDate', new Date(data.birthDate).toISOString().split('T')[0]);
     }
   }, [data]);
 
@@ -139,9 +116,7 @@ export const Profile = () => {
           <Flex className="row profile-data__content">
             <Flex className="profile-item col-lg-6 col-12">
               <Text className="profile-item__label">Nome:</Text>
-              {!isEditing && (
-                <Text className="profile-item__label">{data.userName}</Text>
-              )}
+              {!isEditing && <Text className="profile-item__label">{data.userName}</Text>}
               {isEditing && (
                 <InputDefault
                   value={formik.values.userName}
@@ -156,9 +131,7 @@ export const Profile = () => {
             </Flex>
             <Flex className="profile-item col-lg-6 col-12">
               <Text className="profile-item__label">Email:</Text>
-              {!isEditing && (
-                <Text className="profile-item__label">{data.email}</Text>
-              )}
+              {!isEditing && <Text className="profile-item__label">{data.email}</Text>}
               {isEditing && (
                 <InputDefault
                   value={formik.values.email}
@@ -174,15 +147,13 @@ export const Profile = () => {
             <Flex className="profile-item col-lg-6 col-12">
               <Text className="profile-item__label">Data de Nascimento:</Text>
               {!isEditing && (
-                <Text className="profile-item__label">
-                  {new Date(data.birthDate).toLocaleDateString("pt-br")}
-                </Text>
+                <Text className="profile-item__label">{new Date(data.birthDate).toLocaleDateString('pt-br')}</Text>
               )}
               {isEditing && (
                 <InputDefault
-                  name={"birthDate"}
+                  name={'birthDate'}
                   value={formik.values.birthDate}
-                  type={"date"}
+                  type={'date'}
                   formik={formik}
                   error={formik.errors.birthDate}
                   required={true}
@@ -191,9 +162,7 @@ export const Profile = () => {
             </Flex>
             <Flex className="profile-item col-lg-6 col-12">
               <Text className="profile-item__label">Telefone:</Text>
-              {!isEditing && (
-                <Text className="profile-item__label">{data.phoneNumber}</Text>
-              )}
+              {!isEditing && <Text className="profile-item__label">{data.phoneNumber}</Text>}
               {isEditing && (
                 <InputDefault
                   value={formik.values.phoneNumber}
@@ -209,48 +178,33 @@ export const Profile = () => {
 
             {isEditing && (
               <Box>
-                <Button
-                  onClick={onToggle}
-                  colorScheme="teal"
-                  className="mb-3 profile-password__button"
-                >
+                <Button onClick={onToggle} colorScheme="teal" className="mb-3 profile-password__button">
                   <FaLock />
-                  {!isOpen ? "Trocar Senha" : "Cancelar"}
+                  {!isOpen ? 'Trocar Senha' : 'Cancelar'}
                 </Button>
                 <Collapse in={isOpen} animateOpacity>
-                  <Flex
-                    width={"100%"}
-                    flexWrap={"wrap"}
-                    justifyContent={"start"}
-                    className="profile-password"
-                  >
+                  <Flex width={'100%'} flexWrap={'wrap'} justifyContent={'start'} className="profile-password">
                     <Flex className="profile-item col-lg-6 col-12">
                       <Text className="profile-item__label">Senha:</Text>
                       <InputDefault
-                        name={"password"}
+                        name={'password'}
                         value={formik.values.password}
-                        type={"password"}
+                        type={'password'}
                         formik={formik}
                         error={formik.errors.password}
                         required={isOpen}
                       />
                     </Flex>
                     <Flex className="profile-item col-lg-6 col-12">
-                      <Text className="profile-item__label">
-                        Confimar Senha:
-                      </Text>
+                      <Text className="profile-item__label">Confimar Senha:</Text>
                       <InputDefault
-                        name={"confirmPassword"}
+                        name={'confirmPassword'}
                         value={confirmPassword}
-                        type={"password"}
+                        type={'password'}
                         formik={formik}
                         error={formik.errors.password}
                         required={isOpen}
-                        change={(val: Event) =>
-                          setConfirmPassword(
-                            (val.target as HTMLInputElement).value,
-                          )
-                        }
+                        change={(val: Event) => setConfirmPassword((val.target as HTMLInputElement).value)}
                       />
                     </Flex>
                   </Flex>
@@ -261,10 +215,7 @@ export const Profile = () => {
 
           {!isEditing && (
             <Flex className="profile-data__actions">
-              <Button
-                colorScheme="yellow"
-                onClick={() => setEditing((bef) => !bef)}
-              >
+              <Button colorScheme="yellow" onClick={() => setEditing((bef) => !bef)}>
                 <FaEdit />
               </Button>
 
@@ -288,11 +239,7 @@ export const Profile = () => {
                 <RxCross1 />
               </Button>
 
-              <Button
-                colorScheme="green"
-                onClick={() => formik.handleSubmit()}
-                isLoading={editUser.isLoading}
-              >
+              <Button colorScheme="green" onClick={() => formik.handleSubmit()} isLoading={editUser.isLoading}>
                 <FaCheck />
               </Button>
             </Flex>
@@ -301,20 +248,15 @@ export const Profile = () => {
           {!isEditing && (
             <>
               <Flex className="profile-address mt-5">
-                <Flex
-                  className="profile-address__title"
-                  onClick={() => addressOpen.onToggle()}
-                >
+                <Flex className="profile-address__title" onClick={() => addressOpen.onToggle()}>
                   <FaLocationDot />
                   <Heading>Endereços</Heading>
                   <IconButton
                     colorScheme="whiteAlpha"
-                    color={"#6c083d"}
+                    color={'#6c083d'}
                     aria-label="Abrir endereços"
                     className="ms-auto"
-                    icon={
-                      addressOpen.isOpen ? <FaChevronUp /> : <FaChevronDown />
-                    }
+                    icon={addressOpen.isOpen ? <FaChevronUp /> : <FaChevronDown />}
                   />
                 </Flex>
                 <Collapse in={addressOpen.isOpen} animateOpacity>
@@ -323,20 +265,15 @@ export const Profile = () => {
               </Flex>
 
               <Flex className="profile-orders mt-5">
-                <Flex
-                  className="profile-orders__title"
-                  onClick={() => ordersOpen.onToggle()}
-                >
+                <Flex className="profile-orders__title" onClick={() => ordersOpen.onToggle()}>
                   <FaTableList />
                   <Heading>Pedidos</Heading>
                   <IconButton
                     colorScheme="whiteAlpha"
-                    color={"#6c083d"}
+                    color={'#6c083d'}
                     aria-label="Abrir endereços"
                     className="ms-auto"
-                    icon={
-                      ordersOpen.isOpen ? <FaChevronUp /> : <FaChevronDown />
-                    }
+                    icon={ordersOpen.isOpen ? <FaChevronUp /> : <FaChevronDown />}
                   />
                 </Flex>
 
@@ -346,26 +283,22 @@ export const Profile = () => {
               </Flex>
             </>
           )}
-
         </Flex>
-      )
-      }
+      )}
 
-      {
-        isLoading && (
-          <Spinner
-            thickness="4px"
-            speed="0.65s"
-            emptyColor="gray.200"
-            color="blue.500"
-            size="xl"
-            position={"absolute"}
-            top={"50%"}
-            left={"50%"}
-            transform={"translate(-50%,-50%)"}
-          />
-        )
-      }
-    </Flex >
+      {isLoading && (
+        <Spinner
+          thickness="4px"
+          speed="0.65s"
+          emptyColor="gray.200"
+          color="blue.500"
+          size="xl"
+          position={'absolute'}
+          top={'50%'}
+          left={'50%'}
+          transform={'translate(-50%,-50%)'}
+        />
+      )}
+    </Flex>
   );
 };

@@ -1,18 +1,18 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 export interface finishOrderSliceValue {
   item: {
     productId: number;
     qtd: number;
   }[];
-  addressId: number;  
+  addressId: number;
   isOrder: boolean;
   step: number;
 }
 
 const initialValues: finishOrderSliceValue =
-  localStorage.getItem("finishOrder") !== null
-    ? JSON.parse(localStorage.getItem("finishOrder")!)
+  localStorage.getItem('finishOrder') !== null
+    ? JSON.parse(localStorage.getItem('finishOrder')!)
     : {
         item: [],
         addressId: 0,
@@ -22,11 +22,11 @@ const initialValues: finishOrderSliceValue =
 
 const finishOrderSlice = createSlice({
   initialState: initialValues,
-  name: "finishOrder",
+  name: 'finishOrder',
   reducers: {
     setAddressOrder: (state, action: PayloadAction<{ addressId: number }>) => {
       state.addressId = action.payload.addressId;
-      localStorage.setItem("finishOrder", JSON.stringify(state));
+      localStorage.setItem('finishOrder', JSON.stringify(state));
     },
 
     setItemsOrder: (
@@ -41,7 +41,7 @@ const finishOrderSlice = createSlice({
     ) => {
       state.item = action.payload.item;
       state.isOrder = action.payload.isOrder;
-      localStorage.setItem("finishOrder", JSON.stringify(state));
+      localStorage.setItem('finishOrder', JSON.stringify(state));
     },
 
     setStepOrder: (state, action: PayloadAction<{ step: number }>) => {
@@ -51,7 +51,7 @@ const finishOrderSlice = createSlice({
       } else if (step <= state.step) {
         state.step = step;
       }
-      localStorage.setItem("finishOrder", JSON.stringify(state));
+      localStorage.setItem('finishOrder', JSON.stringify(state));
     },
 
     removeFinishOrder: (state) => {
@@ -61,20 +61,16 @@ const finishOrderSlice = createSlice({
         isOrder: false,
         step: 0,
       };
-      localStorage.setItem("finishOrder", JSON.stringify(state));
+      localStorage.setItem('finishOrder', JSON.stringify(state));
     },
   },
 });
 
-export const { setAddressOrder, setItemsOrder, setStepOrder, removeFinishOrder } =
-  finishOrderSlice.actions;
+export const { setAddressOrder, setItemsOrder, setStepOrder, removeFinishOrder } = finishOrderSlice.actions;
 
 export default finishOrderSlice.reducer;
 
 export const selectCurrentItem = (state: finishOrderSliceValue) => state.item;
-export const selectCurrentAddressId = (state: finishOrderSliceValue) =>
-  state.addressId;
-export const selectCurrentIsOrder = (state: finishOrderSliceValue) =>
-  state.isOrder;
+export const selectCurrentAddressId = (state: finishOrderSliceValue) => state.addressId;
+export const selectCurrentIsOrder = (state: finishOrderSliceValue) => state.isOrder;
 export const selectCurrentStep = (state: finishOrderSliceValue) => state.step;
-  

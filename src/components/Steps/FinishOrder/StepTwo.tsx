@@ -13,25 +13,20 @@ import {
   Thead,
   Tr,
   useDisclosure,
-} from "@chakra-ui/react";
-import { useEffect, useState } from "react";
-import { FaCartShopping } from "react-icons/fa6";
-import { useNavigate } from "react-router-dom";
-import { CartSlice } from "../../../features/cart/cartSlice";
-import {
-  finishOrderSliceValue,
-  setItemsOrder,
-} from "../../../features/finishOrder/finishOrderSlice";
-import { useAppDispatch } from "../../../hooks/useAppDispatch";
-import { useAppSelector } from "../../../hooks/useAppSelector";
-import "./finishStep.scss";
-import { useGetAddress } from "../../../hooks/address/useGetAddress";
-import { useCreateOrder } from "../../../hooks/orders/useCreateOrder";
+} from '@chakra-ui/react';
+import { useEffect, useState } from 'react';
+import { FaCartShopping } from 'react-icons/fa6';
+import { useNavigate } from 'react-router-dom';
+import { CartSlice } from '../../../features/cart/cartSlice';
+import { finishOrderSliceValue, setItemsOrder } from '../../../features/finishOrder/finishOrderSlice';
+import { useAppDispatch } from '../../../hooks/useAppDispatch';
+import { useAppSelector } from '../../../hooks/useAppSelector';
+import './finishStep.scss';
+import { useGetAddress } from '../../../hooks/address/useGetAddress';
+import { useCreateOrder } from '../../../hooks/orders/useCreateOrder';
 
 export const StepTwo = () => {
-  const finishOrder: finishOrderSliceValue = useAppSelector(
-    (state) => state.finishOrder,
-  );
+  const finishOrder: finishOrderSliceValue = useAppSelector((state) => state.finishOrder);
   const cartSlice: CartSlice = useAppSelector((state) => state.cart);
   const navigate = useNavigate();
   const order = useCreateOrder();
@@ -50,7 +45,7 @@ export const StepTwo = () => {
       });
       dispatch(setItemsOrder({ item: items, isOrder: cartSlice.isOrder }));
     } else {
-      navigate("/carrinho");
+      navigate('/carrinho');
     }
   }, []);
 
@@ -102,8 +97,7 @@ export const StepTwo = () => {
         <Flex className="total-address">
           {!address.isLoading && address.data && (
             <Text>
-              <strong>Endereço de entrega:
-                </strong>{" "}
+              <strong>Endereço de entrega:</strong>{' '}
               {`${address.data.number} - ${address.data.street}, ${address.data.neighborhood} - ${address.data.city} ${address.data.district} - ${address.data.cep}`}
             </Text>
           )}
@@ -126,7 +120,7 @@ export const StepTwo = () => {
         <Flex className="total-end">
           <Button colorScheme="blank" onClick={() => finishCart()} isLoading={order.isLoading}>
             <FaCartShopping />
-            Finalizar {cartSlice.isOrder ? "Encomenda" : "Compra"}
+            Finalizar {cartSlice.isOrder ? 'Encomenda' : 'Compra'}
           </Button>
         </Flex>
       </Flex>

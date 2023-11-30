@@ -44,7 +44,7 @@ export const StepThree = () => {
     validateOnChange: false,
     onSubmit: async ({ birthDate, terms, phoneNumber }) => {
       dispatch(setBirthAndTermsPhoneNumber({ birthDate, terms, phoneNumber }));
-      const register : RegisterSlice = {...registerData, birthDate: birthDate, phoneNumber: phoneNumber}
+      const register: RegisterSlice = { ...registerData, birthDate: birthDate, phoneNumber: phoneNumber };
       await mutateAsync(register);
     },
   });

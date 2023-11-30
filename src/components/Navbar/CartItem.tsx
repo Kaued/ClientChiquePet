@@ -1,22 +1,13 @@
-import {
-  Flex,
-  Heading,
-  IconButton,
-  Image,
-  Text
-} from "@chakra-ui/react";
-import { useFormik } from "formik";
-import { AiOutlineClose } from "react-icons/ai";
-import * as Yup from "yup";
-import { Config } from "../../environment/config";
-import {
-  changeQtdProduct,
-  removeItemCart,
-} from "../../features/cart/cartSlice";
-import { Products } from "../../hooks/products/useGetProduct";
-import { useAppDispatch } from "../../hooks/useAppDispatch";
-import { InputDefault } from "../Default/InputDefault";
-import "./cart.scss";
+import { Flex, Heading, IconButton, Image, Text } from '@chakra-ui/react';
+import { useFormik } from 'formik';
+import { AiOutlineClose } from 'react-icons/ai';
+import * as Yup from 'yup';
+import { Config } from '../../environment/config';
+import { changeQtdProduct, removeItemCart } from '../../features/cart/cartSlice';
+import { Products } from '../../hooks/products/useGetProduct';
+import { useAppDispatch } from '../../hooks/useAppDispatch';
+import { InputDefault } from '../Default/InputDefault';
+import './cart.scss';
 
 interface ItemValue {
   item: { product: Products; qtd: number };
@@ -32,7 +23,7 @@ export const CartItem = ({ item, index }: ItemValue) => {
   const formik = useFormik<QtdForm>({
     initialValues: { qtdCart: item.qtd },
     validationSchema: Yup.object().shape({
-      qtdCart: Yup.number().min(1, "A quantidade mínima de 1"),
+      qtdCart: Yup.number().min(1, 'A quantidade mínima de 1'),
     }),
     validateOnChange: false,
     onSubmit: ({ qtdCart }) => {
@@ -47,9 +38,7 @@ export const CartItem = ({ item, index }: ItemValue) => {
   return (
     <Flex className="cartItem">
       <Image
-        src={`${Config.baseApiUrl}/${
-          item.product.imageUrl.find((img) => img.type == "cover")!.path
-        }`}
+        src={`${Config.baseApiUrl}/${item.product.imageUrl.find((img) => img.type == 'cover')!.path}`}
         alt={item.product.name}
         className="cartItem-image"
       />
@@ -82,7 +71,7 @@ export const CartItem = ({ item, index }: ItemValue) => {
         colorScheme="red"
         variant="outline"
         size="sm"
-        borderRadius={"full"}
+        borderRadius={'full'}
         onClick={() => dispatch(removeItemCart({ index: index }))}
       />
     </Flex>

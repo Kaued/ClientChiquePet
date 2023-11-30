@@ -1,10 +1,10 @@
-import { AxiosError } from "axios";
-import { api } from "../../api/axios";
-import { useAlert } from "../useAlert";
-import { useInfiniteQuery } from "@tanstack/react-query";
-import { Pagination } from "../../@types/Pagination";
-import { Categories } from "../categories/useGetAllCategories";
-import { ImageUrlValue } from "../../@types/ImageUrlValue";
+import { AxiosError } from 'axios';
+import { api } from '../../api/axios';
+import { useAlert } from '../useAlert';
+import { useInfiniteQuery } from '@tanstack/react-query';
+import { Pagination } from '../../@types/Pagination';
+import { Categories } from '../categories/useGetAllCategories';
+import { ImageUrlValue } from '../../@types/ImageUrlValue';
 
 export type Products = {
   productId: number;
@@ -20,7 +20,7 @@ export type Products = {
   category: Categories;
 };
 
-export type FilterProduct = "news" | "popular";
+export type FilterProduct = 'news' | 'popular';
 
 export interface GetAllProducts {
   data: Products[];
@@ -32,13 +32,13 @@ export const useGetAllProducts = () => {
 
   return (filter?: FilterProduct) => {
     const query = useInfiniteQuery(
-      ["productsAll", {filter: filter ? filter : "all"}],
+      ['productsAll', { filter: filter ? filter : 'all' }],
       ({ pageParam = 1 }) => fetchAllProducts(pageParam),
       {
         getNextPageParam: (lastPage) => {
           lastPage = lastPage as GetAllProducts;
-          if (lastPage.meta["HasNext"]) {
-            return Number(lastPage.meta["CurrentPage"] + 1);
+          if (lastPage.meta['HasNext']) {
+            return Number(lastPage.meta['CurrentPage'] + 1);
           }
         },
 
@@ -49,13 +49,11 @@ export const useGetAllProducts = () => {
 
     async function fetchAllProducts(page: number) {
       return await request
-        .get(`/Product?pageNumber=${page}&pageSize=${20}${filter ? '&filter='+filter : ''}`, {
-          headers: { "X-Pagination": "*" },
+        .get(`/Product?pageNumber=${page}&pageSize=${20}${filter ? '&filter=' + filter : ''}`, {
+          headers: { 'X-Pagination': '*' },
         })
         .then(async (response) => {
-          const pagination: Pagination = JSON.parse(
-            response.headers["x-pagination"],
-          );
+          const pagination: Pagination = JSON.parse(response.headers['x-pagination']);
           const products: Products[] = response.data;
 
           return {
@@ -66,9 +64,8 @@ export const useGetAllProducts = () => {
         .catch((response: AxiosError) => {
           toast({
             status: response.response?.status,
-            mensagem: ["Ocorreu um erro!"],
+            mensagem: ['Ocorreu um erro!'],
           });
-          
         });
     }
     return query;

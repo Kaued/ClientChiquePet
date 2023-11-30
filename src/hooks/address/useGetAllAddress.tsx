@@ -6,7 +6,7 @@ import { useAlert } from '../useAlert';
 import { useAppSelector } from '../useAppSelector';
 
 export type Address = {
-  addressId: number,
+  addressId: number;
   cep: string;
   street: string;
   neighborhood: string;
@@ -22,11 +22,9 @@ export interface GetAllAddress {
 export const useGetAllAddress = () => {
   const request = api();
   const toast = useAlert();
-  const authData: AuthState = useAppSelector((state)=>state.auth);
+  const authData: AuthState = useAppSelector((state) => state.auth);
 
-  const query = useQuery(["addressAll", { email: authData.email }], () =>
-    fetchAllAddress(),
-  );
+  const query = useQuery(['addressAll', { email: authData.email }], () => fetchAllAddress());
 
   async function fetchAllAddress() {
     return await request
@@ -41,7 +39,7 @@ export const useGetAllAddress = () => {
       .catch((response: AxiosError) => {
         toast({
           status: response.response?.status,
-          mensagem: ["Ocorreu um erro!"],
+          mensagem: ['Ocorreu um erro!'],
         });
       });
   }

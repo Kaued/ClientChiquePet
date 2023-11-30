@@ -21,7 +21,7 @@ export const store: AppStore = configureStore({
     register: registerSlice,
     address: addressSlice,
     cart: cartSlice,
-    finishOrder: finishOrderSlice
+    finishOrder: finishOrderSlice,
   },
   middleware: [thunkMiddleware],
 });

@@ -1,8 +1,8 @@
-import { Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
-import { useFormik } from "formik";
-import { FaSearch } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
-import * as Yup from "yup";
+import { Input, InputGroup, InputLeftElement } from '@chakra-ui/react';
+import { useFormik } from 'formik';
+import { FaSearch } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
+import * as Yup from 'yup';
 
 interface SearchValue {
   search: string;
@@ -10,7 +10,7 @@ interface SearchValue {
 
 export const Search = () => {
   const initialValue: SearchValue = {
-    search: "",
+    search: '',
   };
 
   const navigate = useNavigate();
@@ -21,7 +21,7 @@ export const Search = () => {
       search: Yup.string().required(),
     }),
     onSubmit: async ({ search }) => {
-      navigate('/produtos/pesquisar/'+search)
+      navigate('/produtos/pesquisar/' + search);
     },
   });
 
@@ -36,9 +36,8 @@ export const Search = () => {
         type="text"
         name="search"
         id="search"
-        onKeyUpCapture={(e)=>{
-          if(e.key === "Enter")
-            formik.handleSubmit();
+        onKeyUpCapture={(e) => {
+          if (e.key === 'Enter') formik.handleSubmit();
         }}
       />
     </InputGroup>

@@ -8,28 +8,26 @@ import {
   Image,
   Link,
   Text,
-  useDisclosure
-} from "@chakra-ui/react";
-import { useEffect, useState } from "react";
-import {
-  AiOutlineHome
-} from "react-icons/ai";
-import { BiCategory } from "react-icons/bi";
-import { BsFacebook, BsInstagram, BsWhatsapp } from "react-icons/bs";
-import { GiHamburgerMenu } from "react-icons/gi";
-import { HiOutlineMail } from "react-icons/hi";
-import { useNavigate } from "react-router-dom";
-import { AuthState } from "../../@types/AuthState";
-import { Config } from "../../environment/config";
-import { useGetAllCategories } from "../../hooks/categories/useGetAllCategories";
-import { useAppSelector } from "../../hooks/useAppSelector";
-import logo from "../../images/logo.jpg";
-import { Cart } from "./Cart";
-import { ConfigItem } from "./ConfigItem";
-import { ItemNavBar } from "./ItemNavbar";
-import { Search } from "./Search";
-import "./item.scss";
-import "./navbar.scss";
+  useDisclosure,
+} from '@chakra-ui/react';
+import { useEffect, useState } from 'react';
+import { AiOutlineHome } from 'react-icons/ai';
+import { BiCategory } from 'react-icons/bi';
+import { BsFacebook, BsInstagram, BsWhatsapp } from 'react-icons/bs';
+import { GiHamburgerMenu } from 'react-icons/gi';
+import { HiOutlineMail } from 'react-icons/hi';
+import { useNavigate } from 'react-router-dom';
+import { AuthState } from '../../@types/AuthState';
+import { Config } from '../../environment/config';
+import { useGetAllCategories } from '../../hooks/categories/useGetAllCategories';
+import { useAppSelector } from '../../hooks/useAppSelector';
+import logo from '../../images/logo.jpg';
+import { Cart } from './Cart';
+import { ConfigItem } from './ConfigItem';
+import { ItemNavBar } from './ItemNavbar';
+import { Search } from './Search';
+import './item.scss';
+import './navbar.scss';
 
 export interface LinkNavBar {
   path: string;
@@ -50,10 +48,10 @@ export const Navbar = () => {
   useEffect(() => {
     setItens([
       {
-        path: "/",
-        name: "Home",
+        path: '/',
+        name: 'Home',
         icon: <AiOutlineHome />,
-        role: "",
+        role: '',
       },
     ]);
   }, []);
@@ -69,7 +67,7 @@ export const Navbar = () => {
                 path: `/produtos/categoria/${c.name}`,
                 name: c.name,
                 icon: <BiCategory />,
-                role: "",
+                role: '',
               },
             ]);
           });
@@ -125,15 +123,9 @@ export const Navbar = () => {
         <Flex className="navbar-list">
           {!!itens &&
             itens.map((item) => {
-              if (userState.roles.includes(item.role) || item.role === "") {
+              if (userState.roles.includes(item.role) || item.role === '') {
                 return (
-                  <ItemNavBar
-                    key={item.path}
-                    path={item.path}
-                    name={item.name}
-                    icon={item.icon}
-                    role={item.role}
-                  />
+                  <ItemNavBar key={item.path} path={item.path} name={item.name} icon={item.icon} role={item.role} />
                 );
               }
             })}
@@ -157,8 +149,8 @@ export const Navbar = () => {
 
             {!userState.authenticated && (
               <Box className="navbar-utilities__notLogin">
-                <Button onClick={() => navigate("/register")}>Registrar</Button>
-                <Button onClick={() => navigate("/login")} colorScheme="yellow">
+                <Button onClick={() => navigate('/register')}>Registrar</Button>
+                <Button onClick={() => navigate('/login')} colorScheme="yellow">
                   Login
                 </Button>
               </Box>
@@ -183,61 +175,39 @@ export const Navbar = () => {
 
           {!userState.authenticated && (
             <Box className="navbar-utilities__notLogin">
-              <Button onClick={() => navigate("/register")}>Registrar</Button>
-              <Button onClick={() => navigate("/login")} colorScheme="yellow">
+              <Button onClick={() => navigate('/register')}>Registrar</Button>
+              <Button onClick={() => navigate('/login')} colorScheme="yellow">
                 Login
               </Button>
             </Box>
           )}
         </Flex>
-        <Drawer
-          isOpen={isOpen}
-          placement="left"
-          onClose={onClose}
-          returnFocusOnClose={false}
-          onOverlayClick={onClose}
-        >
-          <DrawerContent
-            bg={"#6c083d"}
-            padding={"10px"}
-            className="navbar-tablet__list"
-          >
+        <Drawer isOpen={isOpen} placement="left" onClose={onClose} returnFocusOnClose={false} onOverlayClick={onClose}>
+          <DrawerContent bg={'#6c083d'} padding={'10px'} className="navbar-tablet__list">
             <Flex
-              justifyContent={"center"}
-              alignItems={"center"}
-              marginTop={"20px"}
-              paddingBottom={"25px"}
-              marginBottom={"25px"}
-              borderBottom={"2px solid #00000020"}
+              justifyContent={'center'}
+              alignItems={'center'}
+              marginTop={'20px'}
+              paddingBottom={'25px'}
+              marginBottom={'25px'}
+              borderBottom={'2px solid #00000020'}
             >
-              <Image
-                src={logo}
-                alt="logo"
-                w={"45px"}
-                h={"45px"}
-                borderRadius={"10px"}
-              />
-              <Text
-                fontSize="32px"
-                fontFamily={"Lato"}
-                color={"white"}
-                marginLeft={"5px"}
-                marginBottom={"0"}
-              >
+              <Image src={logo} alt="logo" w={'45px'} h={'45px'} borderRadius={'10px'} />
+              <Text fontSize="32px" fontFamily={'Lato'} color={'white'} marginLeft={'5px'} marginBottom={'0'}>
                 ChikPet
               </Text>
               <CloseButton
                 onClick={onClose}
-                fontSize={"16px"}
-                color={"white"}
-                position={"absolute"}
-                right={"-15px"}
-                bg={"#6c083d"}
+                fontSize={'16px'}
+                color={'white'}
+                position={'absolute'}
+                right={'-15px'}
+                bg={'#6c083d'}
               ></CloseButton>
             </Flex>
             {!!itens &&
               itens.map((item) => {
-                if (userState.roles.includes(item.role) || item.role === "") {
+                if (userState.roles.includes(item.role) || item.role === '') {
                   return (
                     <ItemNavBar
                       key={item.path}
@@ -253,8 +223,8 @@ export const Navbar = () => {
             {userState.authenticated && <ConfigItem text={true} />}
             {!userState.authenticated && (
               <Box className="navbar-utilities__notLogin">
-                <Button onClick={() => navigate("/register")}>Registrar</Button>
-                <Button onClick={() => navigate("/login")} colorScheme="yellow">
+                <Button onClick={() => navigate('/register')}>Registrar</Button>
+                <Button onClick={() => navigate('/login')} colorScheme="yellow">
                   Login
                 </Button>
               </Box>

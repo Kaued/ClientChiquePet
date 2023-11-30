@@ -87,7 +87,7 @@
       }
     }
 
-    &__stock{
+    &__stock {
       margin-bottom: -10px;
     }
   }
@@ -122,7 +122,7 @@
     transform: translate(-50%, -50%);
   }
 
-  @include for-tablet-down{
+  @include for-tablet-down {
     padding: 0px;
   }
 }

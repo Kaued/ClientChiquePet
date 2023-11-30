@@ -58,7 +58,7 @@ export const Register = () => {
   }, [registerData.step]);
 
   useEffect(() => {
-    document.title = "Cadastro";
+    document.title = 'Cadastro';
   }, []);
 
   useEffect(() => {

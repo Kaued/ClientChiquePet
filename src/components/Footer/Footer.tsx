@@ -1,17 +1,17 @@
-import { Flex, Heading, Image, Link, Text } from "@chakra-ui/react";
-import { BsFacebook, BsInstagram, BsWhatsapp } from "react-icons/bs";
-import { HiOutlineMail } from "react-icons/hi";
-import { useNavigate } from "react-router-dom";
-import { Config } from "../../environment/config";
-import logo from "../../images/logo.jpg";
-import "./footer.scss";
-import { FaRegCopyright } from "react-icons/fa6";
+import { Flex, Heading, Image, Link, Text } from '@chakra-ui/react';
+import { BsFacebook, BsInstagram, BsWhatsapp } from 'react-icons/bs';
+import { HiOutlineMail } from 'react-icons/hi';
+import { useNavigate } from 'react-router-dom';
+import { Config } from '../../environment/config';
+import logo from '../../images/logo.jpg';
+import './footer.scss';
+import { FaRegCopyright } from 'react-icons/fa6';
 
 export const Footer = () => {
   const navigate = useNavigate();
 
   return (
-    <Flex w={"100%"} flexDirection={"column"}>
+    <Flex w={'100%'} flexDirection={'column'}>
       <Flex className="footer">
         <Flex className="footer-logo col-lg-3 col-12 p-lg-2">
           <Image src={logo} alt="Logo" />
@@ -19,7 +19,7 @@ export const Footer = () => {
         </Flex>
         <Flex className="footer-links col-lg-3 col-12 p-lg-2">
           <Heading>Links Uteis</Heading>
-          <Link onClick={() => navigate("/")}>Home</Link>
+          <Link onClick={() => navigate('/')}>Home</Link>
         </Flex>
         <Flex className="footer-contact col-lg-3 col-12 p-lg-2">
           <Heading>Contatos</Heading>
@@ -75,9 +75,7 @@ export const Footer = () => {
           <FaRegCopyright />
           ChikPet | Todos direitos reservados
         </Text>
-        <Text className="col-lg-6 col-12">
-          Desenvolvido por Kauê & Felipe
-        </Text>
+        <Text className="col-lg-6 col-12">Desenvolvido por Kauê & Felipe</Text>
       </Flex>
     </Flex>
   );

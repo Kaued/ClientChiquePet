@@ -1,19 +1,19 @@
-import { FreeMode, Pagination, Navigation } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Flex, Heading, Link, Spinner } from "@chakra-ui/react";
+import { FreeMode, Pagination, Navigation } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Flex, Heading, Link, Spinner } from '@chakra-ui/react';
 
-import "swiper/css";
-import "swiper/css/free-mode";
-import "swiper/css/pagination";
-import "./slideProduct.scss";
-import "swiper/css/navigation";
+import 'swiper/css';
+import 'swiper/css/free-mode';
+import 'swiper/css/pagination';
+import './slideProduct.scss';
+import 'swiper/css/navigation';
 
-import { UseInfiniteQueryResult } from "@tanstack/react-query";
-import { GetAllProducts } from "../../hooks/products/useGetAllProducts";
-import { useNavigate } from "react-router-dom";
-import { Products } from "../../hooks/products/useGetProduct";
-import { useEffect, useState } from "react";
-import { CardProduct } from "./CardProduct";
+import { UseInfiniteQueryResult } from '@tanstack/react-query';
+import { GetAllProducts } from '../../hooks/products/useGetAllProducts';
+import { useNavigate } from 'react-router-dom';
+import { Products } from '../../hooks/products/useGetProduct';
+import { useEffect, useState } from 'react';
+import { CardProduct } from './CardProduct';
 
 interface SlideProductProps {
   query: UseInfiniteQueryResult<GetAllProducts | any>;
@@ -40,12 +40,14 @@ export const SlideProduct = ({ query, title, link }: SlideProductProps) => {
     <Flex className="slideProduct">
       <Flex>
         <Heading className="slideProduct-title">{title}</Heading>
-        <Link onClick={() => navigate(link)} className="slideProduct-link">Ver Mais</Link>
+        <Link onClick={() => navigate(link)} className="slideProduct-link">
+          Ver Mais
+        </Link>
       </Flex>
       {!query.isLoading && (
         <Swiper
-          slidesPerView={"auto"}
-          spaceBetween={"30px"}
+          slidesPerView={'auto'}
+          spaceBetween={'30px'}
           navigation={true}
           freeMode={true}
           pagination={{
@@ -61,36 +63,22 @@ export const SlideProduct = ({ query, title, link }: SlideProductProps) => {
         >
           {data.length > 0 &&
             data.map((product) => (
-              <SwiperSlide
-                key={product.productId}
-                className="slideProduct-swipper__slide"
-              >
+              <SwiperSlide key={product.productId} className="slideProduct-swipper__slide">
                 <CardProduct data={product} navigate={navigate} />
               </SwiperSlide>
             ))}
 
           {data.length <= 0 && (
-            <SwiperSlide
-              className="slideProduct-swipper__slide--notFound"
-            >
+            <SwiperSlide className="slideProduct-swipper__slide--notFound">
               <Heading>Nenhum produto encontrado</Heading>
             </SwiperSlide>
           )}
 
           {query.isLoading && (
-            <SwiperSlide
-              className="slideProduct-swipper__slide--isLoading"
-            >
-              <Spinner
-                thickness="4px"
-                speed="0.65s"
-                emptyColor="gray.200"
-                color="blue.500"
-                size="xl"
-              />
+            <SwiperSlide className="slideProduct-swipper__slide--isLoading">
+              <Spinner thickness="4px" speed="0.65s" emptyColor="gray.200" color="blue.500" size="xl" />
             </SwiperSlide>
           )}
-
         </Swiper>
       )}
     </Flex>

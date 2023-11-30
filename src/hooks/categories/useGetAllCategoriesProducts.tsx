@@ -1,10 +1,10 @@
-import { AxiosError } from "axios";
-import { api } from "../../api/axios";
-import { useAlert } from "../useAlert";
-import { useInfiniteQuery } from "@tanstack/react-query";
-import { Pagination } from "../../@types/Pagination";
-import { Products } from "../products/useGetProduct";
-import { GetAllProducts } from "../products/useGetAllProducts";
+import { AxiosError } from 'axios';
+import { api } from '../../api/axios';
+import { useAlert } from '../useAlert';
+import { useInfiniteQuery } from '@tanstack/react-query';
+import { Pagination } from '../../@types/Pagination';
+import { Products } from '../products/useGetProduct';
+import { GetAllProducts } from '../products/useGetAllProducts';
 
 export type Categories = {
   categoryId: number;
@@ -23,13 +23,13 @@ export const useGetAllCategoriesProducts = () => {
 
   return (filter: string) => {
     const query = useInfiniteQuery(
-      ["categoriesAll", {id: filter}],
+      ['categoriesAll', { id: filter }],
       ({ pageParam = 1 }) => fetchAllCategory(pageParam),
       {
         getNextPageParam: (lastPage) => {
           lastPage = lastPage as GetAllProducts;
-          if (lastPage.meta["HasNext"]) {
-            return Number(lastPage.meta["CurrentPage"] + 1);
+          if (lastPage.meta['HasNext']) {
+            return Number(lastPage.meta['CurrentPage'] + 1);
           }
         },
 
@@ -41,12 +41,10 @@ export const useGetAllCategoriesProducts = () => {
     async function fetchAllCategory(page: number) {
       return await request
         .get(`/Category/${filter}/products?pageNumber=${page}&pageSize=${20}`, {
-          headers: { "X-Pagination": "*" },
+          headers: { 'X-Pagination': '*' },
         })
         .then(async (response) => {
-          const pagination: Pagination = JSON.parse(
-            response.headers["x-pagination"],
-          );
+          const pagination: Pagination = JSON.parse(response.headers['x-pagination']);
           const categories: Products[] = response.data;
           console.log(categories);
           return {
@@ -57,7 +55,7 @@ export const useGetAllCategoriesProducts = () => {
         .catch((response: AxiosError) => {
           toast({
             status: response.response?.status,
-            mensagem: ["Ocorreu um erro!"],
+            mensagem: ['Ocorreu um erro!'],
           });
           console.log(response);
         });

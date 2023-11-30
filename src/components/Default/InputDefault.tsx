@@ -31,7 +31,7 @@ export const InputDefault = (props: InputProps) => {
         placeholder={placeholderField}
         isInvalid={!!error}
         id={name}
-        onBlur={() => blur ? blur(): null}
+        onBlur={() => (blur ? blur() : null)}
       />
       {!!error && <span className="input-error">{error}</span>}
     </InputGroup>

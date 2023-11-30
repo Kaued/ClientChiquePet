@@ -4,16 +4,16 @@
     margin-top: 1em;
   }
 
-  &-address{
-
-    &__button{
+  &-address {
+    &__button {
       margin-left: auto;
 
-      svg{
+      svg {
         margin-right: 5px;
       }
 
-      &--edit, &--bottom{
+      &--edit,
+      &--bottom {
         margin-left: 0px;
       }
     }

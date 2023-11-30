@@ -1,15 +1,15 @@
-import { useAlert } from "../useAlert";
-import { api } from "../../api/axios";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { AxiosError } from "axios";
-import { ErrorApi } from "../../@types/ErrorApi";
-import { useAppSelector } from "../useAppSelector";
-import { AuthState } from "../../@types/AuthState";
-import { useAppDispatch } from "../useAppDispatch";
-import { setRefresh } from "../../features/address/addressSlice";
+import { useAlert } from '../useAlert';
+import { api } from '../../api/axios';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { AxiosError } from 'axios';
+import { ErrorApi } from '../../@types/ErrorApi';
+import { useAppSelector } from '../useAppSelector';
+import { AuthState } from '../../@types/AuthState';
+import { useAppDispatch } from '../useAppDispatch';
+import { setRefresh } from '../../features/address/addressSlice';
 
 interface Address {
-  id: string,
+  id: string;
   cep: string;
   street: string;
   neighborhood: string;
@@ -33,11 +33,11 @@ export const useEditAddress = () => {
         .then(async (response) => {
           toast({
             status: response.status,
-            mensagem: ["Endereço editado com sucesso"],
+            mensagem: ['Endereço editado com sucesso'],
           });
           await queryClient.invalidateQueries([
-            ["addressAll", { email: authData.email }],
-            ["address", { id: id }],
+            ['addressAll', { email: authData.email }],
+            ['address', { id: id }],
           ]);
           dispatch(setRefresh({ refresh: true }));
         })

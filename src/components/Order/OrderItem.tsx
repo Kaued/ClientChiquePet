@@ -1,14 +1,14 @@
-import { NavigateFunction } from "react-router-dom"
-import { Order } from "../../hooks/orders/useGetAllOrders"
-import { Badge, Button, Divider, Flex, Heading, Text } from "@chakra-ui/react"
-import { Config } from "../../environment/config"
-import { useEffect, useState } from "react"
-import { StautsOrderValue } from "../../@types/StatusOrderValue"
-import "./orderItem.scss"
+import { NavigateFunction } from 'react-router-dom';
+import { Order } from '../../hooks/orders/useGetAllOrders';
+import { Badge, Button, Divider, Flex, Heading, Text } from '@chakra-ui/react';
+import { Config } from '../../environment/config';
+import { useEffect, useState } from 'react';
+import { StautsOrderValue } from '../../@types/StatusOrderValue';
+import './orderItem.scss';
 
 interface OrdemItemValue {
-  data: Order,
-  navigate: NavigateFunction
+  data: Order;
+  navigate: NavigateFunction;
 }
 
 export const OrderItem = ({ data, navigate }: OrdemItemValue) => {
@@ -17,9 +17,9 @@ export const OrderItem = ({ data, navigate }: OrdemItemValue) => {
 
   useEffect(() => {
     setStatus(Config.statusOrder.find((a) => a.statusId == data.statusOrder)!);
-    let total = 0
+    let total = 0;
     data.orderProducts.forEach(() => {
-      total+=1
+      total += 1;
     });
     setTotalProduct(total);
   }, [data.statusOrder]);
@@ -28,22 +28,29 @@ export const OrderItem = ({ data, navigate }: OrdemItemValue) => {
   return (
     <>
       <Flex className="orderItem">
-
         {status && (
-          <Badge colorScheme={status!.color} className="orderItem-status col-lg-2 col-12">{status!.name}</Badge>
+          <Badge colorScheme={status!.color} className="orderItem-status col-lg-2 col-12">
+            {status!.name}
+          </Badge>
         )}
 
         <Flex className="orderItem-date col-lg-4 col-12">
-          <Heading>{new Date(data.createDate).toLocaleDateString("pt-BR")}</Heading>
-          <Text><strong>Total de produtos:</strong> {totalProduct}</Text>
+          <Heading>{new Date(data.createDate).toLocaleDateString('pt-BR')}</Heading>
+          <Text>
+            <strong>Total de produtos:</strong> {totalProduct}
+          </Text>
         </Flex>
 
-        <Text className="orderItem-total col-lg-4 col-12"><span>R$</span>{data.totalPrice.toFixed(2)}</Text>
+        <Text className="orderItem-total col-lg-4 col-12">
+          <span>R$</span>
+          {data.totalPrice.toFixed(2)}
+        </Text>
 
-        <Button colorScheme="blank" onClick={() => navigate("/pedido/" + data.orderId)} className="orderItem-button">Abrir Pedido</Button>
-
+        <Button colorScheme="blank" onClick={() => navigate('/pedido/' + data.orderId)} className="orderItem-button">
+          Abrir Pedido
+        </Button>
       </Flex>
       <Divider />
     </>
-  )
-}
+  );
+};
