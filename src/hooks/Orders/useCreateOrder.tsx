@@ -36,9 +36,9 @@ export const useCreateOrder = () => {
           status: response.status,
           mensagem: ['Pedido realizado com sucesso'],
         });
-        await queryClient.invalidateQueries([['orderAll', { email: authData.email }]]);
-        dispatch(removeAllItems());
         dispatch(removeFinishOrder());
+        dispatch(removeAllItems());
+        await queryClient.invalidateQueries([['orderAll', { email: authData.email }]]);
         navigate('/profile');
       })
       .catch(async (response: AxiosError) => {

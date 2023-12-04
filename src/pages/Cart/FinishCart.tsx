@@ -25,7 +25,7 @@ export const FinishCart = () => {
   const dispatch = useAppDispatch();
 
   const steps = [
-    { title: 'Primeiro', description: 'Nome & Email', component: <StepOne /> },
+    { title: 'Primeiro', description: 'Endereço', component: <StepOne /> },
     { title: 'Segundo', description: 'Pagamento', component: <StepTwo /> },
   ];
 

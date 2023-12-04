@@ -55,13 +55,11 @@ const finishOrderSlice = createSlice({
     },
 
     removeFinishOrder: (state) => {
-      state = {
-        item: [],
-        addressId: 0,
-        isOrder: false,
-        step: 0,
-      };
-      localStorage.setItem('finishOrder', JSON.stringify(state));
+      state.addressId = 0;
+      state.isOrder = false;
+      state.item = [];
+      state.step = 0;
+      localStorage.removeItem('finishOrder');
     },
   },
 });
