@@ -57,9 +57,10 @@
       }
     }
 
-    &__slide {
+    &__slide{
       width: 300px;
       padding: 20px 0px;
+      height: 100%;
 
       &--notFound {
         width: 100%;
