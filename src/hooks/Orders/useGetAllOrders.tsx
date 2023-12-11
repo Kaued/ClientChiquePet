@@ -15,7 +15,7 @@ export type Order = {
   statusOrder: number;
   userId: number;
   user: {
-    userName: string;
+    fullName: string;
     email: string;
     phoneNumber: string;
     birthDate: Date;
