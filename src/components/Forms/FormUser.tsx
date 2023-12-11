@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import { UseMutationResult } from '@tanstack/react-query';
 
 interface UserData {
-  userName: string;
+  fullName: string;
   email: string;
   password?: string;
   phoneNumber: string;
@@ -31,7 +31,7 @@ export const FormUser = ({ isAddMode, userValue, submit }: FormProps) => {
   const initialValues: UserData = userValue
     ? userValue
     : {
-        userName: '',
+        fullName: '',
         email: '',
         password: '',
         phoneNumber: '',
@@ -60,7 +60,7 @@ export const FormUser = ({ isAddMode, userValue, submit }: FormProps) => {
   const formik = useFormik<UserData>({
     initialValues: initialValues,
     validationSchema: Yup.object().shape({
-      userName: Yup.string().required('O campo nome é necessário'),
+      fullName: Yup.string().required('O campo nome é necessário'),
       email: Yup.string().email('Digite o email corretamente').required('O campo email é necessário'),
       password: passwordValidation,
       phoneNumber: Yup.string().required('O campo telefone é necessário'),
@@ -91,11 +91,11 @@ export const FormUser = ({ isAddMode, userValue, submit }: FormProps) => {
         <FormControl className="mb-4">
           <FormLabel>Nome</FormLabel>
           <InputDefault
-            name={'userName'}
-            value={formik.values.userName}
+            name={'fullName'}
+            value={formik.values.fullName}
             type={'text'}
             formik={formik}
-            error={formik.errors.userName}
+            error={formik.errors.fullName}
             required={true}
           />
         </FormControl>

@@ -7,7 +7,7 @@ import { ErrorApi } from '../../@types/ErrorApi';
 
 interface User {
   email: string;
-  userName: string;
+  fullName: string;
   password?: string;
   birthDate?: Date | string;
   phoneNumber: string;

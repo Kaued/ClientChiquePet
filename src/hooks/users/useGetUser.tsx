@@ -5,7 +5,7 @@ import { useAlert } from '../useAlert';
 import { AxiosError } from 'axios';
 
 export type Users = {
-  userName: string;
+  fullName: string;
   email: string;
   password: string;
   phoneNumber: string;

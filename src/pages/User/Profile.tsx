@@ -23,7 +23,7 @@ import { useGetAllOrder } from '../../hooks/orders/useGetAllOrders';
 
 interface UserData {
   email: string;
-  userName: string;
+  fullName: string;
   password?: string;
   birthDate?: Date | string;
   phoneNumber: string;
@@ -39,7 +39,7 @@ export const Profile = () => {
   const [initialValues, setInitialValues] = useState<UserData>({
     email: '',
     phoneNumber: '',
-    userName: '',
+    fullName: '',
     password: '',
     birthDate: '',
   });
@@ -63,7 +63,7 @@ export const Profile = () => {
   const formik = useFormik<UserData>({
     initialValues: initialValues,
     validationSchema: Yup.object().shape({
-      userName: Yup.string().required('O campo nome é necessário'),
+      fullName: Yup.string().required('O campo nome é necessário'),
       email: Yup.string().email('Digite o email corretamente').required('O campo email é necessário'),
       password: passwordValidation,
       phoneNumber: Yup.string().required('O campo telefone é necessário'),
@@ -116,13 +116,13 @@ export const Profile = () => {
           <Flex className="row profile-data__content">
             <Flex className="profile-item col-lg-6 col-12">
               <Text className="profile-item__label">Nome:</Text>
-              {!isEditing && <Text className="profile-item__label">{data.userName}</Text>}
+              {!isEditing && <Text className="profile-item__label">{data.fullName}</Text>}
               {isEditing && (
                 <InputDefault
-                  value={formik.values.userName}
+                  value={formik.values.fullName}
                   formik={formik}
-                  error={formik.errors.userName}
-                  name="userName"
+                  error={formik.errors.fullName}
+                  name="fullName"
                   required={true}
                   type="text"
                   placeholderField="Digite o nome"

@@ -9,7 +9,7 @@ import './stepRegister.scss';
 import { useEffect } from 'react';
 
 interface StepOneRegister {
-  userName: string;
+  fullName: string;
   email: string;
 }
 
@@ -19,19 +19,19 @@ export const StepOne = () => {
   const { isOpen, onToggle } = useDisclosure();
 
   const initialState: StepOneRegister = {
-    userName: registerData.userName ? registerData.userName : '',
+    fullName: registerData.fullName ? registerData.fullName : '',
     email: registerData.email ? registerData.email : '',
   };
 
   const formik = useFormik<StepOneRegister>({
     initialValues: initialState,
     validationSchema: Yup.object().shape({
-      userName: Yup.string().required('O campo nome é obrigatório.').min(3, 'O nome deve ter pelo menos 3 caracteres.'),
+      fullName: Yup.string().required('O campo nome é obrigatório.').min(3, 'O nome deve ter pelo menos 3 caracteres.'),
       email: Yup.string().required('O campo email é obrigatório.').email('Verifique se o email está correto.'),
     }),
     validateOnChange: false,
-    onSubmit: ({ email, userName }) => {
-      dispatch(setUserAndEmail({ userName, email }));
+    onSubmit: ({ email, fullName }) => {
+      dispatch(setUserAndEmail({ fullName, email }));
       dispatch(setStep({ step: 1 }));
     },
   });
@@ -45,12 +45,12 @@ export const StepOne = () => {
       <form className="register-form">
         <Text className="register-form__label">Nome do usuário</Text>
         <InputDefault
-          name="userName"
-          error={formik.errors.userName}
+          name="fullName"
+          error={formik.errors.fullName}
           type="text"
           formik={formik}
           required={true}
-          value={formik.values.userName}
+          value={formik.values.fullName}
           classField="register-form__input"
           placeholderField="Digite o nome do usuário"
         />

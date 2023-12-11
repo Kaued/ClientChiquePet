@@ -10,7 +10,7 @@ import { useAppSelector } from '../useAppSelector';
 
 interface User {
   email: string;
-  userName: string;
+  fullName: string;
   password?: string;
   birthDate?: Date | string;
   phoneNumber: string;
@@ -43,10 +43,10 @@ export const useCreateUser = () => {
         errors.forEach((erro) => {
           if (erro.code === 'DuplicateEmail') {
             dispatch(setStep({ step: 0 }));
-            dispatch(setUserAndEmail({ userName: registerData.userName, email: '' }));
+            dispatch(setUserAndEmail({ fullName: registerData.fullName, email: '' }));
           } else if (erro.code === 'DuplicateUserName') {
             dispatch(setStep({ step: 0 }));
-            dispatch(setUserAndEmail({ userName: '', email: registerData.email }));
+            dispatch(setUserAndEmail({ fullName: '', email: registerData.email }));
           }
         });
       });
